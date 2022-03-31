@@ -3,7 +3,7 @@ Autor: Martin Lempp
 Datum: 30.30.2022
 
 Kurzbeschreibung:
-Erstellung der Video Datenbank und update falls nicht existent
+Erstellung der Video Datenbank und update
 
 '''
 import numpy as np
@@ -179,7 +179,7 @@ def video_database_update():
 
     yt = YTstats(api_key, channel_id)
     if os.path.isfile(path + 'video_DataBase.csv'):
-        print ("database exist")
+        print ("video database exist...update")
         df_old = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
         video_data_new = yt.get_channel_video_data(limit = 1)
         df_new =videos_to_frame(video_data_new)
@@ -187,7 +187,7 @@ def video_database_update():
         df = pd.concat([df_new_red,df_old])
 
     else:
-        print ("no database existent")
+        print ("no video database existent...create")
         video_data_new = yt.get_channel_video_data(limit = 500)
         df = videos_to_frame(video_data_new)
 
