@@ -156,21 +156,42 @@ class YTstats:
         print('file dumped to', filename)
 
 
+def videos_to_frame(video_dct):
 
-def video_database_update(path, channel_id):
+    df = pd.DataFrame(index = video_dct.keys())
+    df['video_title'] = [video_dct[x]['title'] for x in video_dct]
+    df['video_date'] = [video_dct[x]['publishedAt'] for x in video_dct]
+    df['channel'] = [video_dct[x]['channelId'] for x in video_dct]
+    df['video_date'] = pd.to_datetime(df.video_date).dt.date
+    return df
+
+def video_database_update():
+
+    path = os.getcwd()+ '\\'
+
     with open(path+'api_key.txt') as f:
         lines = f.readlines()
     api_key = lines[0]
+
+    with open(path+'channel_id.txt') as f:
+        lines = f.readlines()
+    channel_id = lines[0]
+
     yt = YTstats(api_key, channel_id)
-    if os.path.isfile(path + 'video_DataBase.json'):
-        print ("File exist")
-        video_data_new = yt.get_channel_video_data(limit = 50)
+    if os.path.isfile(path + 'video_DataBase.csv'):
+        print ("database exist")
+        df_old = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
+        video_data_new = yt.get_channel_video_data(limit = 1)
+        df_new =videos_to_frame(video_data_new)
+        df_new_red = df_new[~df_new.index.isin(df_old.index)]
+        df = pd.concat([df_new_red,df_old])
+
     else:
-        print ("File not exist")
-        video_data_new = yt.get_channel_video_data(limit = 5000)
+        print ("no database existent")
+        video_data_new = yt.get_channel_video_data(limit = 500)
+        df = videos_to_frame(video_data_new)
 
-
-
+    df.to_csv(path+'video_DataBase.csv', sep = ';')
 
 
 
