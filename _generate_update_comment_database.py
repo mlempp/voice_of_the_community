@@ -27,15 +27,22 @@ import googleapiclient.discovery
 def load_all_video_comments(video_id, yt):
     response = yt.commentThreads().list(part = "snippet", videoId = video_id, maxResults = 100, textFormat="plainText", pageToken ='').execute()
     comment_list = [item["snippet"]["topLevelComment"]["snippet"]["textDisplay"] for item in response['items']]
-    next_page_token = response["nextPageToken"]
-    count = 0
-    while next_page_token:
-        count+=1
-        print(count)
-        response_new = yt.commentThreads().list(part = "snippet", videoId = video_id, maxResults = 100, textFormat="plainText", pageToken =next_page_token).execute()
-        comment_list_new = [item["snippet"]["topLevelComment"]["snippet"]["textDisplay"] for item in response['items']]
-        comment_list = comment_list+comment_list_new
-
+    page = 0
+    print(f'        comment page: {page}')
+    if 'nextPageToken' in response.keys():
+        next_page_token = response.get("nextPageToken")
+        while next_page_token:
+            page+=1
+            if page%10 == 0:
+                print(f'        comment page: {page}')
+            response_new = yt.commentThreads().list(part = "snippet", videoId = video_id, maxResults = 100, textFormat="plainText", pageToken =next_page_token).execute()
+            comment_list_new = [item["snippet"]["topLevelComment"]["snippet"]["textDisplay"] for item in response_new['items']]
+            comment_list = comment_list+comment_list_new
+            if 'nextPageToken' in response_new.keys():
+                next_page_token = response_new.get("nextPageToken")
+            else:
+                next_page_token = None
+    return comment_list
 
 def comment_database_update():
 
@@ -50,22 +57,23 @@ def comment_database_update():
 
     if os.path.isfile(path + 'video_DataBase.csv'):
         df_videos = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
+        df_videos = df_videos.iloc[::-1]
         if os.path.isfile(path + 'comment_DataBase.csv'):
             print ("comment database existent...update")
-
+            #update folgende videos:
+            #   1. die für die noch keine Kommentare vorliegen
+            #   2. die letzten 30 Videos
             no_comment
         else:
             print ("no comment database existent...create")
             df_comments = pd.DataFrame()
             for video_ID in df_videos.index:
+                print(f'    load comments for {df_videos.loc[video_ID].video_title}')
                 video_info = pd.Series(name = video_ID)
                 comments = load_all_video_comments(video_ID, yt)
-
-
-
-                video_info['comments'] =
+                print(f'        {len(comments)} comments loaded')
+                video_info['comments'] = ' || '.join(comments)
                 df_comments = df_comments.append(video_info)
-
-
+            df_comments.to_csv(path + 'comment_DataBase.csv', sep=';')
     else:
         print("no database existent, no videos for scrapping")
