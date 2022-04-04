@@ -59,10 +59,24 @@ def comment_database_update():
         df_videos = df_videos.iloc[::-1]
         if os.path.isfile(path + 'comment_DataBase.csv'):
             print ("comment database existent...update")
-            #update folgende videos:
-            #   1. die für die noch keine Kommentare vorliegen
-            #   2. die letzten 30 Videos
-            no_comment
+            df_comments = pd.read_csv(path+'comment_DataBase.csv', sep = ';', index_col = 0)
+            df_comments_update = df_comments.copy()
+            ids_comments = list(df_comments.index)
+            ids_videos = list(df_videos.index)
+
+            missing_videos = [x for x in ids_videos if x not in ids_comments]
+            last_30_videos = ids_videos[-30:]
+            last_30_videos_not_missing = [x for x in last_30_videos if x not in missing_videos]
+
+            videos_for_update = missing_videos+last_30_videos_not_missing
+            for video_ID in videos_for_update:
+                print(f'    load comments for {df_videos.loc[video_ID].video_title}')
+                video_info = pd.Series(name = video_ID)
+                comments = load_all_video_comments(video_ID, yt)
+                print(f'        {len(comments)} comments loaded')
+                video_info['comments'] = ' || '.join(comments)
+                df_comments_update = df_comments_update.append(video_info)
+            df_comments_update.to_csv(path + 'comment_DataBase.csv', sep=';')
 
         else:
             print ("no comment database existent...create")
