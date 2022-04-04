@@ -64,6 +64,7 @@ def comment_database_update():
             #   1. die für die noch keine Kommentare vorliegen
             #   2. die letzten 30 Videos
             no_comment
+
         else:
             print ("no comment database existent...create")
             df_comments = pd.DataFrame()
