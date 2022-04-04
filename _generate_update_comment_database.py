@@ -49,7 +49,6 @@ def comment_database_update():
     path = os.getcwd()+ '\\'
 
 
-
     with open(path+'api_key.txt') as f:
         lines = f.readlines()
     api_key = lines[0]
