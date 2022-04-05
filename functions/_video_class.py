@@ -4,4 +4,4 @@ class video:
         self.video_title = video_title
 
     def add_comments(self, comments_list):
-        self.comments_list = comments_list
+        self.comments_list = comments_list.split(' || ')

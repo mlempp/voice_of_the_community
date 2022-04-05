@@ -63,8 +63,13 @@ def comment_database_update(path):
                 video_info = pd.Series(name = video_ID)
                 comments = load_all_video_comments(video_ID, yt)
                 print(f'        {len(comments)} comments loaded')
-                video_info['comments'] = ' || '.join(comments)
-                df_comments_update = df_comments_update.append(video_info)
+                if video_ID in df_comments.index: #update if we have already comments for the video
+                    comments = comments + df_comments_update.loc[video_ID].comments.split(' || ')
+                    comments = list(set(comments))
+                    df_comments_update.loc[video_ID].comments = ' || '.join(comments)
+                else: #add new if we have no comments for the videp
+                    video_info['comments'] = ' || '.join(comments)
+                    df_comments_update = df_comments_update.append(video_info)
             df_comments_update.to_csv(path + 'comment_DataBase.csv', sep=';')
 
         else:
