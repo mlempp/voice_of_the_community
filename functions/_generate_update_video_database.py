@@ -159,9 +159,7 @@ def videos_to_frame(video_dct):
     df['video_date'] = pd.to_datetime(df.video_date).dt.date
     return df
 
-def video_database_update():
-
-    path = os.getcwd()+ '\\'
+def video_database_update(path):
 
     with open(path+'api_key.txt') as f:
         lines = f.readlines()

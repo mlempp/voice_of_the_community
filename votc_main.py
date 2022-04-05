@@ -5,19 +5,23 @@ from datetime import datetime as timer
 from datetime import date
 import sys
 d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
-path = os.getcwd() + '\\'
+
 sys.path.insert(0, path + '/functions/')
 from _generate_update_comment_database import *
 from _generate_update_video_database import *
 from _video_class import *
-
+from _defined_past_analysis import *
+from _global_analysis import *
+from _yearly_analysis import *
 
 def main():
-    video_database_update()
-    comment_database_update()
+    path = os.getcwd() + '\\'
 
-    global_analysis()
-    yearly_analysis(year = 2019)
-    defined_past_analysis(delta='14d')
+    video_database_update(path)
+    comment_database_update(path)
+
+    global_analysis(outpath = path)
+    yearly_analysis(year = 2019, outpath = path)
+    defined_past_analysis(delta='14d', outpath = path)
 
     pass

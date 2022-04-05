@@ -35,9 +35,7 @@ def load_all_video_comments(video_id, yt):
                 next_page_token = None
     return comment_list
 
-def comment_database_update():
-
-    path = os.getcwd()+ '\\'
+def comment_database_update(path):
 
     with open(path+'api_key.txt') as f:
         lines = f.readlines()
