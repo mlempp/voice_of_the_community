@@ -9,6 +9,7 @@ class video:
         self.comments_list = comments_list.split(' || ')
 
     def prep_comments(self):
+        pass
         # 1. spell check
         # 2. correct abbreviate words
         # 1. spell check
