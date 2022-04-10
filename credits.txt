@@ -1,0 +1,3 @@
+R. Remus, U. Quasthoff & G. Heyer: SentiWS - a Publicly Available German-language Resource for Sentiment Analysis. In: Proceedings of the 7th International Language Ressources and Evaluation (LREC'10), 2010
+
+https://github.com/python-engineer/youtube-analyzer/blob/master/yt_stats.py
