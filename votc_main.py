@@ -21,6 +21,6 @@ def main():
 
     global_analysis(path = path)
     yearly_analysis(year = 2019, path = path)
-    defined_past_analysis(delta='14d', path = path)
+    defined_past_analysis(delta='14d', path = path,calc_sentiment_score2 = True)
 
     pass

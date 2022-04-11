@@ -1,13 +1,16 @@
 import pandas as pd
 import os
+import sys
 from tqdm import tqdm
 from collections import Counter
 path = os.getcwd() + '/'
+sys.path.insert(0, path + 'functions/')
 from _video_class import *
 from datetime import date
+from germansentiment import SentimentModel
 
 
-def defined_past_analysis(delta,outpath):
+def defined_past_analysis(delta, path, calc_sentiment_score2 = False):
     today = date.today()
     limit = pd.to_datetime(today)-pd.to_timedelta(delta, unit = 'd')
 
@@ -20,18 +23,15 @@ def defined_past_analysis(delta,outpath):
     comment_df = pd.read_csv(path+'comment_DataBase.csv', sep = ';', index_col = 0)
 
     video_dct = {}
-    full_comment_list =[]
-    full_preped_comment_list =[]
     for id in tqdm(video_ids_OI):
         tmp_video = video_df.loc[id]
         tmp_comment = comment_df.loc[id]
-        tmp_class = video(id, tmp_video.video_title, tmp_video.video_date)
+        tmp_class = video(id, tmp_video.video_title, tmp_video.video_date, path)
         tmp_class.add_comments(tmp_comment.comments)
         tmp_class.prep_comments()
-        full_comment_list = full_comment_list+tmp_class.comments_list
-        full_preped_comment_list = full_preped_comment_list+tmp_class.comments_list_preped
         video_dct[id] = tmp_class
+        if calc_sentiment_score2:
+            model = SentimentModel()
+            tmp_class.calc_sentiment_score2(model)
 
 
-
-    pass
