@@ -1,3 +1,5 @@
+import os
+import sys
 path = os.getcwd() + '/'
 sys.path.insert(0, path + 'functions/')
 from _helper_functions import *
