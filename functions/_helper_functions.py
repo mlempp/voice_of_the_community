@@ -7,6 +7,8 @@ import re
 from nltk.stem.snowball import SnowballStemmer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+import numpy as np
+from Levenshtein import distance as levenshtein_distance
 
 stemmer = SnowballStemmer("german")
 stop_words = set(stopwords.words("german"))
@@ -41,3 +43,16 @@ def clean_text(txt):
 
     text_clean = " ".join(words_filtered)
     return text_clean
+
+
+
+
+def calc_sentiment_score1_closest(word,dct):
+    return dct[list(dct.keys())[np.argmin([levenshtein_distance(x, word) for x in dct.keys()])]]
+
+
+def calc_sentiment_score1_exact(word,dct):
+    try:
+        return dct[word]
+    except:
+        return np.nan

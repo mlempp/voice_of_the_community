@@ -12,6 +12,7 @@ from _helper_functions import *
 import pandas as pd
 from textblob_de import TextBlobDE as TextBlob
 from collections import Counter
+import numpy as np
 
 class video:
     def __init__(self, video_id, video_title, video_date, path):
@@ -57,20 +58,31 @@ class video:
         senti_ws[0] = senti_ws[0].apply(lambda x: x.split('|')[0])
         senti_ws = senti_ws.set_index(0)
         senti_ws = senti_ws[1].to_dict()
-        self.senti_ws = pd.concat([senti_ws_positive, senti_ws_negative], axis = 0,ignore_index=True)
+        self.senti_ws = senti_ws
 
 
-    def calc_sentiment_score1(self, txt):
-        self.load_sentiment_ws_1()
-        # compare_strings = self.senti_ws.keys
+    def get_sentiment_score1_closest(self):
+        dct = self.senti_ws
+        mean_score = []
+        for comment in self.comments_list:
+            all_scores =  [calc_sentiment_score1_closest(y,dct) for y in comment.split()]
+            # all_scores =  [calc_sentiment_score1_exact(y,dct) for y in comment.split()]
+            mean_score.append(np.mean(all_scores))
+        self.sentiment_score1 = mean_score
+
+        mean_score_preped = []
+        for comment in self.comments_list_preped:
+            all_scores =  [calc_sentiment_score1_closest(y,dct) for y in comment.split()]
+            # all_scores =  [calc_sentiment_score1_exact(y,dct) for y in comment.split()]
+            mean_score_preped.append(np.mean(all_scores))
+        self.sentiment_score1_preped = mean_score_preped
 
 
-    def calc_sentiment_score2(self, model):
+    def get_sentiment_score2(self, model):
         self.sentiment_score2 = model.predict_sentiment(self.comments_list)
         self.sentiment_score2_preped = model.predict_sentiment(self.comments_list_preped)
 
-    def calc_sentiment_score3(self):
-        self.sentiment_score2 = [TextBlob(c).sentiment.polarity for c in self.comments_list]
-        self.sentiment_score2_preped = [TextBlob(c).sentiment.polarity for c in self.comments_list_preped]
-
+    def get_sentiment_score3(self):
+        self.sentiment_score3 = [TextBlob(c).sentiment.polarity for c in self.comments_list]
+        self.sentiment_score3_preped = [TextBlob(c).sentiment.polarity for c in self.comments_list_preped]
 
