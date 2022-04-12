@@ -1,3 +1,9 @@
+'''
+Autor: Martin Lempp
+
+Kurzbeschreibung:
+Analysiere videos eines vergangenen Zeitraums bis heute
+'''
 import pandas as pd
 import os
 import sys
@@ -10,7 +16,7 @@ from datetime import date
 from germansentiment import SentimentModel
 
 
-def defined_past_analysis(delta = 14, path, calc_sentiment_score1 = False, calc_sentiment_score2 = False, calc_sentiment_score3 = False):
+def defined_past_analysis(path, delta = 14, calc_sentiment_score1 = False, calc_sentiment_score2 = False, calc_sentiment_score3 = False):
     today = date.today()
     limit = pd.to_datetime(today)-pd.to_timedelta(delta, unit = 'd')
 

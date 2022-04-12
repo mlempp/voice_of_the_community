@@ -1,3 +1,8 @@
+'''
+Autor: Martin Lempp
+
+Kurzbeschreibung:
+Hilfsfunktionen für die Analyse'''
 import re
 from nltk.stem.snowball import SnowballStemmer
 from nltk.tokenize import word_tokenize

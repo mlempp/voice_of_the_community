@@ -1,3 +1,9 @@
+'''
+Autor: Martin Lempp
+
+Kurzbeschreibung:
+Zentrale Video-Klasse für die Analyse
+'''
 import os
 import sys
 path = os.getcwd() + '/'

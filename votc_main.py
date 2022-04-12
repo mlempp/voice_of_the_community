@@ -1,3 +1,9 @@
+'''
+Autor: Martin Lempp
+
+Kurzbeschreibung:
+Hauptprogramm zur Sentimentanalyse und Report-Erstellung
+'''
 import pandas as pd
 import os
 from datetime import datetime as timer
@@ -18,6 +24,7 @@ def main():
 
     video_database_update(path)
     comment_database_update(path)
+    thumbnail_database_update(path)
 
     # global_analysis(path = path)
     # defined_past_analysis(start =  '01.01.2021', stop = '31.12.2021' , path = path)

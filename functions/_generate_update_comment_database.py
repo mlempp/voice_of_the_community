@@ -1,10 +1,8 @@
 '''
 Autor: Martin Lempp
-Datum: 30.30.2022
 
 Kurzbeschreibung:
-Erstellung der Kommentar Datenbank und update
-
+Erstellung der Kommentar-Datenbank und update
 '''
 import pandas as pd
 import os
