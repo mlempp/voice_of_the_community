@@ -10,7 +10,7 @@ from datetime import date
 from germansentiment import SentimentModel
 
 
-def defined_past_analysis(delta, path, calc_sentiment_score2 = False):
+def defined_past_analysis(delta = 14, path, calc_sentiment_score1 = False, calc_sentiment_score2 = False, calc_sentiment_score3 = False):
     today = date.today()
     limit = pd.to_datetime(today)-pd.to_timedelta(delta, unit = 'd')
 
@@ -30,8 +30,15 @@ def defined_past_analysis(delta, path, calc_sentiment_score2 = False):
         tmp_class.add_comments(tmp_comment.comments)
         tmp_class.prep_comments()
         video_dct[id] = tmp_class
+        if calc_sentiment_score1:
+            model = SentimentModel()
+            tmp_class.calc_sentiment_score2(model)
+
         if calc_sentiment_score2:
             model = SentimentModel()
             tmp_class.calc_sentiment_score2(model)
+
+        if calc_sentiment_score3:
+            tmp_class.calc_sentiment_score3()
 
 

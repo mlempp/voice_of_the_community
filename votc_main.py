@@ -19,8 +19,8 @@ def main():
     video_database_update(path)
     comment_database_update(path)
 
-    global_analysis(path = path)
-    yearly_analysis(year = 2019, path = path)
-    defined_past_analysis(delta='14d', path = path,calc_sentiment_score2 = True)
+    # global_analysis(path = path)
+    # defined_past_analysis(start =  '01.01.2021', stop = '31.12.2021' , path = path)
+    # defined_past_analysis(delta='14d', path = path,calc_sentiment_score2 = True)
 
     pass

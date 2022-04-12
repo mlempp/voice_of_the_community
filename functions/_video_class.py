@@ -4,6 +4,7 @@ path = os.getcwd() + '/'
 sys.path.insert(0, path + 'functions/')
 from _helper_functions import *
 import pandas as pd
+from textblob_de import TextBlobDE as TextBlob
 from collections import Counter
 
 class video:
@@ -55,9 +56,15 @@ class video:
 
     def calc_sentiment_score1(self, txt):
         self.load_sentiment_ws_1()
-        # compare_strings = self.senti_ws.keys()
+        # compare_strings = self.senti_ws.keys
 
 
     def calc_sentiment_score2(self, model):
         self.sentiment_score2 = model.predict_sentiment(self.comments_list)
         self.sentiment_score2_preped = model.predict_sentiment(self.comments_list_preped)
+
+    def calc_sentiment_score3(self):
+        self.sentiment_score2 = [TextBlob(c).sentiment.polarity for c in self.comments_list]
+        self.sentiment_score2_preped = [TextBlob(c).sentiment.polarity for c in self.comments_list_preped]
+
+
