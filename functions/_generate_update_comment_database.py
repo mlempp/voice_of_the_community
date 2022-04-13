@@ -8,6 +8,7 @@ import pandas as pd
 import os
 from datetime import datetime as timer
 from datetime import date
+import json
 d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
 import googleapiclient.discovery
 
@@ -33,6 +34,8 @@ def load_all_video_comments(video_id, yt):
                 next_page_token = None
     return comment_list
 
+
+
 def comment_database_update(path):
 
     with open(path+'api_key.txt') as f:
@@ -44,11 +47,12 @@ def comment_database_update(path):
     if os.path.isfile(path + 'video_DataBase.csv'):
         df_videos = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
         df_videos = df_videos.iloc[::-1]
-        if os.path.isfile(path + 'comment_DataBase.csv'):
-            print ("comment database existent...update")
-            df_comments = pd.read_csv(path+'comment_DataBase.csv', sep = ';', index_col = 0)
-            df_comments_update = df_comments.copy()
-            ids_comments = list(df_comments.index)
+        if os.path.isfile(path + 'comment_DataBase.json'):
+
+            with open(path+'comment_DataBase.json', 'r') as jsonfile:
+                 comment_dict = json.load(jsonfile)
+
+            ids_comments = list(comment_dict.keys())
             ids_videos = list(df_videos.index)
 
             missing_videos = [x for x in ids_videos if x not in ids_comments]
@@ -58,28 +62,35 @@ def comment_database_update(path):
             videos_for_update = missing_videos+last_30_videos_not_missing
             for video_ID in videos_for_update:
                 print(f'    load comments for {df_videos.loc[video_ID].video_title}')
-                video_info = pd.Series(name = video_ID)
                 comments = load_all_video_comments(video_ID, yt)
                 print(f'        {len(comments)} comments loaded')
-                if video_ID in df_comments.index: #update if we have already comments for the video
-                    comments = comments + df_comments_update.loc[video_ID].comments.split(' || ')
-                    comments = list(set(comments))
-                    df_comments_update.loc[video_ID].comments = ' || '.join(comments)
-                else: #add new if we have no comments for the videp
-                    video_info['comments'] = ' || '.join(comments)
-                    df_comments_update = df_comments_update.append(video_info)
-            df_comments_update.to_csv(path + 'comment_DataBase.csv', sep=';')
+                if video_ID in ids_comments: #update if we have already comments for the video
+                    tmp_dct = comment_dict[video_ID]
+                    existing_comments = [x for x in tmp_dct.values()]
+                    new_comments = [x for x in comments if x not in existing_comments]
+                    max_id = max([int(x) for x in tmp_dct.keys()])
+                    for i,c in enumerate(new_comments):
+                        tmp_dct[i+1+max_id] = c
+                    comment_dict[video_ID] = tmp_dct
+                else:
+                    comment_dict[video_ID] = {}
+                    for i,c in enumerate(comments):
+                        comment_dict[video_ID][i] = c
 
         else:
             print ("no comment database existent...create")
-            df_comments = pd.DataFrame()
+            comment_dict = {}
             for video_ID in df_videos.index:
                 print(f'    load comments for {df_videos.loc[video_ID].video_title}')
-                video_info = pd.Series(name = video_ID)
                 comments = load_all_video_comments(video_ID, yt)
                 print(f'        {len(comments)} comments loaded')
-                video_info['comments'] = ' || '.join(comments)
-                df_comments = df_comments.append(video_info)
-            df_comments.to_csv(path + 'comment_DataBase.csv', sep=';')
+                comment_dict[video_ID] = {}
+                for i,c in enumerate(comments):
+                    comment_dict[video_ID][i] = c
+
+        with open('comment_DataBase.json', 'w') as file:
+            json.dump(comment_dict, file, indent=4)
+
     else:
         print("no database existent, no videos for scrapping")
+
