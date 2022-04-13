@@ -7,6 +7,7 @@ lade die Thumbnails der videos für den finalen Report
 import os
 import urllib.request
 from tqdm import tqdm
+import pandas as pd
 
 def thumbnail_database_update(path):
 
@@ -20,7 +21,7 @@ def thumbnail_database_update(path):
         df_videos = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
         df_videos = df_videos.iloc[::-1]
         ids_videos = list(df_videos.index)
-        missing_thumbnails = [x for x in ids_videos if not x in existing_thumbnails]
+        missing_thumbnails = [x for x in ids_videos if x+'.jpg' not in existing_thumbnails]
 
         if len(missing_thumbnails) > 0:
             print('update thumbnails')
