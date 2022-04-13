@@ -45,14 +45,15 @@ def clean_text(txt):
     return text_clean
 
 
-
-
-def calc_sentiment_score1_closest(word,dct):
+def calc_sentiment_score1_per_word(word,dct):
     return dct[list(dct.keys())[np.argmin([levenshtein_distance(x, word) for x in dct.keys()])]]
 
 
-def calc_sentiment_score1_exact(word,dct):
-    try:
-        return dct[word]
-    except:
-        return np.nan
+def calc_sentiment_score1_mean_txt(txt,dct):
+    words = txt.split()
+    score = [calc_sentiment_score1_per_word(word,dct) for word in words]
+    return np.mean(score)
+
+
+
+

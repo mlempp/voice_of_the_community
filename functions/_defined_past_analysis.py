@@ -12,6 +12,7 @@ from collections import Counter
 path = os.getcwd() + '/'
 sys.path.insert(0, path + 'functions/')
 from _video_class import *
+import json
 from datetime import date
 from germansentiment import SentimentModel
 
@@ -20,13 +21,24 @@ def defined_past_analysis(path, delta = 14, calc_sentiment_score1 = False, calc_
     today = date.today()
     limit = pd.to_datetime(today)-pd.to_timedelta(delta, unit = 'd')
 
+    # load full video df
+    # load full comment df
+
+
     outpath = path + 'out/'
     video_df = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
+
+    with open(path + 'comment_DataBase.json', 'r') as jsonfile:
+        comment_dict = json.load(jsonfile)
+
+
+
     video_df.video_date = pd.to_datetime(video_df.video_date)
     video_df_red = video_df[video_df.video_date > limit]
     video_ids_OI = list(video_df_red.index)
 
-    comment_df = pd.read_csv(path+'comment_DataBase.csv', sep = ';', index_col = 0)
+    with open(path + 'comment_DataBase.json', 'r') as jsonfile:
+        comment_dict = json.load(jsonfile)
 
     video_dct = {}
     for id in tqdm(video_ids_OI):
