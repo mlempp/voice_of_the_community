@@ -33,11 +33,14 @@ def main():
 
     pass
 
-# comment_dict_new = {}
-# for vid in comment_dict.keys():
-#      vid_dict = comment_dict[vid]
-#      comment_dict_new[vid] = {}
-#      for comment in vid_dict.keys():
-#          comment_dict_new[vid][comment] = {}
-#          comment_dict_new[vid][comment]['txt'] = vid_dict[comment]['txt']
-#          comment_dict_new[vid][comment]['txt_preped'] = vid_dict[comment]['txt_preped']
+comment_dict_new = {}
+for vid in comment_dict.keys():
+     vid_dict = comment_dict[vid]
+     comment_dict_new[vid] = {}
+     for comment in vid_dict.keys():
+         comment_dict_new[vid][comment] = {}
+         comment_dict_new[vid][comment]['txt'] = vid_dict[comment]['txt']
+         comment_dict_new[vid][comment]['txt_preped'] = vid_dict[comment]['txt_preped']
+
+         comment_dict_new[vid][comment]['score3_preped'] = get_sentiment_score3(vid_dict[comment]['txt_preped'])
+         comment_dict_new[vid][comment]['score3'] = get_sentiment_score3(vid_dict[comment]['txt_preped'])

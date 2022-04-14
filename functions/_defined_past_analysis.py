@@ -37,8 +37,6 @@ def defined_past_analysis(path, delta = 14, calc_sentiment_score1 = False, calc_
     video_df_red = video_df[video_df.video_date > limit]
     video_ids_OI = list(video_df_red.index)
 
-    with open(path + 'comment_DataBase.json', 'r') as jsonfile:
-        comment_dict = json.load(jsonfile)
 
     video_dct = {}
     for id in tqdm(video_ids_OI):
