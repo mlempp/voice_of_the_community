@@ -9,6 +9,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import numpy as np
 from Levenshtein import distance as levenshtein_distance
+from textblob_de import TextBlobDE as TextBlob
 
 stemmer = SnowballStemmer("german")
 stop_words = set(stopwords.words("german"))
@@ -54,6 +55,7 @@ def calc_sentiment_score1_mean_txt(txt,dct):
     score = [calc_sentiment_score1_per_word(word,dct) for word in words]
     return np.mean(score)
 
-
+def get_sentiment_score3(txt):
+    return TextBlob(txt).sentiment.polarity
 
 

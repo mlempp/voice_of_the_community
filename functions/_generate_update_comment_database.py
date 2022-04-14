@@ -72,12 +72,14 @@ def comment_database_update(path):
                     for i,c in enumerate(new_comments):
                         tmp_dct[i+1+max_id] = {}
                         tmp_dct[i+1+max_id]['txt'] = c
+                        tmp_dct[i+1+max_id]['txt_preped'] = clean_text(c)
                     comment_dict[video_ID] = tmp_dct
                 else:
                     comment_dict[video_ID] = {}
                     for i,c in enumerate(comments):
                         comment_dict[video_ID][i] = {}
                         comment_dict[video_ID][i]['txt'] = c
+                        comment_dict[video_ID][i]['txt_preped'] = clean_text(c)
 
         else:
             print ("no comment database existent...create")
@@ -90,6 +92,7 @@ def comment_database_update(path):
                 for i,c in enumerate(comments):
                     comment_dict[video_ID][i] = {}
                     comment_dict[video_ID][i]['txt'] = c
+                    comment_dict[video_ID][i]['txt_preped'] = clean_text(c)
 
         with open('comment_DataBase.json', 'w') as file:
             json.dump(comment_dict, file, indent=4)
