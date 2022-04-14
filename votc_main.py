@@ -44,3 +44,5 @@ for vid in comment_dict.keys():
 
          comment_dict_new[vid][comment]['score3_preped'] = get_sentiment_score3(vid_dict[comment]['txt_preped'])
          comment_dict_new[vid][comment]['score3'] = get_sentiment_score3(vid_dict[comment]['txt_preped'])
+
+
