@@ -173,7 +173,7 @@ def video_database_update(path):
     if os.path.isfile(path + 'video_DataBase.csv'):
         print ("video database exist...update")
         df_old = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
-        video_data_new = yt.get_channel_video_data(limit = 1)
+        video_data_new = yt.get_channel_video_data(limit = 2)
         df_new =videos_to_frame(video_data_new)
         df_new_red = df_new[~df_new.index.isin(df_old.index)]
         df = pd.concat([df_new_red,df_old])

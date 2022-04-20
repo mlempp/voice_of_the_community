@@ -20,6 +20,9 @@ from _update_thumbnail_database import *
 from _global_analysis import *
 from _yearly_analysis import *
 
+
+
+
 def main():
     path = os.getcwd() + '/'
 
@@ -32,6 +35,10 @@ def main():
     # defined_past_analysis(delta='14d', path = path,calc_sentiment_score2 = True)
 
     pass
+
+
+
+
 
 comment_dict_new = {}
 for vid in comment_dict.keys():
