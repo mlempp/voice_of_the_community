@@ -12,8 +12,15 @@ import json
 from _helper_functions import *
 from tqdm import tqdm
 d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
+d2 = date.today().strftime("%y%m%d")
 import googleapiclient.discovery
 
+senti_1_ws_positive = pd.read_csv(path + 'functions/SentiWS_v1.8c_Positive.txt', sep='\t', header=None)
+senti_1_ws_negative = pd.read_csv(path + 'functions/SentiWS_v1.8c_Negative.txt', sep='\t', header=None)
+senti_1_ws = pd.concat([senti_1_ws_positive, senti_1_ws_negative], axis=0, ignore_index=True)
+senti_1_ws[0] = senti_1_ws[0].apply(lambda x: x.split('|')[0])
+senti_1_ws = senti_1_ws.set_index(0)
+senti_1_ws = senti_1_ws[1].to_dict()
 
 
 def load_all_video_comments(video_id, yt):
@@ -74,10 +81,12 @@ def comment_database_update(path):
                     new_comments = [x for x in comments if x[0] in new_comment_ids]
                     for i,c in tqdm(enumerate(new_comments)):
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
-                        comment_df = df_comments.append(comment_series, ignore_index=True)
+                        comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
+                        df_comments = df_comments.append(comment_series, ignore_index=True)
                 else:
                     for i,c in tqdm(enumerate(comments)):
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
+                        comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
 
         else:
@@ -89,12 +98,13 @@ def comment_database_update(path):
                 print(f'        {len(comments)} comments loaded')
                 for i,c in tqdm(enumerate(comments)):
                     comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
+                    comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
                     df_comments = df_comments.append(comment_series, ignore_index=True)
 
         # with open('comment_DataBase.json', 'w') as file:
         #     json.dump(comment_dict, file, indent=4)
 
-        df_comments.to_csv(path+'comment_DataBase.csv', sep = ';')
+        df_comments.to_csv(path+d2+'_comment_DataBase.csv', sep = ';')
     else:
         print("no database existent, no videos for scrapping")
 

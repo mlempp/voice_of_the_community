@@ -8,6 +8,7 @@ from nltk.stem.snowball import SnowballStemmer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import numpy as np
+import pandas as pd
 from Levenshtein import distance as levenshtein_distance
 from textblob_de import TextBlobDE as TextBlob
 
@@ -51,9 +52,12 @@ def calc_sentiment_score1_per_word(word,dct):
 
 
 def calc_sentiment_score1_mean_txt(txt,dct):
-    words = txt.split()
-    score = [calc_sentiment_score1_per_word(word,dct) for word in words]
-    return np.mean(score)
+    if not pd.isna(txt):
+        words = txt.split()
+        score = [calc_sentiment_score1_per_word(word,dct) for word in words]
+        return np.mean(score)
+    else:
+        return np.nan
 
 def get_sentiment_score3(txt):
     return TextBlob(txt).sentiment.polarity

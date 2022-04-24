@@ -38,6 +38,10 @@ def main():
 
 
 
+for i, row in tqdm(df_comments.iterrows(), total = df_comments.shape[0]):
+    txt = row.comment_preped
+    df_comments.loc[i, 'Sentiment_score_1'] = calc_sentiment_score1_mean_txt(txt,senti_ws)
+
 
 
 comment_dict_new = {}
