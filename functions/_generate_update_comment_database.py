@@ -14,6 +14,8 @@ from tqdm import tqdm
 d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
 d2 = date.today().strftime("%y%m%d")
 import googleapiclient.discovery
+path = os.getcwd() + '/'
+
 
 senti_1_ws_positive = pd.read_csv(path + 'functions/SentiWS_v1.8c_Positive.txt', sep='\t', header=None)
 senti_1_ws_negative = pd.read_csv(path + 'functions/SentiWS_v1.8c_Negative.txt', sep='\t', header=None)
@@ -60,7 +62,7 @@ def comment_database_update(path):
             print ("comment database existent...update")
 
             comment_file = [x for x in os.listdir(path) if 'comment_DataBase' in x][0]
-            df_comments = pd.read_csv(path+comment_file, sep = ';', index_col = 0)
+            df_comments = pd.read_csv(path+comment_file, sep = ';', index_col = 0,lineterminator='\n')
 
             ids_comments = list(df_comments.VideoID.unique())
             ids_videos = list(df_videos.index)
