@@ -49,10 +49,11 @@ def comment_database_update(path):
     if os.path.isfile(path + 'video_DataBase.csv'):
         df_videos = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
         df_videos = df_videos.iloc[::-1]
-        if os.path.isfile(path + 'comment_DataBase.csv'):
+        if any(['comment_DataBase' in x for x in os.listdir(path)]):
             print ("comment database existent...update")
 
-            df_comments = pd.read_csv(path+'comment_DataBase.csv', sep = ';', index_col = 0)
+            comment_file = [x for x in os.listdir(path) if 'comment_DataBase' in x][0]
+            df_comments = pd.read_csv(path+comment_file, sep = ';', index_col = 0)
 
             ids_comments = list(df_comments.VideoID.unique())
             ids_videos = list(df_videos.index)

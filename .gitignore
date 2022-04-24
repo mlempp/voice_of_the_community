@@ -1,4 +1,2 @@
 api_key.txt
-*.csv
-comment_DataBase.csv
-video_DataBase.csv
+*comment_DataBase.csv
