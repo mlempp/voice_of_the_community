@@ -62,13 +62,15 @@ def calc_sentiment_score1_mean_txt(txt,dct):
     else:
         return np.nan
 
+
 def calc_sentiment_score1_sum_txt(txt,dct):
     if not pd.isna(txt):
         words = txt.split()
         score = [calc_sentiment_score1_per_word(word,dct) for word in words]
-        return np.mean(score)
+        return np.sum(score)
     else:
         return np.nan
+
 
 def calc_sentiment_score2(txt):
     if not pd.isna(txt):

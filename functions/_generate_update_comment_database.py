@@ -56,22 +56,25 @@ def comment_database_update(path):
     yt = googleapiclient.discovery.build('youtube', 'v3', developerKey = api_key)
 
     if os.path.isfile(path + 'video_DataBase.csv'):
+        #load video database
         df_videos = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
         df_videos = df_videos.iloc[::-1]
         if any(['comment_DataBase' in x for x in os.listdir(path)]):
             print ("comment database existent...update")
+            #load comment database
+            comment_file = [x for x in os.listdir(path) if 'comment_DataBase' in x]
+            comment_file.sort()
+            df_comments = pd.read_csv(path+comment_file[-1], sep = ';', index_col = 0, )
 
-            comment_file = [x for x in os.listdir(path) if 'comment_DataBase' in x][0]
-            df_comments = pd.read_csv(path+comment_file, sep = ';', index_col = 0,lineterminator='\n')
-
+            #define videos for update
             ids_comments = list(df_comments.VideoID.unique())
             ids_videos = list(df_videos.index)
-
             missing_videos = [x for x in ids_videos if x not in ids_comments]
-            last_30_videos = ids_videos[-30:]
+            last_30_videos = ids_videos[-50:]
             last_30_videos_not_missing = [x for x in last_30_videos if x not in missing_videos]
-
             videos_for_update = missing_videos+last_30_videos_not_missing
+
+            #update videos
             for video_ID in videos_for_update:
                 print(f'    load comments for {df_videos.loc[video_ID].video_title}')
                 comments = load_all_video_comments(video_ID, yt)
@@ -84,14 +87,14 @@ def comment_database_update(path):
                     for i,c in tqdm(enumerate(new_comments)):
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
                         comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
-                        comment_series['Sentiment_score_2'] = calc_sentiment_score2(txt)
+                        comment_series['Sentiment_score_2'] = calc_sentiment_score2(comment_series.comment)
                         comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
                 else:
-                    for i,c in tqdm(enumerate(comments)):
+                    for i,c in tqdm(enumerate(comments)):   #add all comments if we dont have the video
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
                         comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
-                        comment_series['Sentiment_score_2'] = calc_sentiment_score2(txt)
+                        comment_series['Sentiment_score_2'] = calc_sentiment_score2(comment_series.comment)
                         comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
 
@@ -105,12 +108,9 @@ def comment_database_update(path):
                 for i,c in tqdm(enumerate(comments)):
                     comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
                     comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
-                    comment_series['Sentiment_score_2'] = calc_sentiment_score2(txt)
+                    comment_series['Sentiment_score_2'] = calc_sentiment_score2(comment_series.comment)
                     comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                     df_comments = df_comments.append(comment_series, ignore_index=True)
-
-        # with open('comment_DataBase.json', 'w') as file:
-        #     json.dump(comment_dict, file, indent=4)
 
         df_comments.to_csv(path+d2+'_comment_DataBase.csv', sep = ';')
     else:
