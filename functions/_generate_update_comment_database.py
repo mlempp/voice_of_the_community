@@ -84,11 +84,15 @@ def comment_database_update(path):
                     for i,c in tqdm(enumerate(new_comments)):
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
                         comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_2'] = calc_sentiment_score2(txt)
+                        comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
                 else:
                     for i,c in tqdm(enumerate(comments)):
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
                         comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_2'] = calc_sentiment_score2(txt)
+                        comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
 
         else:
@@ -101,6 +105,8 @@ def comment_database_update(path):
                 for i,c in tqdm(enumerate(comments)):
                     comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
                     comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
+                    comment_series['Sentiment_score_2'] = calc_sentiment_score2(txt)
+                    comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                     df_comments = df_comments.append(comment_series, ignore_index=True)
 
         # with open('comment_DataBase.json', 'w') as file:

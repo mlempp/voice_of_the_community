@@ -1,4 +1,3 @@
-R. Remus, U. Quasthoff & G. Heyer: SentiWS - a Publicly Available German-language Resource for Sentiment Analysis. In: Proceedings of the 7th International Language Ressources and Evaluation (LREC'10), 2010
 
 https://github.com/python-engineer/youtube-analyzer/blob/master/yt_stats.py
 
@@ -6,5 +5,18 @@ https://data-dive.com/german-nlp-binary-text-classification-of-reviews-part1
 
 
 
+Sentiscore 1:
+R. Remus, U. Quasthoff & G. Heyer: SentiWS - a Publicly Available German-language Resource for Sentiment Analysis. In: Proceedings of the 7th International Language Ressources and Evaluation (LREC'10), 2010
 
-
+Sentiscore 2:
+@InProceedings{guhr-EtAl:2020:LREC,
+  author    = {Guhr, Oliver  and  Schumann, Anne-Kathrin  and  Bahrmann, Frank  and  Böhme, Hans Joachim},
+  title     = {Training a Broad-Coverage German Sentiment Classification Model for Dialog Systems},
+  booktitle      = {Proceedings of The 12th Language Resources and Evaluation Conference},
+  month          = {May},
+  year           = {2020},
+  address        = {Marseille, France},
+  publisher      = {European Language Resources Association},
+  pages     = {1620--1625},
+  url       = {https://www.aclweb.org/anthology/2020.lrec-1.202}
+}

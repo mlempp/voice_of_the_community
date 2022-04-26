@@ -40,20 +40,6 @@ def main():
 
 for i, row in tqdm(df_comments.iterrows(), total = df_comments.shape[0]):
     txt = row.comment_preped
-    df_comments.loc[i, 'Sentiment_score_1'] = calc_sentiment_score1_mean_txt(txt,senti_ws)
-
-
-
-comment_dict_new = {}
-for vid in comment_dict.keys():
-     vid_dict = comment_dict[vid]
-     comment_dict_new[vid] = {}
-     for comment in vid_dict.keys():
-         comment_dict_new[vid][comment] = {}
-         comment_dict_new[vid][comment]['txt'] = vid_dict[comment]['txt']
-         comment_dict_new[vid][comment]['txt_preped'] = vid_dict[comment]['txt_preped']
-
-         comment_dict_new[vid][comment]['score3_preped'] = get_sentiment_score3(vid_dict[comment]['txt_preped'])
-         comment_dict_new[vid][comment]['score3'] = get_sentiment_score3(vid_dict[comment]['txt_preped'])
+    df_comments.loc[i, 'Sentiment_score_2'] = calc_sentiment_score2(txt)
 
 

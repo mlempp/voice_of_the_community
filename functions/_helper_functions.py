@@ -11,6 +11,9 @@ import numpy as np
 import pandas as pd
 from Levenshtein import distance as levenshtein_distance
 from textblob_de import TextBlobDE as TextBlob
+from germansentiment import SentimentModel
+
+germansentimentmodel = SentimentModel()
 
 stemmer = SnowballStemmer("german")
 stop_words = set(stopwords.words("german"))
@@ -59,7 +62,25 @@ def calc_sentiment_score1_mean_txt(txt,dct):
     else:
         return np.nan
 
-def get_sentiment_score3(txt):
-    return TextBlob(txt).sentiment.polarity
+def calc_sentiment_score1_sum_txt(txt,dct):
+    if not pd.isna(txt):
+        words = txt.split()
+        score = [calc_sentiment_score1_per_word(word,dct) for word in words]
+        return np.mean(score)
+    else:
+        return np.nan
+
+def calc_sentiment_score2(txt):
+    if not pd.isna(txt):
+        return germansentimentmodel.predict_sentiment([txt])
+    else:
+        return np.nan
+
+
+def calc_sentiment_score3(txt):
+    if not pd.isna(txt):
+        return TextBlob(txt).sentiment.polarity
+    else:
+        return np.nan
 
 
