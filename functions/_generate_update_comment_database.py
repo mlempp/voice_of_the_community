@@ -24,6 +24,11 @@ senti_1_ws[0] = senti_1_ws[0].apply(lambda x: x.split('|')[0])
 senti_1_ws = senti_1_ws.set_index(0)
 senti_1_ws = senti_1_ws[1].to_dict()
 
+senti_4_polarity = pd.read_csv(path + 'functions/train_test_lemma_polarity.txt', sep='\t', header=None)
+senti_4_polarity[0] = senti_4_polarity[0].apply(lambda x: x.split('_')[0])
+senti_4_polarity = senti_4_polarity.set_index(0).replace({'NEG':-1,'POS':1, 'NEU': 0, 'INT': 0, 'SHI': 0 })
+senti_4_polarity = senti_4_polarity[1].to_dict()
+
 
 def load_all_video_comments(video_id, yt):
     response = yt.commentThreads().list(part = "snippet", videoId = video_id, maxResults = 100, textFormat="plainText", pageToken ='').execute()
@@ -61,6 +66,7 @@ def comment_database_update(path):
         df_videos = df_videos.iloc[::-1]
         if any(['comment_DataBase' in x for x in os.listdir(path)]):
             print ("comment database existent...update")
+
             #load comment database
             comment_file = [x for x in os.listdir(path) if 'comment_DataBase' in x]
             comment_file.sort()
@@ -86,14 +92,14 @@ def comment_database_update(path):
                     new_comments = [x for x in comments if x[0] in new_comment_ids]
                     for i,c in tqdm(enumerate(new_comments)):
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
-                        comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_1'] = calc_sentiment_score_from_dict_mean(comment_series.comment_preped,senti_1_ws)
                         comment_series['Sentiment_score_2'] = calc_sentiment_score2(comment_series.comment)
                         comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
                 else:
                     for i,c in tqdm(enumerate(comments)):   #add all comments if we dont have the video
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1])})
-                        comment_series['Sentiment_score_1'] = calc_sentiment_score1_mean_txt(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_1'] = calc_sentiment_score_from_dict_mean(comment_series.comment_preped,senti_1_ws)
                         comment_series['Sentiment_score_2'] = calc_sentiment_score2(comment_series.comment)
                         comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                         df_comments = df_comments.append(comment_series, ignore_index=True)

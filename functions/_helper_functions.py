@@ -18,7 +18,7 @@ germansentimentmodel = SentimentModel()
 stemmer = SnowballStemmer("german")
 stop_words = set(stopwords.words("german"))
 
-
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def clean_text(txt):
     """
         - remove any html tags (< /br> often found)
@@ -50,28 +50,32 @@ def clean_text(txt):
     return text_clean
 
 
-def calc_sentiment_score1_per_word(word,dct):
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def calc_sentiment_score_from_dict_per_word(word,dct):
     return dct[list(dct.keys())[np.argmin([levenshtein_distance(x, word) for x in dct.keys()])]]
 
 
-def calc_sentiment_score1_mean_txt(txt,dct):
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def calc_sentiment_score_from_dict_mean(txt,dct):
     if not pd.isna(txt):
         words = txt.split()
-        score = [calc_sentiment_score1_per_word(word,dct) for word in words]
+        score = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
         return np.mean(score)
     else:
         return np.nan
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def calc_sentiment_score1_sum_txt(txt,dct):
     if not pd.isna(txt):
         words = txt.split()
-        score = [calc_sentiment_score1_per_word(word,dct) for word in words]
+        score = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
         return np.sum(score)
     else:
         return np.nan
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def calc_sentiment_score2(txt):
     if not pd.isna(txt):
         return germansentimentmodel.predict_sentiment([txt])
@@ -79,6 +83,7 @@ def calc_sentiment_score2(txt):
         return np.nan
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def calc_sentiment_score3(txt):
     if not pd.isna(txt):
         return TextBlob(txt).sentiment.polarity
