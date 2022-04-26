@@ -1,47 +1,157 @@
 <html>
 <head>
-    <style>
+    <meta charset="UTF-8">
+    <title>VOTC</title>
+    <link href="votc_template.css" rel="stylesheet" type = "text/css"> 
+    
+
+    <style type = "text/css">
+        h1.topheader  {
+            font-size: 90px;
+            font-weight: bold;
+            font-family: Trebuchet MS;
+            margin-top: 50px;
+            transform: rotate(-8deg) ;
+            padding-left: 90px;
+            margin-bottom: -3px;
+            color: white;
+            z-index: 5;
+            }  
+
+        h1.topheader2  {
+            font-size: 90px;
+            font-weight: bold;
+            font-family: Trebuchet MS;
+            margin-top: 50px;
+            transform: rotate(-8deg) ;
+            padding-left: 82px;
+            margin-bottom: -162px;
+            color: black;
+            z-index: 1;
+            }  
+
+        h1.midheader  {
+            font-size: 60px;
+            font-weight: bold;
+            font-family: Trebuchet MS;
+            margin-top: 50px;
+            transform: rotate(-8deg) ;
+            padding-left: 90px;
+            margin-bottom: -14px;
+            color: white;
+            z-index: 5;
+            }  
+
+        h1.midheader2  {
+            font-size: 60px;
+            font-weight: bold;
+            font-family: Trebuchet MS;
+            margin-top: 50px;
+            transform: rotate(-8deg) ;
+            padding-left: 82px;
+            margin-bottom: -122px;
+            color: black;
+            z-index: 1;
+            }  
+        
         span.headerblock {
+            position: absolute;
             display: block;
             width: 3000px;
             height: 400px;
             margin-left: -200px;
-            margin-top: -300px;
+            margin-top: -500px;
             transform: rotate(-8deg) ;
             background-color: #EB1580; 
-            z-index: 1;
+            z-index: -1;
             }
             
         span.midblock {
+            position: absolute;
             display: block;
             width: 3000px;
             height: 100px;
             margin-left: -200px;
+            margin-top: -200px;
             transform: rotate(-8deg) ; 
             background-color: #EB1580; 
+            z-index: -1;
             }
+
     </style>
+
+    body{
+
+    .gauge{
+        background: radial-gradient(circle at 30% 40%, #fff, #fff 20%, #ccc 50%);
+        border:4px solid #555;
+        border-radius:999px 999px 0 0;
+        box-shadow: inset 3px 3px 15px rgba(0,0,0,0.8);
+        box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+        height:100px;
+        left:50%;
+        overflow:hidden;
+        position:absolute;
+        top:50%;
+        transform:translate(-50%, -50%);
+        width:200px;
+    }
 </head>
 
 <body>
 
+    <div class="topheader">
+        
+        <h1 class = "topheader2">voice of the community</h1>
+        <h1 class = "topheader">voice of the community</h1>
+        <span class="headerblock"></span>
 
-<!---
-<div><span class="headerblock">     voice of the community</span></div>
-
-
-    <h1 style="color: #EB1580;margin-top: 300px;">    voice of the community </h1>
-
-<h1 style="color: BLACK;margin-top: 100px; z-index: 2">    voice of the community </h1>
-
-<div><span class="midblock">     voice of the community</span></div>
-    --->
+    </div>
 
 
-<div class="topheader">
-         <h1>Title</h1>
+    <p style="margin-top: 100px;">  
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna <br>
+        aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea<br>
+        takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod <br>
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. <br>
+        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br>
+   
+
+
+
+
+
+    </p>
+
+
+    <div class="analysis block">
+        
+        <h1 class = "midheader2">Analyse XYZ</h1>
+        <h1 class = "midheader">Analyse XYZ</h1>
+        <span class="midblock"></span>
+
+        <meter id="fuel"
+        min="0" max="100"
+        low="33" high="66" optimum="80"
+        value="30" </meter>
+ 
+
+
+    </div>
+
+
+    <div><span class="midblock">     ANALYSIS XYZ</span></div>
+        
+    <div class="gauge"></div>
+<!--<div class="topheader">
+        <h1 style="z-index: 999" >Title</h1>
         <span class="headerblock">
-</div>
+
+            
+</div>-->
+
 
 </body>
 </html>
