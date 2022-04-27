@@ -6,101 +6,161 @@
     
 
     <style type = "text/css">
-        h1.topheader  {
-            font-size: 90px;
-            font-weight: bold;
-            font-family: Trebuchet MS;
-            margin-top: 50px;
-            transform: rotate(-8deg) ;
-            padding-left: 90px;
-            margin-bottom: -3px;
-            color: white;
-            z-index: 5;
-            }  
 
-        h1.topheader2  {
-            font-size: 90px;
-            font-weight: bold;
-            font-family: Trebuchet MS;
-            margin-top: 50px;
-            transform: rotate(-8deg) ;
-            padding-left: 82px;
-            margin-bottom: -162px;
-            color: black;
-            z-index: 1;
-            }  
+        h1{}
+            .topheader  {
+                font-size: 90px;
+                font-weight: bold;
+                font-family: Trebuchet MS;
+                margin-top: 50px;
+                transform: rotate(-4deg) ;
+                padding-left: 90px;
+                margin-bottom: 40px;
+                color: white;
+                z-index: 5;
+                }  
 
-        h1.midheader  {
-            font-size: 60px;
-            font-weight: bold;
-            font-family: Trebuchet MS;
-            margin-top: 50px;
-            transform: rotate(-8deg) ;
-            padding-left: 90px;
-            margin-bottom: -14px;
-            color: white;
-            z-index: 5;
-            }  
+            .topheader2  {
+                font-size: 90px;
+                font-weight: bold;
+                font-family: Trebuchet MS;
+                margin-top: 50px;
+                transform: rotate(-4deg) ;
+                padding-left: 82px;
+                margin-bottom: -162px;
+                color: black;
+                z-index: 1;
+                }  
 
-        h1.midheader2  {
-            font-size: 60px;
-            font-weight: bold;
-            font-family: Trebuchet MS;
-            margin-top: 50px;
-            transform: rotate(-8deg) ;
-            padding-left: 82px;
-            margin-bottom: -122px;
-            color: black;
-            z-index: 1;
-            }  
+            .midheader  {
+                font-size: 60px;
+                font-weight: bold;
+                font-family: Trebuchet MS;
+                margin-top: 50px;
+                transform: rotate(-8deg) ;
+                padding-left: 90px;
+                margin-bottom: 15px;
+                color: white;
+                z-index: 5;
+                }  
+
+            .midheader2  {
+                font-size: 60px;
+                font-weight: bold;
+                font-family: Trebuchet MS;
+                margin-top: 50px;
+                transform: rotate(-8deg) ;
+                padding-left: 82px;
+                margin-bottom: -122px;
+                color: black;
+                z-index: 1;
+                }  
         
-        span.headerblock {
-            position: absolute;
-            display: block;
-            width: 3000px;
-            height: 400px;
-            margin-left: -200px;
-            margin-top: -500px;
-            transform: rotate(-8deg) ;
-            background-color: #EB1580; 
-            z-index: -1;
-            }
+        span {}
+            .headerblock {
+                position: absolute;
+                display: block;
+                width: 3000px;
+                height: 400px;
+                margin-left: -200px;
+                margin-top: -500px;
+                transform: rotate(-4deg) ;
+                background-color: #EB1580; 
+                z-index: -1;
+                }
             
-        span.midblock {
-            position: absolute;
-            display: block;
-            width: 3000px;
-            height: 100px;
-            margin-left: -200px;
-            margin-top: -200px;
-            transform: rotate(-8deg) ; 
-            background-color: #EB1580; 
-            z-index: -1;
+            .midblock {
+                position: absolute;
+                display: block;
+                width: 3000px;
+                height: 100px;
+                margin-left: -200px;
+                margin-top: -200px;
+                transform: rotate(-8deg) ; 
+                background-color: #EB1580; 
+                z-index: -1;
+                }
+            
+
+        body {
+            background:White;
             }
+
+            #topblock{
+                position: absolute;
+                display: block;
+                width: 3000px;
+                height: 400px;
+                margin-left: -200px;
+                margin-top: -500px;
+                transform: rotate(-4deg) ;
+                background-color: #EB1580; 
+                }
+            .title1
+
+
+
+            #score-meter-2{
+            width: 30px;
+            height: 15px;
+            border-top-left-radius: 300px;
+            border-top-right-radius: 300px;
+            border: 80px solid #862de0;
+            border-bottom: 0;
+            left:1000px;
+            position: relative;
+            }
+            .scorer-2-tick {
+            position: absolute;
+            bottom: 2px;
+            left: -65px;
+            width: 80px;
+            height: 3px;
+            background-color: #ffffff;
+            transform: rotate(-0deg);
+            animation-name: ticker-mover-2;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            }
+            @keyframes ticker-mover-2 {
+            0% {
+                transform-origin: right center;
+                transform: rotate(0deg);
+            }
+            33% {
+                transform-origin: right center;
+                transform: rotate(120deg);
+            }
+            66% {
+                transform-origin: right center;
+                transform: rotate(120deg);
+            }
+            100% {
+                transform-origin:right center;
+                transform: rotate(120deg);
+            }
+            }
+
+            
 
     </style>
 
-    body{
 
-    .gauge{
-        background: radial-gradient(circle at 30% 40%, #fff, #fff 20%, #ccc 50%);
-        border:4px solid #555;
-        border-radius:999px 999px 0 0;
-        box-shadow: inset 3px 3px 15px rgba(0,0,0,0.8);
-        box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-        height:100px;
-        left:50%;
-        overflow:hidden;
-        position:absolute;
-        top:50%;
-        transform:translate(-50%, -50%);
-        width:200px;
-    }
 </head>
 
 <body>
+
+
+    <div class="header_align">
+        <div id = topblock class="header_align">
+            <div class = title1></div>
+        </div>
+
+
+    </div>
 
     <div class="topheader">
         
@@ -132,19 +192,16 @@
         <h1 class = "midheader">Analyse XYZ</h1>
         <span class="midblock"></span>
 
-        <meter id="fuel"
-        min="0" max="100"
-        low="33" high="66" optimum="80"
-        value="30" </meter>
- 
-
-
+       <div class="scorer-align">
+            <div id="score-meter-2" class="scorer-align">
+            <div class="scorer-2-tick">
+            </div>
+          </div>-
+    
+            
     </div>
 
 
-    <div><span class="midblock">     ANALYSIS XYZ</span></div>
-        
-    <div class="gauge"></div>
 <!--<div class="topheader">
         <h1 style="z-index: 999" >Title</h1>
         <span class="headerblock">

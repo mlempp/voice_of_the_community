@@ -71,7 +71,7 @@ def comment_database_update(path):
             comment_files = [x for x in os.listdir(path) if 'comment_DataBase' in x]
             comment_files.sort()
             comment_file = comment_files[-1]
-            df_comments = pd.read_csv(path+comment_file[-1], sep = ';', index_col = 0, )
+            df_comments = pd.read_csv(path+comment_file, sep = ';', index_col = 0, )
 
             #define videos for update
             ids_comments = list(df_comments.VideoID.unique())
