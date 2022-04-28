@@ -12,101 +12,114 @@
       body {
             background:White;
             }
-            
 
+            
             .topblock{
+                position: relative;
                 display: block;
-                width: 6000px;
+                width: 2000px;
                 height: 400px;
-                margin-left: -200px;
-                margin-top: -550px;
-                margin-bottom: 650px;
-                transform: rotate(-8deg) ;
-                background-color: #EB1580; 
-                }
+                margin-left: -20px;
+                background: linear-gradient(-8deg, white 50%, #EB1580 50%); 
+            }
                 .topblock h1  {
-                position: absolute;
-                font-size: 90px;
-                font-weight: bold;
-                top: 270px;
-                left: 330px;
-                font-family: Trebuchet MS;
-                color: White;
-                z-index: 2;
+                    position: absolute;
+                    font-size: 90px;
+                    font-weight: bold;
+                    transform: rotate(-8deg) ; 
+                    top: 95px;
+                    left: 330px;
+                    font-family: Trebuchet MS;
+                    color: White;
+                    z-index: 2;
                 }                  
                 .topblock h2  {
-                position: absolute;
-                font-size: 90px;
-                font-weight: bold;
-                font-family: Trebuchet MS;
-                top: 265px;
-                left: 323px;
-                color: Black;
-                z-index: 1;
+                    position: absolute;
+                    font-size: 90px;
+                    font-weight: bold;
+                    transform: rotate(-8deg) ; 
+                    font-family: Trebuchet MS;
+                    top: 88px;
+                    left: 323px;
+                    color: Black;
+                    z-index: 1;
                 }  
                 .topblock h3 {
-                position: absolute;
-                font-size: 40px;
-                font-weight: bold;
-                font-family: Segoe UI;
-                top: 390px;
-                left: 323px;
-                color: #00dfd7ff;
-                z-index: 1;
+                    position: absolute;
+                    font-size: 40px;
+                    font-weight: bold;
+                    font-family: Segoe UI;
+                    transform: rotate(-8deg) ; 
+                    top: 220px;
+                    left: 350px;
+                    color: #00dfd7ff;
+                    z-index: 1;
                 }  
 
 
             .midblock{
+                position: relative;
                 display: block;
-                width: 3000px;
-                height: 100px;
-                margin-left: -200px;
+                width: 2000px;
+                height: 600px;
                 margin-top: -200px;
-                transform: rotate(-8deg) ; 
-                background-color: #EB1580; 
-                }
+                margin-left: -20px;
+                margin-bottom: 150px;
+                background: linear-gradient(-8deg, rgba(235, 21, 128, 0) 0% 45%, rgba(235, 21, 128, 1) 45% 65%,rgba(235, 21, 128, 0) 65% 100%); 
+            }
                 .midblock h1  {
-                position: absolute;
-                font-size: 90px;
-                font-weight: bold;
-                top: 270px;
-                left: 330px;
-                font-family: Trebuchet MS;
-                color: White;
-                z-index: 2;
+                    position: absolute;
+                    font-size: 50px;
+                    font-weight: bold;
+                    top: 350px;
+                    left: 330px;
+                    font-family: Trebuchet MS;
+                    transform: rotate(-8deg) ; 
+                    color: white;
+                    z-index: 2;
                 }                  
                 .midblock h2  {
-                position: absolute;
-                font-size: 90px;
-                font-weight: bold;
-                font-family: Trebuchet MS;
-                top: 265px;
-                left: 323px;
-                color: Black;
-                z-index: 1;
+                    position: absolute;
+                    font-size: 50px;
+                    font-weight: bold;
+                    font-family: Trebuchet MS;
+                    transform: rotate(-8deg) ; 
+                    top: 347px;
+                    left: 325px;
+                    color: Black;
+                    z-index: 1;
+                }                  
+                .midblock p  {
+                    position: relative;
+                    font-size: 30px;
+                    font-family: Segoe UI;
+                    color: Black;
+                    z-index: 1;
                 }  
 
 
             #score-meter-2{
+                position: absolute;
                 width: 30px;
                 height: 15px;
+                top: 500px;
                 border-top-left-radius: 300px;
                 border-top-right-radius: 300px;
-                border: 80px solid #862de0;
+                border: 130px solid #00dfd7ff;
                 border-bottom: 0;
-                left:1000px;
+                left:300px;
                 position: relative;
                 }
                 .scorer-2-tick {
                 position: absolute;
                 bottom: 2px;
-                left: -65px;
-                width: 80px;
+                left: -105px;
+                width: 120px;
                 height: 3px;
                 background-color: #ffffff;
                 transform: rotate(-0deg);
                 animation-name: ticker-mover-2;
-                animation-duration: 5s;
+                animation-duration: 10s;
                 animation-iteration-count: infinite;
                 animation-timing-function: linear;
                 border-top-left-radius: 50%;
@@ -117,11 +130,11 @@
                     transform-origin: right center;
                     transform: rotate(0deg);
                 }
-                33% {
+                10% {
                     transform-origin: right center;
-                    transform: rotate(120deg);
+                    transform: rotate(180deg);
                 }
-                66% {
+                20% {
                     transform-origin: right center;
                     transform: rotate(120deg);
                 }
@@ -145,6 +158,8 @@
 <body>
 
 <div id = "main">
+
+
     <div class="topblock">
             <h1>voices of the community</h1>
             <h2>voices of the community</h2>
@@ -154,9 +169,25 @@
 
 
     <div class="midblock">
-        <h1>Analysis</h1>
-        <h2>Analysis</h2>
+        <h1>Analysis xyz</h1>
+        <h2>Analysis xyz</h2>       
+        <p>Postiver Anteil</p>      
+
+        <div class="scorer-align">
+            <div id="score-meter-2" class="scorer-align">
+            <div class="scorer-2-tick">
+            </div>
+          </div>
+        </div>
+
     </div>
+
+    <div class="midblock"> 
+        <p>Postiver Anteil2</p>  
+        <h1>Analysis xyz2</h1>
+        <h2>Analysis xyz2</h2>     
+    </div> 
+   </div>
 
 
 <!--
