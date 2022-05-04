@@ -92,7 +92,7 @@
                 .midblock p  {
                     position: relative;
                     font-size: 30px;
-                    font-family: Segoe UI;
+                    font-family: Trebuchet MS;
                     color: Black;
                     z-index: 1;
                 }  
@@ -100,21 +100,22 @@
 
             #score-meter-2{
                 position: absolute;
-                width: 30px;
-                height: 15px;
+                width: 40px;
+                height: 20px;
                 top: 500px;
                 border-top-left-radius: 300px;
                 border-top-right-radius: 300px;
-                border: 130px solid #00dfd7ff;
+                border: 120px solid #00dfd7ff;
                 border-bottom: 0;
                 left:300px;
                 position: relative;
+                --c: 120deg
                 }
                 .scorer-2-tick {
                 position: absolute;
                 bottom: 2px;
-                left: -105px;
-                width: 120px;
+                left: -80px;
+                width: 100px;
                 height: 3px;
                 background-color: #ffffff;
                 transform: rotate(-0deg);
@@ -136,11 +137,11 @@
                 }
                 20% {
                     transform-origin: right center;
-                    transform: rotate(120deg);
+                    transform: rotate(var(--c));
                 }
                 100% {
                     transform-origin:right center;
-                    transform: rotate(120deg);
+                    transform: rotate(var(--c));
                 }
                 }
 
@@ -170,22 +171,23 @@
 
     <div class="midblock">
         <h1>Analysis xyz</h1>
-        <h2>Analysis xyz</h2>       
-        <p>Postiver Anteil</p>      
-
+        <h2>Analysis xyz</h2>         
         <div class="scorer-align">
-            <div id="score-meter-2" class="scorer-align">
+            <div  style="top:580px;left:50px;--c:90deg" id="score-meter-2" class="scorer-align">
+                <p style="left:-95px; text-align: center;top:-220px">Postive</p>
+                <p style="left:-65px; text-align: center;top:-260px">Kommentare</p>
             <div class="scorer-2-tick">
+                 <p style="left: -40px;top:-75px; transform: rotate(-90deg);">30%</p>
             </div>
           </div>
         </div>
 
     </div>
 
-    <div class="midblock"> 
-        <p>Postiver Anteil2</p>  
+    <div class="midblock">  
         <h1>Analysis xyz2</h1>
-        <h2>Analysis xyz2</h2>     
+        <h2>Analysis xyz2</h2>
+        <p style = "top:600px;" >Postiver Anteil</p>        
     </div> 
    </div>
 
