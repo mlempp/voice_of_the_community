@@ -38,6 +38,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
 # #
 # for i, row in tqdm(df_comments.iterrows(), total = df_comments.shape[0]):
 #     txt = row.comment_preped
