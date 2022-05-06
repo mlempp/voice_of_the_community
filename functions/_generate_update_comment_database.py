@@ -115,7 +115,7 @@ def comment_database_update(path):
 
         else:
             print ("no comment database existent...create")
-            df_comments = pd.DataFrame(columns = ['VideoID', 'comment_ID', 'comment', 'comment_preped', 'Sentiment_score_1', 'Sentiment_score_2', 'Sentiment_score_3'])
+            df_comments = pd.DataFrame(columns = ['VideoID', 'comment_ID', 'comment', 'comment_preped', 'Sentiment_score_1', 'Sentiment_score_2', 'Sentiment_score_3', 'Sentiment_score_4', 'Sentiment_score_5'])
             for video_ID in df_videos.index:
                 print(f'    load comments for {df_videos.loc[video_ID].video_title}')
                 comments = load_all_video_comments(video_ID, yt)
