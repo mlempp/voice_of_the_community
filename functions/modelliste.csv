@@ -1,116 +1,645 @@
-Alfa Romeo,Giulia
-Alfa Romeo,Stelvio
-Alfa Romeo,Tonale
-Alfa Romeo,6C
-Alfa Romeo,1900
-Alfa Romeo,Matta
-Alfa Romeo,Giulietta
-Alfa Romeo,2000
-Alfa Romeo,2600
-Alfa Romeo,1750
-Alfa Romeo,2000
-Alfa Romeo,8C Competizione
-Alfa Romeo,MiTo
-Alfa Romeo,4C
-Alfa Romeo,Giulietta
-Alfa Romeo,Montreal
-Alfa Romeo,Alfasud
-Alfa Romeo,Alfetta
-Alfa Romeo,Sprint
-Alfa Romeo,Romeo
-Alfa Romeo,Giulietta Typ 116
-Alfa Romeo,Alfa 6
-Alfa Romeo,GTV
-Alfa Romeo,Arna
-Alfa Romeo,33
-Alfa Romeo,75
-Alfa Romeo,90
-Alfa Romeo,145
-Alfa Romeo,146
-Alfa Romeo,147
-Alfa Romeo,155
-Alfa Romeo,156
-Alfa Romeo,159
-Alfa Romeo,164
-Alfa Romeo,166
-Alfa Romeo,SZ
-Alfa Romeo,RZ
-Alfa Romeo,GTV
-Alfa Romeo,Brera
-Alfa Romeo,Spider
-Audi,100
-Audi,200
-Audi,50
-Audi,80
-Audi,90
-Audi,A1
-Audi,A2
-Audi,A3
-Audi,A4
-Audi,A5
-Audi,A6
-Audi,A7
-Audi,A8
-Audi,e-tron
-Audi,e-tron GT
-Audi,F103
-Audi,Q2
-Audi,Q3
-Audi,Q4 e-tron
-Audi,Q5
-Audi,Q7
-Audi,Q8
-Audi,quattro
-Audi,R8
-Audi,Sport quattro
-Audi,TT
-Audi,V8
-Audi,RS6
-Audi,RS7
-Audi,S3
-Audi,S5
-Audi,S7
-Audi,S4
-Audi,RS4
-Audi,RS5
-BMW,02er
-BMW,1er
-BMW,2er
-BMW,3200 CS
-BMW,3er
-BMW,4er
-BMW,503
-BMW,507
-BMW,5er
-BMW,600
-BMW,6er
-BMW,E30
-BMW,700
-BMW,7er
-BMW,8er
-BMW,E3
-BMW,E9
-BMW,Glas 1600 GT
-BMW,Glas 3000 V8
-BMW,i3
-BMW,i4
-BMW,i7
-BMW,i8
-BMW,Isetta
-BMW,iX
-BMW,iX3
-BMW,M1
-BMW,M3
-BMW,M4
-BMW,M5
-BMW,X1
-BMW,X2
-BMW,X3
-BMW,X4
-BMW,X5
-BMW,X6
-BMW,X7
-BMW,Z1
-BMW,Z3
-BMW,Z4
-BMW,Z8
+Alfa Romeo;Giulia;Alfa Romeo Giulia
+Alfa Romeo;Stelvio;Alfa Romeo Stelvio
+Alfa Romeo;Tonale;Alfa Romeo Tonale
+Alfa Romeo;6C;Alfa Romeo 6C
+Alfa Romeo;1900;Alfa Romeo 1900
+Alfa Romeo;Matta;Alfa Romeo Matta
+Alfa Romeo;Giulietta;Alfa Romeo Giulietta
+Alfa Romeo;2000;Alfa Romeo 2000
+Alfa Romeo;2600;Alfa Romeo 2600
+Alfa Romeo;1750;Alfa Romeo 1750
+Alfa Romeo;2000;Alfa Romeo 2000
+Alfa Romeo;8C Competizione;Alfa Romeo 8C Competizione
+Alfa Romeo;MiTo;Alfa Romeo MiTo
+Alfa Romeo;4C;Alfa Romeo 4C
+Alfa Romeo;Giulietta;Alfa Romeo Giulietta
+Alfa Romeo;Montreal;Alfa Romeo Montreal
+Alfa Romeo;Alfasud;Alfa Romeo Alfasud
+Alfa Romeo;Alfetta;Alfa Romeo Alfetta
+Alfa Romeo;Sprint;Alfa Romeo Sprint
+Alfa Romeo;Romeo;Alfa Romeo Romeo
+Alfa Romeo;Giulietta Typ 116;Alfa Romeo Giulietta Typ 116
+Alfa Romeo;Alfa 6;Alfa Romeo Alfa 6
+Alfa Romeo;GTV;Alfa Romeo GTV
+Alfa Romeo;Arna;Alfa Romeo Arna
+Alfa Romeo;33;Alfa Romeo 33
+Alfa Romeo;75;Alfa Romeo 75
+Alfa Romeo;90;Alfa Romeo 90
+Alfa Romeo;145;Alfa Romeo 145
+Alfa Romeo;146;Alfa Romeo 146
+Alfa Romeo;147;Alfa Romeo 147
+Alfa Romeo;155;Alfa Romeo 155
+Alfa Romeo;156;Alfa Romeo 156
+Alfa Romeo;159;Alfa Romeo 159
+Alfa Romeo;164;Alfa Romeo 164
+Alfa Romeo;166;Alfa Romeo 166
+Alfa Romeo;SZ;Alfa Romeo SZ
+Alfa Romeo;RZ;Alfa Romeo RZ
+Alfa Romeo;GTV;Alfa Romeo GTV
+Alfa Romeo;Brera;Alfa Romeo Brera
+Alfa Romeo;Spider;Alfa Romeo Spider
+Audi;100;Audi 100
+Audi;200;Audi 200
+Audi;50;Audi 50
+Audi;80;Audi 80
+Audi;90;Audi 90
+Audi;A1;Audi A1
+Audi;A2;Audi A2
+Audi;A3;Audi A3
+Audi;A4;Audi A4
+Audi;A5;Audi A5
+Audi;A6;Audi A6
+Audi;A7;Audi A7
+Audi;A8;Audi A8
+Audi;e-tron;Audi e-tron
+Audi;e-tron GT;Audi e-tron GT
+Audi;F103;Audi F103
+Audi;Q2;Audi Q2
+Audi;Q3;Audi Q3
+Audi;Q4 e-tron;Audi Q4 e-tron
+Audi;Q5;Audi Q5
+Audi;Q7;Audi Q7
+Audi;Q8;Audi Q8
+Audi;quattro;Audi quattro
+Audi;R8;Audi R8
+Audi;Sport quattro;Audi Sport quattro
+Audi;TT;Audi TT
+Audi;V8;Audi V8
+Audi;RS6;Audi RS6
+Audi;RS7;Audi RS7
+Audi;S3;Audi S3
+Audi;S5;Audi S5
+Audi;S7;Audi S7
+Audi;S4;Audi S4
+Audi;RS4;Audi RS4
+Audi;RS5;Audi RS5
+BMW;02er;BMW 02er
+BMW;1er;BMW 1er
+BMW;2er;BMW 2er
+BMW;3200 CS;BMW 3200 CS
+BMW;3er;BMW 3er
+BMW;4er;BMW 4er
+BMW;503;BMW 503
+BMW;507;BMW 507
+BMW;5er;BMW 5er
+BMW;600;BMW 600
+BMW;6er;BMW 6er
+BMW;E30;BMW E30
+BMW;700;BMW 700
+BMW;7er;BMW 7er
+BMW;8er;BMW 8er
+BMW;E3;BMW E3
+BMW;E9;BMW E9
+BMW;Glas 1600 GT;BMW Glas 1600 GT
+BMW;Glas 3000 V8;BMW Glas 3000 V8
+BMW;i3;BMW i3
+BMW;i4;BMW i4
+BMW;i7;BMW i7
+BMW;i8;BMW i8
+BMW;Isetta;BMW Isetta
+BMW;iX;BMW iX
+BMW;iX3;BMW iX3
+BMW;M1;BMW M1
+BMW;M3;BMW M3
+BMW;M4;BMW M4
+BMW;M5;BMW M5
+BMW;X1;BMW X1
+BMW;X2;BMW X2
+BMW;X3;BMW X3
+BMW;X4;BMW X4
+BMW;X5;BMW X5
+BMW;X6;BMW X6
+BMW;X7;BMW X7
+BMW;Z1;BMW Z1
+BMW;Z3;BMW Z3
+BMW;Z4;BMW Z4
+BMW;Z8;BMW Z8
+Bugatti;Chiron;Bugatti Chiron
+Bugatti;Balibier;Bugatti Balibier
+Bugatti;Divo;Bugatti Divo
+Bugatti;EB 110;Bugatti EB 110
+Bugatti;Veyron;Bugatti Veyron
+Chrysler;300C;Chrysler 300C
+Chrysler;300M;Chrysler 300M
+Chrysler;PT Cruiser;Chrysler PT Cruiser
+Chrysler;Voyager;Chrysler Voyager
+Chrysler;Viper;Chrysler Viper
+Citroen;2CV;Citroen 2CV
+Citroen;Ami Super;Citroen Ami Super
+Citroen;AX;Citroen AX
+Citroen;Berlingo;Citroen Berlingo
+Citroen;C2;Citroen C2
+Citroen;C3;Citroen C3
+Citroen;C4;Citroen C4
+Citroen;C5;Citroen C5
+Citroen;C6;Citroen C6
+Cupra;Ateca;Cupra Ateca
+Cupra;Born;Cupra Born
+Cupra;Formentor;Cupra Formentor
+Cupra;Leon;Cupra Leon
+Dacia;Duster;Dacia Duster
+Dacia;Sandero;Dacia Sandero
+Ferrari;296;Ferrari 296
+Ferrari;308;Ferrari 308
+Ferrari;328;Ferrari 328
+Ferrari;348;Ferrari 348
+Ferrari;360;Ferrari 360
+Ferrari;430;Ferrari 430
+Ferrari;458;Ferrari 458
+Ferrari;488;Ferrari 488
+Ferrari;812;Ferrari 812
+Ferrari;288 GTO;Ferrari 288 GTO
+Ferrari;400 GT;Ferrari 400 GT
+Ferrari;412 GT;Ferrari 412 GT
+Ferrari;456 GT;Ferrari 456 GT
+Ferrari;456M GT;Ferrari 456M GT
+Ferrari;512 BB;Ferrari 512 BB
+Ferrari;512 M;Ferrari 512 M
+Ferrari;512 TR;Ferrari 512 TR
+Ferrari;550 Maranello;Ferrari 550 Maranello
+Ferrari;575M Maranello;Ferrari 575M Maranello
+Ferrari;599 GTB Fiorano;Ferrari 599 GTB Fiorano
+Ferrari;612 Scaglietti;Ferrari 612 Scaglietti
+Ferrari;California;Ferrari California
+Ferrari;California T;Ferrari California T
+Ferrari;Dino GT;Ferrari Dino GT
+Ferrari;Dino GTS;Ferrari Dino GTS
+Ferrari;Enzo Ferrari;Ferrari Enzo Ferrari
+Ferrari;F12 berlinetta;Ferrari F12 berlinetta
+Ferrari;F12 tdf;Ferrari F12 tdf
+Ferrari;F355;Ferrari F355
+Ferrari;F40;Ferrari F40
+Ferrari;F50;Ferrari F50
+Ferrari;F8;Ferrari F8
+Ferrari;FF;Ferrari FF
+Ferrari;GTC4Lusso;Ferrari GTC4Lusso
+Ferrari;LaFerrari;Ferrari LaFerrari
+Ferrari;Mondial t;Ferrari Mondial t
+Ferrari;Portofino;Ferrari Portofino
+Ferrari;Portofino M;Ferrari Portofino M
+Ferrari;Roma;Ferrari Roma
+Ferrari;SF90;Ferrari SF90
+Ferrari;Testarossa;Ferrari Testarossa
+Fiat;124;Fiat 124
+Fiat;126;Fiat 126
+Fiat;127;Fiat 127
+Fiat;128;Fiat 128
+Fiat;130;Fiat 130
+Fiat;131;Fiat 131
+Fiat;132;Fiat 132
+Fiat;500;Fiat 500
+Fiat;850;Fiat 850
+Fiat;124 Spider;Fiat 124 Spider
+Fiat;500L;Fiat 500L
+Fiat;500X;Fiat 500X
+Fiat;Argenta;Fiat Argenta
+Fiat;Barchetta;Fiat Barchetta
+Fiat;Brava;Fiat Brava
+Fiat;Bravo;Fiat Bravo
+Fiat;Cinquecento;Fiat Cinquecento
+Fiat;Coupé;Fiat Coupé
+Fiat;Croma;Fiat Croma
+Fiat;Dino;Fiat Dino
+Fiat;Doblò;Fiat Doblò
+Fiat;Ducato;Fiat Ducato
+Fiat;Fiorino/Qubo;Fiat Fiorino/Qubo
+Fiat;Freemont;Fiat Freemont
+Fiat;Fullback;Fiat Fullback
+Fiat;Idea;Fiat Idea
+Fiat;Linea;Fiat Linea
+Fiat;Marea;Fiat Marea
+Fiat;Multipla;Fiat Multipla
+Fiat;Palio;Fiat Palio
+Fiat;Panda;Fiat Panda
+Fiat;Punto;Fiat Punto
+Fiat;Regata;Fiat Regata
+Fiat;Ritmo;Fiat Ritmo
+Fiat;Scudo;Fiat Scudo
+Fiat;Sedici;Fiat Sedici
+Fiat;Seicento;Fiat Seicento
+Fiat;Stilo;Fiat Stilo
+Fiat;Strada;Fiat Strada
+Fiat;Talento;Fiat Talento
+Fiat;Tempra;Fiat Tempra
+Fiat;Tipo;Fiat Tipo
+Fiat;Ulysse;Fiat Ulysse
+Fiat;Uno;Fiat Uno
+Fiat;X1/9;Fiat X1/9
+Ford;B-MAX;Ford B-MAX
+Ford;Capri;Ford Capri
+Ford;C-MAX;Ford C-MAX
+Ford;Consul;Ford Consul
+Ford;Cougar;Ford Cougar
+Ford;EcoSport;Ford EcoSport
+Ford;Edge;Ford Edge
+Ford;Escort;Ford Escort
+Ford;Explorer;Ford Explorer
+Ford;Fiesta;Ford Fiesta
+Ford;Fiesta Courier;Ford Fiesta Courier
+Ford;Focus;Ford Focus
+Ford;Fusion;Ford Fusion
+Ford;Galaxy;Ford Galaxy
+Ford;Granada;Ford Granada
+Ford;GT;Ford GT
+Ford;Ka;Ford Ka
+Ford;Ka+;Ford Ka+
+Ford;Kuga;Ford Kuga
+Ford;Maverick;Ford Maverick
+Ford;Mondeo;Ford Mondeo
+Ford;Mustang;Ford Mustang
+Ford;Mustang Mach-E;Ford Mustang Mach-E
+Ford;Orion;Ford Orion
+Ford;Probe;Ford Probe
+Ford;Puma;Ford Puma
+Ford;Ranger;Ford Ranger
+Ford;RS200;Ford RS200
+Ford;Scorpio;Ford Scorpio
+Ford;Sierra;Ford Sierra
+Ford;S-MAX;Ford S-MAX
+Ford;Streetka;Ford Streetka
+Ford;Taunus;Ford Taunus
+Ford;Tourneo Connect;Ford Tourneo Connect
+Ford;Tourneo Courier;Ford Tourneo Courier
+Ford;Tourneo Custom;Ford Tourneo Custom
+Ford;Transit;Ford Transit
+Ford;Transit Connect;Ford Transit Connect
+Ford;Transit Courier;Ford Transit Courier
+Ford;Transit Custom;Ford Transit Custom
+Ford;Windstar;Ford Windstar
+Honda;Accord;Honda Accord
+Honda;Civic;Honda Civic
+Honda;Concerto;Honda Concerto
+Honda;CR-V;Honda CR-V
+Honda;CRX;Honda CRX
+Honda;CR-Z;Honda CR-Z
+Honda;e;Honda e
+Honda;FR-V;Honda FR-V
+Honda;HR-V;Honda HR-V
+Honda;Insight;Honda Insight
+Honda;Integra;Honda Integra
+Honda;Jazz;Honda Jazz
+Honda;Legend;Honda Legend
+Honda;Logo;Honda Logo
+Honda;NSX;Honda NSX
+Honda;Prelude;Honda Prelude
+Honda;Quintet;Honda Quintet
+Honda;S2000;Honda S2000
+Honda;Shuttle;Honda Shuttle
+Honda;Stream;Honda Stream
+Hyundai;Accent;Hyundai Accent
+Hyundai;Atos;Hyundai Atos
+Hyundai;Atos Prime;Hyundai Atos Prime
+Hyundai;Bayon;Hyundai Bayon
+Hyundai;Coupé;Hyundai Coupé
+Hyundai;Elantra;Hyundai Elantra
+Hyundai;Genesis;Hyundai Genesis
+Hyundai;Getz;Hyundai Getz
+Hyundai;Grand Santa Fe;Hyundai Grand Santa Fe
+Hyundai;Grandeur;Hyundai Grandeur
+Hyundai;H 100;Hyundai H 100
+Hyundai;H-1;Hyundai H-1
+Hyundai;i10;Hyundai i10
+Hyundai;i20;Hyundai i20
+Hyundai;i30;Hyundai i30
+Hyundai;i40;Hyundai i40
+Hyundai;IONIQ;Hyundai IONIQ
+Hyundai;IONIQ 5;Hyundai IONIQ 5
+Hyundai;ix20;Hyundai ix20
+Hyundai;ix35;Hyundai ix35
+Hyundai;ix55;Hyundai ix55
+Hyundai;Kona;Hyundai Kona
+Hyundai;Lantra;Hyundai Lantra
+Hyundai;Matrix;Hyundai Matrix
+Hyundai;Nexo;Hyundai Nexo
+Hyundai;Pony;Hyundai Pony
+Hyundai;Santa Fe;Hyundai Santa Fe
+Hyundai;Sonata;Hyundai Sonata
+Hyundai;Staria;Hyundai Staria
+Hyundai;Terracan;Hyundai Terracan
+Hyundai;Trajet;Hyundai Trajet
+Hyundai;Tucson;Hyundai Tucson
+Hyundai;Veloster;Hyundai Veloster
+Hyundai;XG;Hyundai XG
+Lamborghini;350 GT;Lamborghini 350 GT
+Lamborghini;400 GT;Lamborghini 400 GT
+Lamborghini;Aventador;Lamborghini Aventador
+Lamborghini;Centenario;Lamborghini Centenario
+Lamborghini;Countach;Lamborghini Countach
+Lamborghini;Diablo;Lamborghini Diablo
+Lamborghini;Espada;Lamborghini Espada
+Lamborghini;Gallardo;Lamborghini Gallardo
+Lamborghini;Huracán;Lamborghini Huracán
+Lamborghini;Islero;Lamborghini Islero
+Lamborghini;Jalpa;Lamborghini Jalpa
+Lamborghini;Jarama;Lamborghini Jarama
+Lamborghini;LM002;Lamborghini LM002
+Lamborghini;Miura;Lamborghini Miura
+Lamborghini;Murciélago;Lamborghini Murciélago
+Lamborghini;Reventón;Lamborghini Reventón
+Lamborghini;Silhouette;Lamborghini Silhouette
+Lamborghini;Urraco;Lamborghini Urraco
+Lamborghini;Urus;Lamborghini Urus
+Lamborghini;Veneno;Lamborghini Veneno
+Lexus;CT;Lexus CT
+Lexus;ES;Lexus ES
+Lexus;GS;Lexus GS
+Lexus;IS;Lexus IS
+Lexus;LC;Lexus LC
+Lexus;LS;Lexus LS
+Lexus;NX;Lexus NX
+Lexus;RC;Lexus RC
+Lexus;RX;Lexus RX
+Lexus;RZ;Lexus RZ
+Lexus;SC;Lexus SC
+Lexus;UX;Lexus UX
+Mazda;2;Mazda 2
+Mazda;3;Mazda 3
+Mazda;5;Mazda 5
+Mazda;6;Mazda 6
+Mazda;121;Mazda 121
+Mazda;323;Mazda 323
+Mazda;626;Mazda 626
+Mazda;929;Mazda 929
+Mazda;2 Hybrid;Mazda 2 Hybrid
+Mazda;B-Serie;Mazda B-Serie
+Mazda;BT-50;Mazda BT-50
+Mazda;CX-3;Mazda CX-3
+Mazda;CX-30;Mazda CX-30
+Mazda;CX-5;Mazda CX-5
+Mazda;CX-60;Mazda CX-60
+Mazda;CX-7;Mazda CX-7
+Mazda;Demio;Mazda Demio
+Mazda;E-Serie;Mazda E-Serie
+Mazda;MPV;Mazda MPV
+Mazda;MX-3;Mazda MX-3
+Mazda;MX-30;Mazda MX-30
+Mazda;MX-5;Mazda MX-5
+Mazda;Premacy;Mazda Premacy
+Mazda;RX-7;Mazda RX-7
+Mazda;RX-8;Mazda RX-8
+Mazda;Tribute;Mazda Tribute
+Mazda;Xedos 6;Mazda Xedos 6
+Mazda;Xedos 9;Mazda Xedos 9
+Mercedes;110;Mercedes 110
+Mercedes;190;Mercedes 190
+Mercedes;600;Mercedes 600
+Mercedes;1 Generation;Mercedes 1 Generation
+Mercedes;A;Mercedes A
+Mercedes;AMG GT;Mercedes AMG GT
+Mercedes;B;Mercedes B
+Mercedes;Baureihe 123;Mercedes Baureihe 123
+Mercedes;Baureihe 124;Mercedes Baureihe 124
+Mercedes;C;Mercedes C
+Mercedes;Citan;Mercedes Citan
+Mercedes;CLA;Mercedes CLA
+Mercedes;CLC;Mercedes CLC
+Mercedes;CLK;Mercedes CLK
+Mercedes;CLS;Mercedes CLS
+Mercedes;CLS;Mercedes CLS
+Mercedes;E;Mercedes E
+Mercedes;EQA;Mercedes EQA
+Mercedes;EQB;Mercedes EQB
+Mercedes;EQC;Mercedes EQC
+Mercedes;EQE;Mercedes EQE
+Mercedes;EQS;Mercedes EQS
+Mercedes;EQS SUV;Mercedes EQS SUV
+Mercedes;EQV;Mercedes EQV
+Mercedes;G;Mercedes G
+Mercedes;G-Klasse;Mercedes G-Klasse
+Mercedes;GLA;Mercedes GLA
+Mercedes;GLB;Mercedes GLB
+Mercedes;GLC;Mercedes GLC
+Mercedes;GLE;Mercedes GLE
+Mercedes;GLK;Mercedes GLK
+Mercedes;GLS;Mercedes GLS
+Mercedes;M;Mercedes M
+Mercedes;Marco Polo;Mercedes Marco Polo
+Mercedes;R;Mercedes R
+Mercedes;S;Mercedes S
+Mercedes;SL;Mercedes SL
+Mercedes;SLC;Mercedes SLC
+Mercedes;SLK;Mercedes SLK
+Mercedes;SLR McLaren;Mercedes SLR McLaren
+Mercedes;SLS AMG;Mercedes SLS AMG
+Mercedes;Sprinter;Mercedes Sprinter
+Mercedes;T;Mercedes T
+Mercedes;V;Mercedes V
+Mercedes;Vaneo;Mercedes Vaneo
+Mercedes;Viano;Mercedes Viano
+Mercedes;Vito;Mercedes Vito
+Mercedes;X;Mercedes X
+Mini;Clubman;Mini Clubman
+Mini;Countryman;Mini Countryman
+Mini;MINI;Mini MINI
+Mini;Paceman;Mini Paceman
+Nissan;100NX;Nissan 100NX
+Nissan;200SX;Nissan 200SX
+Nissan;300ZX;Nissan 300ZX
+Nissan;350Z;Nissan 350Z
+Nissan;370Z;Nissan 370Z
+Nissan;Almera;Nissan Almera
+Nissan;Almera Tino;Nissan Almera Tino
+Nissan;Ariya;Nissan Ariya
+Nissan;Bluebird;Nissan Bluebird
+Nissan;Cherry;Nissan Cherry
+Nissan;Cube;Nissan Cube
+Nissan;GT-R;Nissan GT-R
+Nissan;Interstar;Nissan Interstar
+Nissan;Juke;Nissan Juke
+Nissan;Kubistar;Nissan Kubistar
+Nissan;Leaf;Nissan Leaf
+Nissan;Maxima;Nissan Maxima
+Nissan;Micra;Nissan Micra
+Nissan;Murano;Nissan Murano
+Nissan;Navara;Nissan Navara
+Nissan;Note;Nissan Note
+Nissan;NP300;Nissan NP300
+Nissan;NV200;Nissan NV200
+Nissan;NV250;Nissan NV250
+Nissan;NV300;Nissan NV300
+Nissan;NV400;Nissan NV400
+Nissan;Pathfinder;Nissan Pathfinder
+Nissan;Patrol;Nissan Patrol
+Nissan;Pickup;Nissan Pickup
+Nissan;Pixo;Nissan Pixo
+Nissan;Prairie;Nissan Prairie
+Nissan;Primastar;Nissan Primastar
+Nissan;Primera;Nissan Primera
+Nissan;Pulsar;Nissan Pulsar
+Nissan;Qashqai;Nissan Qashqai
+Nissan;Serena;Nissan Serena
+Nissan;Sunny;Nissan Sunny
+Nissan;Terrano;Nissan Terrano
+Nissan;Tiida;Nissan Tiida
+Nissan;Townstar;Nissan Townstar
+Nissan;Vanette;Nissan Vanette
+Nissan;X-Trail;Nissan X-Trail
+Opel;ADAM;Opel ADAM
+Opel;Admiral;Opel Admiral
+Opel;Agila;Opel Agila
+Opel;Ampera;Opel Ampera
+Opel;Antara;Opel Antara
+Opel;Arena;Opel Arena
+Opel;Ascona;Opel Ascona
+Opel;Astra;Opel Astra
+Opel;Calibra;Opel Calibra
+Opel;Campo;Opel Campo
+Opel;Cascada;Opel Cascada
+Opel;Chevette;Opel Chevette
+Opel;Combo;Opel Combo
+Opel;Commodore;Opel Commodore
+Opel;Corsa;Opel Corsa
+Opel;Crossland;Opel Crossland
+Opel;Diplomat;Opel Diplomat
+Opel;Frontera;Opel Frontera
+Opel;Grandland;Opel Grandland
+Opel;GT;Opel GT
+Opel;Insignia;Opel Insignia
+Opel;Kadett;Opel Kadett
+Opel;Kapitän;Opel Kapitän
+Opel;KARL;Opel KARL
+Opel;Manta;Opel Manta
+Opel;Meriva;Opel Meriva
+Opel;Mokka;Opel Mokka
+Opel;Monterey;Opel Monterey
+Opel;Monza;Opel Monza
+Opel;Movano;Opel Movano
+Opel;Omega;Opel Omega
+Opel;Rekord;Opel Rekord
+Opel;Rocks-e;Opel Rocks-e
+Opel;Senator;Opel Senator
+Opel;Signum;Opel Signum
+Opel;Sintra;Opel Sintra
+Opel;Speedster;Opel Speedster
+Opel;Tigra;Opel Tigra
+Opel;Vectra;Opel Vectra
+Opel;Vivaro;Opel Vivaro
+Opel;Zafira;Opel Zafira
+Opel;Zafira Life;Opel Zafira Life
+Peugeot;208;Peugeot 208
+Peugeot;3008;Peugeot 3008
+Peugeot;308;Peugeot 308
+Peugeot;508;Peugeot 508
+Peugeot;5008;Peugeot 5008
+Peugeot;Boxer;Peugeot Boxer
+Peugeot;2008;Peugeot 2008
+Porsche;356;Porsche 356
+Porsche;911;Porsche 911
+Porsche;912;Porsche 912
+Porsche;914;Porsche 914
+Porsche;924;Porsche 924
+Porsche;928;Porsche 928
+Porsche;944;Porsche 944
+Porsche;959;Porsche 959
+Porsche;964;Porsche 964
+Porsche;968;Porsche 968
+Porsche;991;Porsche 991
+Porsche;992;Porsche 992
+Porsche;993;Porsche 993
+Porsche;996;Porsche 996
+Porsche;997;Porsche 997
+Porsche;550 Spyder;Porsche 550 Spyder
+Porsche;918 Spyder;Porsche 918 Spyder
+Porsche;Boxster;Porsche Boxster
+Porsche;Carrera GT;Porsche Carrera GT
+Porsche;Cayenne;Porsche Cayenne
+Porsche;Cayman;Porsche Cayman
+Porsche;G-Serie;Porsche G-Serie
+Porsche;Macan;Porsche Macan
+Porsche;Panamera;Porsche Panamera
+Porsche;Taycan;Porsche Taycan
+Subaru;BRZ;Subaru BRZ
+Subaru;Forester;Subaru Forester
+Subaru;Impreza;Subaru Impreza
+Subaru;Justy;Subaru Justy
+Subaru;Legacy;Subaru Legacy
+Subaru;Levorg;Subaru Levorg
+Subaru;Libero;Subaru Libero
+Subaru;L-Serie;Subaru L-Serie
+Subaru;Outback;Subaru Outback
+Subaru;Solterra;Subaru Solterra
+Subaru;SVX;Subaru SVX
+Subaru;Trezia;Subaru Trezia
+Subaru;Tribeca;Subaru Tribeca
+Subaru;XT;Subaru XT
+Subaru;XV;Subaru XV
+Toyota;4-Runner;Toyota 4-Runner
+Toyota;Auris;Toyota Auris
+Toyota;Avensis;Toyota Avensis
+Toyota;Avensis Verso;Toyota Avensis Verso
+Toyota;Aygo;Toyota Aygo
+Toyota;bZ4X;Toyota bZ4X
+Toyota;Camry;Toyota Camry
+Toyota;Carina;Toyota Carina
+Toyota;Celica;Toyota Celica
+Toyota;C-HR;Toyota C-HR
+Toyota;Corolla;Toyota Corolla
+Toyota;Corolla Verso;Toyota Corolla Verso
+Toyota;Cressida;Toyota Cressida
+Toyota;GT86/GR86;Toyota GT86/GR86
+Toyota;Hiace;Toyota Hiace
+Toyota;Highlander;Toyota Highlander
+Toyota;Hilux;Toyota Hilux
+Toyota;iQ;Toyota iQ
+Toyota;Mirai;Toyota Mirai
+Toyota;MR2;Toyota MR2
+Toyota;Paseo;Toyota Paseo
+Toyota;Picnic;Toyota Picnic
+Toyota;Previa;Toyota Previa
+Toyota;Prius;Toyota Prius
+Toyota;Proace;Toyota Proace
+Toyota;Proace City;Toyota Proace City
+Toyota;RAV4;Toyota RAV4
+Toyota;Starlet;Toyota Starlet
+Toyota;Supra;Toyota Supra
+Toyota;Tercel;Toyota Tercel
+Toyota;Urban Cruiser;Toyota Urban Cruiser
+Toyota;Verso;Toyota Verso
+Toyota;Verso-S;Toyota Verso-S
+Toyota;Yaris;Toyota Yaris
+Toyota;Yaris Cross;Toyota Yaris Cross
+Toyota;Yaris Verso;Toyota Yaris Verso
+VW;411;VW 411
+VW;412;VW 412
+VW;Arteon;VW Arteon
+VW;Beetle;VW Beetle
+VW;Bora;VW Bora
+VW;CC;VW CC
+VW;Corrado;VW Corrado
+VW;Derby;VW Derby
+VW;Eos;VW Eos
+VW;Fox;VW Fox
+VW;Golf;VW Golf
+VW;ID.3;VW ID.3
+VW;ID.4;VW ID.4
+VW;ID.5;VW ID.5
+VW;Iltis;VW Iltis
+VW;Jetta;VW Jetta
+VW;K 70;VW K 70
+VW;Käfer;VW Käfer
+VW;Karmann Ghia;VW Karmann Ghia
+VW;Lupo;VW Lupo
+VW;Passat;VW Passat
+VW;Phaeton;VW Phaeton
+VW;Polo;VW Polo
+VW;Santana;VW Santana
+VW;Scirocco;VW Scirocco
+VW;Sharan;VW Sharan
+VW;Taigo;VW Taigo
+VW;T-Cross;VW T-Cross
+VW;Tiguan;VW Tiguan
+VW;Touareg;VW Touareg
+VW;Touran;VW Touran
+VW;T-Roc;VW T-Roc
+VW;up!;VW up!
+VW;Vento;VW Vento
+VW;XL1;VW XL1
+Bentley;Arnage;Bentley Arnage
+Bentley;Azure;Bentley Azure
+Bentley;Bentayga;Bentley Bentayga
+Bentley;Brooklands;Bentley Brooklands
+Bentley;Brooklands R;Bentley Brooklands R
+Bentley;Continental;Bentley Continental
+Bentley;Flying Spur;Bentley Flying Spur
+Bentley;Mulsanne;Bentley Mulsanne
+Bentley;Turbo RT;Bentley Turbo RT

@@ -9,6 +9,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import numpy as np
 import pandas as pd
+import os
+import platform
 from Levenshtein import distance as levenshtein_distance
 from textblob_de import TextBlobDE as TextBlob
 from germansentiment import SentimentModel
@@ -91,3 +93,14 @@ def calc_sentiment_score3(txt):
         return np.nan
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def load_newst_comment_file(path):
+    comment_files = [x for x in os.listdir(path) if 'comment_DataBase' in x]
+    comment_files.sort()
+    comment_file = comment_files[-1]
+    if (pd.__version__ == '1.0.4') & (platform.system() == 'Windows'):
+        df = pd.read_csv(path + comment_file, sep=';', index_col=0)
+    else:
+        df = pd.read_csv(path + comment_file, sep=';', index_col=0, lineterminator='\n')
+
+    return df
