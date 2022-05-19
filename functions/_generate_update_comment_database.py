@@ -73,7 +73,7 @@ def comment_database_update(path):
             print ("comment database existent...update")
 
             #load comment database
-            df_comments = load_newst_comment_file(path)
+            df_comments = load_newest_comment_file(path)
 
             #define videos for update
             ids_comments = list(df_comments.VideoID.unique())

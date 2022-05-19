@@ -94,7 +94,7 @@ def calc_sentiment_score3(txt):
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def load_newst_comment_file(path):
+def load_newest_comment_file(path):
     comment_files = [x for x in os.listdir(path) if 'comment_DataBase' in x]
     comment_files.sort()
     comment_file = comment_files[-1]
