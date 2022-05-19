@@ -6,6 +6,7 @@ Erstellung der Kommentar-Datenbank und update
 '''
 import pandas as pd
 import os
+import platform
 from datetime import datetime as timer
 from datetime import date
 import json
@@ -75,7 +76,10 @@ def comment_database_update(path):
             comment_files = [x for x in os.listdir(path) if 'comment_DataBase' in x]
             comment_files.sort()
             comment_file = comment_files[-1]
-            df_comments = pd.read_csv(path+comment_file, sep = ';', index_col = 0, lineterminator='\n')
+            if (pd.__version__ == '1.0.4') & (platform.system() == 'Windows'):
+                df_comments = pd.read_csv(path+comment_file, sep = ';', index_col = 0)
+            else:
+                df_comments = pd.read_csv(path+comment_file, sep = ';', index_col = 0, lineterminator='\n')
 
             #define videos for update
             ids_comments = list(df_comments.VideoID.unique())

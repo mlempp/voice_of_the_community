@@ -45,3 +45,13 @@ if __name__ == "__main__":
 # for i, row in tqdm(df_comments.iterrows(), total = df_comments.shape[0]):
 #     txt = row.comment_preped
 #     df_comments.loc[i, 'Sentiment_score_5'] = calc_sentiment_score_from_dict_mean(txt, senti_5_polarity)
+
+anno_new_2 = pd.DataFrame(columns = list(df_comments.columns) + ['annotation (-2 bis 2)'] )
+for i,row in tqdm(anne_new.iterrows(), total = anne_new.shape[0]):
+    tmp = df_comments[df_comments.comment == row.comment]
+    if tmp.shape[0] > 0:
+        tmp = tmp.iloc[0].copy()
+        tmp['annotation (-2 bis 2)'] = row['annotation (-2 bis 2)']
+        anno_new_2 = anno_new_2.append(tmp, ignore_index=True)
+
+
