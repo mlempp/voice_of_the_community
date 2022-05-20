@@ -57,8 +57,10 @@ def main():
                 csoi = df_comments[df_comments.VideoID.isin(vsoi.index)]
                 time_line_analysis = input('Analyse as one series? (yes/no) (alternative: all videos by themself): ').upper()
                 if time_line_analysis == 'YES':
+                    pass
                     # analyse as one
                 else:
+                    pass
                     # analyse individual videos
                 # report analysis
 
