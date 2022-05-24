@@ -14,6 +14,11 @@ from sklearn.ensemble import GradientBoostingRegressor
 from scipy.stats import uniform, randint
 from sklearn.model_selection import RandomizedSearchCV
 
+def translate_pos(value):
+    if value > 0:
+        return 1
+    else:
+        return 0
 
 
 #load
@@ -22,6 +27,7 @@ annotations = pd.read_csv(path + '_for_annotation2.csv', sep=';', index_col=0)
 
 #prep
 annotations = annotations[(annotations['annotation (-2 bis 2)'] != ' ') & ( annotations.Sentiment_score_2.isin(['negative', 'neutral', 'positive']))].copy()
+annotations['annotation (-2 bis 2)'] = annotations['annotation (-2 bis 2)'].astype(int)
 annotations['Sentiment_score_2_update'] = annotations.Sentiment_score_2.replace({'negative': -1, 'neutral': 0, 'positive': 1})
 
 train_test_split = int(0.9*annotations.shape[0])
@@ -34,7 +40,6 @@ X_test, Y_test =test[['Sentiment_score_1', 'Sentiment_score_2_update', 'Sentimen
 
 
 #ridge
-
 ridge = Ridge()
 distributions = {'alpha' : uniform(0,100)}
 clf = RandomizedSearchCV(ridge, distributions, random_state=0, scoring= 'r2',n_iter = 100 )
@@ -42,6 +47,8 @@ search = clf.fit(X_train, Y_train)
 Y_predict = search.best_estimator_.predict(X_test)
 r2_ridge = r2_score(Y_test, Y_predict)
 mse_ridge = mean_squared_error(Y_test, Y_predict)
+f1_ridge = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)))
+rand_pos_ridge = annotations.loc[X_test.iloc[np.argsort(Y_predict)[-10:]].index.values].comment
 
 #gbt
 est = GradientBoostingRegressor(max_depth=1, random_state=0)
@@ -51,5 +58,7 @@ search = est.fit(X_train, Y_train)
 Y_predict = search.best_estimator_.predict(X_test)
 r2_gbt = r2_score(Y_test, Y_predict)
 mse_gbt = mean_squared_error(Y_test, Y_predict)
+f1_gbt = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)))
+rand_pos_gbt = annotations.loc[X_test.iloc[np.argsort(Y_predict)[-10:]].index.values].comment
 
-# f1 = f1_score(Y_test, Y_predict)
+#classifier
