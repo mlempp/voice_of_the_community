@@ -20,6 +20,14 @@ def translate_pos(value):
     else:
         return 0
 
+def translate_to_class(value):
+    if value > 0:
+        return 'positive'
+    elif value < 0:
+        return 'negative'
+    else:
+        return 'neutral'
+
 
 #load
 path = os.getcwd() + '/'
@@ -29,6 +37,7 @@ annotations = pd.read_csv(path + '_for_annotation2.csv', sep=';', index_col=0)
 annotations = annotations[(annotations['annotation (-2 bis 2)'] != ' ') & ( annotations.Sentiment_score_2.isin(['negative', 'neutral', 'positive']))].copy()
 annotations['annotation (-2 bis 2)'] = annotations['annotation (-2 bis 2)'].astype(int)
 annotations['Sentiment_score_2_update'] = annotations.Sentiment_score_2.replace({'negative': -1, 'neutral': 0, 'positive': 1})
+annotations['annotation_classified'] = annotations['annotation (-2 bis 2)'].apply(translate_to_class)
 
 train_test_split = int(0.9*annotations.shape[0])
 ids = np.arange(annotations.shape[0])
