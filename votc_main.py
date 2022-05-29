@@ -14,12 +14,12 @@ path = os.getcwd() + '/'
 sys.path.insert(0, path + 'functions/')
 from _generate_update_comment_database import *
 from _generate_update_video_database import *
-from _video_class import *
-from _defined_past_analysis import *
-from _update_thumbnail_database import *
-from _global_analysis import *
-from _yearly_analysis import *
 from _helper_functions import *
+from _update_thumbnail_database import *
+# from _video_class import *
+# from _defined_past_analysis import *
+# from _global_analysis import *
+# from _yearly_analysis import *
 
 
 
@@ -46,6 +46,7 @@ def main():
             vsoi = df_videos[df_videos.video_date.isin([analysis_date])]
             csoi = df_comments[df_comments.VideoID.isin(vsoi.index)]
             #analyse individual video
+            analysis_result = analyse_comments(csoi,path)
             #report analysis
         else:
             multi_analysis = input('Analyse multiple videos? (yes/no): ').upper()

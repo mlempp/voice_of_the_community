@@ -16,21 +16,8 @@ from sklearn.model_selection import RandomizedSearchCV
 import pickle
 from datetime import datetime as timer
 from datetime import date
+from _helper_functions import *
 d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
-
-def translate_pos(value):
-    if value > 0:
-        return 1
-    else:
-        return 0
-
-def translate_to_class(value):
-    if value > 0:
-        return 1
-    elif value < 0:
-        return -1
-    else:
-        return 0
 
 
 #load
