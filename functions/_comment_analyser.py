@@ -22,7 +22,6 @@ def analyse_comments(csoi, path):
     brands = pd.read_csv(path+'functions/'+'markenliste.csv', encoding = 'iso8859_2')
     models = pd.read_csv(path+'functions/'+'modelliste.csv', encoding = 'iso8859_2')
 
-
     #annotate comments
     csoi_red = csoi[ (~ csoi.Sentiment_score_1.isin([np.nan, np.inf, ''])) &
                      (~ csoi.Sentiment_score_3.isin([np.nan, np.inf, ''])) &
@@ -68,9 +67,9 @@ def analyse_comments(csoi, path):
     most_freq_part
     least_freq_part
 
-    return {'num_pos_coms':num_pos_coms,
-            'num_neu_coms':num_pos_coms,
-            'num_neg_coms':num_pos_coms,
+    return {'part_pos_coms':part_pos_coms,
+            'part_neu_coms':part_neu_coms,
+            'part_neg_coms':part_neg_coms,
             'most_freq_color':most_freq_color,
             'least_freq_color':least_freq_color,
             'most_freq_brand':most_freq_brand,
@@ -79,4 +78,4 @@ def analyse_comments(csoi, path):
             'least_freq_model':least_freq_model,
             'most_freq_part':most_freq_part,
             'least_freq_part':least_freq_part,
-            'rand_pos_comment': rand_pos}
+            'rand_pos_comment': rand_pos_comment}
