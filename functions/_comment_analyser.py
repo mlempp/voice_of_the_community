@@ -21,7 +21,7 @@ def analyse_comments(csoi, path):
     parts = pd.read_csv(path+'functions/'+'bauteile.csv', encoding = 'utf-8', header = None)[0].to_list()
     colors = pd.read_csv(path+'functions/'+'farbliste.csv', encoding = 'utf-8', header = None)[0].to_list()
     brands = pd.read_csv(path+'functions/'+'markenliste.csv', encoding = 'utf-8', header = None)[0].to_list()
-    models = pd.read_csv(path+'functions/'+'modelliste.csv', encoding = 'iso8859_2', sep =';', header = None)
+    carmodels = pd.read_csv(path+'functions/'+'modelliste.csv', encoding = 'iso8859_2', sep =';', header = None)
 
     #annotate comments
     csoi_red = csoi[ (~ csoi.Sentiment_score_1.isin([np.nan, np.inf, ''])) &
@@ -34,11 +34,11 @@ def analyse_comments(csoi, path):
     csoi_red['annotations'] = model.predict(predictors)
 
     #prep comments and make word count
-    word_list = [x.lower() for x in ' '.join(csoi_red.comment.to_list()).split()]
-    preped_word_list = [x.lower() for x in ' '.join(csoi_red.comment_preped.to_list()).split()]
+    comment_string = ' '.join(csoi_red.comment.to_list()).lower()
+    preped_comment_string = ' '.join(csoi_red.comment_preped.to_list()).lower()
 
-    unique_word_count = Counter(word_list)
-    unique_preped_words_count = Counter(preped_word_list)
+    unique_word_count = Counter(comment_string.split())
+    unique_preped_words_count = Counter(preped_comment_string.split())
 
     #count annotations
     pos_coms = csoi_red[csoi_red['annotations'] == 1].copy()
@@ -56,28 +56,24 @@ def analyse_comments(csoi, path):
     rand_pos_comment = pos_coms[pos_coms.comment.apply(lambda x: len(x)) < 250].sample(n=1).comment.iloc[0]
 
     #count color
-
-    color_counts = get_word_counts(colors, unique_word_count, unique_preped_words_count)
-
-
-
+    color_counts = get_word_counts(colors, comment_string)
     most_freq_color
     least_freq_color
 
 
     #count marke
-
-    brand_counts = get_word_counts(brands, unique_word_count, unique_preped_words_count)
-
+    brand_counts = get_word_counts(' | '.join(brands).split('|'), comment_string)
     most_freq_brand
     least_freq_brand
 
     #count model
+    carmodels_count = get_word_counts(' | '.join(carmodels[2].to_list()).split('|'), comment_string)
     most_freq_model
     least_freq_model
 
     #count part
-    part_counts = get_word_counts(brands, unique_word_count, unique_preped_words_count)
+    part_counts = get_word_counts(parts, comment_string)
+
 
     most_freq_part
     least_freq_part

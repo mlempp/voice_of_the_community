@@ -131,17 +131,11 @@ def translate_to_class(value):
         return 0
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def get_word_counts(words_oi, dct, dct_preped):
-    words = list(dct.keys())
-    words_preped = list(dct_preped.keys())
+def get_word_counts(words_oi, string):
     count_dct = {}
     for woi in words_oi:
-        hits = []
-        for word in words:
-            if (woi.lower() in word.lower()):
-                hits.append(word)
-        if len(hits) > 0:
-            count = [dct[x] for x in hits]
+        count = string.count(woi.lower())
+        if count > 0:
             count_dct[woi] = np.sum(count)
 
     return count_dct
