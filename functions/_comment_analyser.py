@@ -9,6 +9,7 @@ import pickle
 import pandas as pd
 from _helper_functions import *
 import numpy as np
+from collections import Counter
 
 
 def analyse_comments(csoi, path):
@@ -17,10 +18,10 @@ def analyse_comments(csoi, path):
     model = load_newest_model(path+'analyse/')
 
     #load all lists
-    parts = pd.read_csv(path+'functions/'+'bauteile.csv')
-    colors = pd.read_csv(path+'functions/'+'farbliste.csv', encoding = 'iso8859_2')
-    brands = pd.read_csv(path+'functions/'+'markenliste.csv', encoding = 'iso8859_2')
-    models = pd.read_csv(path+'functions/'+'modelliste.csv', encoding = 'iso8859_2')
+    parts = pd.read_csv(path+'functions/'+'bauteile.csv', encoding = 'utf-8', header = None)[0].to_list()
+    colors = pd.read_csv(path+'functions/'+'farbliste.csv', encoding = 'utf-8', header = None)[0].to_list()
+    brands = pd.read_csv(path+'functions/'+'markenliste.csv', encoding = 'utf-8', header = None)[0].to_list()
+    models = pd.read_csv(path+'functions/'+'modelliste.csv', encoding = 'iso8859_2', sep =';', header = None)
 
     #annotate comments
     csoi_red = csoi[ (~ csoi.Sentiment_score_1.isin([np.nan, np.inf, ''])) &
@@ -33,7 +34,11 @@ def analyse_comments(csoi, path):
     csoi_red['annotations'] = model.predict(predictors)
 
     #prep comments and make word count
+    word_list = [x.lower() for x in ' '.join(csoi_red.comment.to_list()).split()]
+    preped_word_list = [x.lower() for x in ' '.join(csoi_red.comment_preped.to_list()).split()]
 
+    unique_word_count = Counter(word_list)
+    unique_preped_words_count = Counter(preped_word_list)
 
     #count annotations
     pos_coms = csoi_red[csoi_red['annotations'] == 1].copy()
@@ -48,14 +53,22 @@ def analyse_comments(csoi, path):
     num_neg_coms = neg_coms.shape[0]
     part_neg_coms = num_neg_coms / csoi_red.shape[0]
 
-    rand_pos_comment = pos_coms.sample(n=1).comment.iloc[0]
+    rand_pos_comment = pos_coms[pos_coms.comment.apply(lambda x: len(x)) < 250].sample(n=1).comment.iloc[0]
 
     #count color
+
+    color_counts = get_word_counts(colors, unique_word_count, unique_preped_words_count)
+
+
+
     most_freq_color
     least_freq_color
 
 
     #count marke
+
+    brand_counts = get_word_counts(brands, unique_word_count, unique_preped_words_count)
+
     most_freq_brand
     least_freq_brand
 
@@ -64,6 +77,8 @@ def analyse_comments(csoi, path):
     least_freq_model
 
     #count part
+    part_counts = get_word_counts(brands, unique_word_count, unique_preped_words_count)
+
     most_freq_part
     least_freq_part
 

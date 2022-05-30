@@ -10,6 +10,7 @@ from nltk.corpus import stopwords
 import numpy as np
 import pandas as pd
 import os
+import pickle
 import platform
 from Levenshtein import distance as levenshtein_distance
 from textblob_de import TextBlobDE as TextBlob
@@ -128,3 +129,19 @@ def translate_to_class(value):
         return -1
     else:
         return 0
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def get_word_counts(words_oi, dct, dct_preped):
+    words = list(dct.keys())
+    words_preped = list(dct_preped.keys())
+    count_dct = {}
+    for woi in words_oi:
+        hits = []
+        for word in words:
+            if (woi.lower() in word.lower()):
+                hits.append(word)
+        if len(hits) > 0:
+            count = [dct[x] for x in hits]
+            count_dct[woi] = np.sum(count)
+
+    return count_dct
