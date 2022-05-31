@@ -16,12 +16,13 @@ from sklearn.model_selection import RandomizedSearchCV
 import pickle
 from datetime import datetime as timer
 from datetime import date
-from _helper_functions import *
 d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
 
 
 #load
 path = os.getcwd() + '/'
+sys.path.insert(0, path + 'functions/')
+from _helper_functions import *
 annotations = pd.read_csv(path + '_for_annotation2.csv', sep=';', index_col=0)
 
 #prep
