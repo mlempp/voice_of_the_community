@@ -21,7 +21,7 @@ def analyse_comments(csoi, path):
     parts = pd.read_csv(path+'functions/'+'bauteile.csv', encoding = 'utf-8', header = None)[0].to_list()
     colors = pd.read_csv(path+'functions/'+'farbliste.csv', encoding = 'utf-8', header = None)[0].to_list()
     brands = pd.read_csv(path+'functions/'+'markenliste.csv', encoding = 'utf-8', header = None)[0].to_list()
-    carmodels = pd.read_csv(path+'functions/'+'modelliste.csv', encoding = 'iso8859_2', sep =';', header = None)
+    carmodels = pd.read_csv(path+'functions/'+'modelliste_2.csv', encoding = 'iso8859_2', sep =';')
 
     #annotate comments
     csoi_red = csoi[ (~ csoi.Sentiment_score_1.isin([np.nan, np.inf, ''])) &
@@ -37,8 +37,8 @@ def analyse_comments(csoi, path):
     comment_string = ' '.join(csoi_red.comment.to_list()).lower()
     preped_comment_string = ' '.join(csoi_red.comment_preped.to_list()).lower()
 
-    unique_word_count = Counter(comment_string.split())
-    unique_preped_words_count = Counter(preped_comment_string.split())
+    # unique_word_count = Counter(comment_string.split())
+    # unique_preped_words_count = Counter(preped_comment_string.split())
 
     #count annotations
     pos_coms = csoi_red[csoi_red['annotations'] == 1].copy()
@@ -57,26 +57,24 @@ def analyse_comments(csoi, path):
 
     #count color
     color_counts = get_word_counts(colors, comment_string)
-    most_freq_color
-    least_freq_color
+    most_freq_color = get_most_freq(color_counts).strip()
+    least_freq_color = get_least_freq(color_counts).strip()
 
 
     #count marke
     brand_counts = get_word_counts(' | '.join(brands).split('|'), comment_string)
-    most_freq_brand
-    least_freq_brand
+    most_freq_brand = get_most_freq(brand_counts).strip()
+    least_freq_brand = get_least_freq(brand_counts).strip()
 
     #count model
-    carmodels_count = get_word_counts(' | '.join(carmodels[2].to_list()).split('|'), comment_string)
-    most_freq_model
-    least_freq_model
+    carmodels_count = get_carmodel_counts(carmodels, csoi_red.comment.to_list())
+    most_freq_model = get_most_freq(carmodels_count).strip()
+    least_freq_model = get_least_freq(carmodels_count).strip()
 
     #count part
     part_counts = get_word_counts(parts, comment_string)
-
-
-    most_freq_part
-    least_freq_part
+    most_freq_part = get_most_freq(part_counts).strip()
+    least_freq_part = get_least_freq(part_counts).strip()
 
     return {'part_pos_coms':part_pos_coms,
             'part_neu_coms':part_neu_coms,

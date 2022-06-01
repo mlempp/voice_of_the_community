@@ -16,6 +16,7 @@ from _generate_update_comment_database import *
 from _generate_update_video_database import *
 from _helper_functions import *
 from _update_thumbnail_database import *
+from _comment_analyser import *
 # from _video_class import *
 # from _defined_past_analysis import *
 # from _global_analysis import *

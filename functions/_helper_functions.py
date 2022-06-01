@@ -15,6 +15,7 @@ import platform
 from Levenshtein import distance as levenshtein_distance
 from textblob_de import TextBlobDE as TextBlob
 from germansentiment import SentimentModel
+from random import choice
 
 germansentimentmodel = SentimentModel()
 
@@ -139,3 +140,36 @@ def get_word_counts(words_oi, string):
             count_dct[woi] = np.sum(count)
 
     return count_dct
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def get_most_freq(dct):
+    dct_values = list(dct.values())
+    dct_names = list(dct.keys())
+
+    max_count = np.max(dct_values)
+    max_count_index = [i for i,x in enumerate(dct_values) if x == max_count ]
+    return dct_names[choice(max_count_index)]
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def get_least_freq(dct):
+    dct_values = list(dct.values())
+    dct_names = list(dct.keys())
+
+    min_count = np.min(dct_values)
+    min_count_index = [i for i,x in enumerate(dct_values) if x == min_count ]
+    return dct_names[choice(min_count_index)]
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def get_carmodel_counts(models, cs_lst):
+    cs_lst_lower = [x.lower() for x in cs_lst]
+    count_dct = {}
+    for i, model_row in models.iterrows():
+        kennung = model_row.Kennung.split('|')
+        kennung = [x.lower() for x in kennung]
+        model = model_row.Model
+        kennung_cs = [comment for comment in cs_lst_lower if any(x in comment for x in kennung)]
+        if len(kennung_cs):
+            count_dct[model] = len(kennung_cs)
+    return count_dct
+
+

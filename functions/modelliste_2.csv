@@ -1,30 +1,64 @@
-Audi A4;A4|Audi A4|A 4
-Audi RS6;RS6|Audi RS6|RS 6
-Audi RS2;RS2|Audi RS2|RS 2
-Audi R8;R8|Audi R8|R 8
-Audi RS4;RS4|Audi RS4|RS 4
-Audi RS3;RS3|Audi RS3|RS 3
-BMW E36;BMW E36|E36|E 36|316i
-BMW E46 M3;BMW E46 M3|E46 M3|E46|E 46
-BMW E30 M4;BMW E30 M4|E30 M4|E30|E 30
-BMW M4;BMW M4|M4|M 4
-BMW M6;BMW M6|M6|M 6
-BMW M2;BMW M2|M2|M 2
-VW Golf 7;VW Golf 7|Golf 7|Golf7
-Supergolf;Supergolf
-VW Beetle;VW Beetle|Beetle|Beetle GT|BeetleGT
-VW Golf 2;VW Golf 2 GTI|VW Golf 2|Golf2|Golf 2 GTI|Golf 2
-VW Golf 4;VW Golf 4|Golf4|Golf 4
-VW UP;VW UP|UP
-VW Golf 3;VW Golf 3 GTI|VW Golf 3|Golf3|Golf 3 GTI|Golf 2
-VW Golf 6;VW Golf 6|Golf6|Golf 6
-Nissan Skyline R32 GT-R;Nissan Skyline R32 GT-R|Skyline|R32|R32 GT-R|R32 GTR
-Nissan Skyline R34 GT-R;Nissan Skyline R34 GT-R|Skyline|R34|R34 GT-R|R34 GTR
-Nissan Skyline R35 GT-R;Nissan Skyline R35 GT-R|Skyline|R35|R35 GT-R|R35 GTR
-Toyota Supra MK5;Toyota Supra MK5|Supra MK5|MK5|Supra
-Toyota Supra MK4;Toyota Supra MK4|Supra MK4|MK4|Supra
-Toyota GT86;Toyota GT86|GT86
-Porsche 911 993 Turbo:Porsche 911 993 Turbo|993|993 Turbo
-Porsche 911 964 RWB  :Porsche 911 964 RWB|964 RWB|RWB
-Porsche Taycan Turbo:Porsche Taycan Turbo|Taycan
-Porsche 911 964 Turbo:Porsche 911 964 Turbo|964|964 Turbo
+Model;Kennung
+Audi A4; A4 | Audi A4 | A 4 
+Audi RS6; RS6 | Audi RS6 | RS 6 
+Audi RS2; RS2 | Audi RS2 | RS 2 
+Audi R8; R8 | Audi R8 | R 8 
+Audi RS4; RS4 | Audi RS4 | RS 4 
+Audi RS3; RS3 | Audi RS3 | RS 3 
+BMW E36; BMW E36 | E36 | E 36 | 316i 
+BMW E46 M3; BMW E46 M3 | E46 M3 | E46 | E 46 
+BMW E30 M4; BMW E30 M4 | E30 M4 | E30 | E 30 
+BMW M4; BMW M4 | M4 | M 4 
+BMW M6; BMW M6 | M6 | M 6 
+BMW M2; BMW M2 | M2 | M 2 
+VW Golf 7; VW Golf 7 | Golf 7 | Golf7 
+Supergolf; Supergolf 
+VW Beetle; VW Beetle | Beetle | Beetle GT | BeetleGT 
+VW Golf 2; VW Golf 2 GTI | VW Golf 2 | Golf2 | Golf 2 GTI | Golf 2 
+VW Golf 4; VW Golf 4 | Golf4 | Golf 4 
+VW UP; VW UP | UP 
+VW Golf 3; VW Golf 3 GTI | VW Golf 3 | Golf3 | Golf 3 GTI | Golf 2 
+VW Golf 6; VW Golf 6 | Golf6 | Golf 6 
+Nissan Skyline R32 GT-R; Nissan Skyline R32 GT-R | Skyline | R32 | R32 GT-R | R32 GTR 
+Nissan Skyline R34 GT-R; Nissan Skyline R34 GT-R | Skyline | R34 | R34 GT-R | R34 GTR 
+Nissan Skyline R35 GT-R; Nissan Skyline R35 GT-R | Skyline | R35 | R35 GT-R | R35 GTR 
+Toyota Supra MK5; Toyota Supra MK5 | Supra MK5 | MK5 | Supra 
+Toyota Supra MK4; Toyota Supra MK4 | Supra MK4 | MK4 | Supra 
+Toyota GT86; Toyota GT86 | GT86 
+Porsche 911 993 Turbo; Porsche 911 993 Turbo | 993 | 993 Turbo 
+Porsche 911 964 RWB; Porsche 911 964 RWB | 964 RWB | RWB 
+Porsche Taycan Turbo; Porsche Taycan Turbo | Taycan 
+Porsche 911 964 Turbo; Porsche 911 964 Turbo | 964 | 964 Turbo 
+Porsche 911 991; Porsche 911 991 GT3 RS | GT3 RS | 911 | GT3RS 
+Porsche 959; Porsche 959 | 959 
+Porsche 911 Carrera; Porsche 911 Carrera | Carrera | 911 Carrera 
+Porsche 993; Porsche 993 | 993 
+Ford Raptor; Ford Raptor | Raptor 
+Ford Explorer; Ford Explorer | Explorer 
+Ford Transit; Ford Transit | Transit 
+Ford Mustang; Ford Mustang | Mustang 
+Ford Focus; Ford Focus RS | Focus RS | Focus | Ford Focus 
+Ford Fiesta; Ford Fiesta ST | Fiesta ST | Fiesta | Ford Fiesta 
+Opel Speedster; Opel Speedster | Speedster 
+Opel Corsa; Opel Corsa | Corsa 
+Opel Insignia; Opel Insignia | Insignia 
+Opel Mokka; Opel Mokka | Mokka 
+Chevrolet Camarro; Chevrolet Camarro | Camarro 
+Chevrolet Corvette C7; Chevrolet Corvette C7 | Corvette C7 | C7 
+Chevrolet Corvette C8; Chevrolet Corvette C8 | Corvette C8 | C8 
+McLaren 720S; McLaren 720S | 720S | 720 
+Hyundai I30 N; Hyundai I30 N | I30 N | I30N 
+Hyundai I30; Hyundai I30 | I30 | I30 
+Hyundai I20; Hyundai I20 | I20 | I20 
+Hyundai I20 N; Hyundai I20 N | I20 N | I20N 
+Mazda RX-7; Mazda RX-7 | RX-7 | RX7 
+Ferrari F355; Ferrari F355 | F355 | Berlinetta 
+Mercedes C63 AMG; Mercedes C63 AMG | C63 AMG | C63 
+Mercedes S500 E; Mercedes S500 E | Mercedes S500 | S500 | S500E | S500 E 
+Mercedes 500 E; Mercedes 500 E | Mercedes 500 | 500E | 500 E 
+Mercedes G; Mercedes G | G-Klasse | G500 | G 500 | G Klasse | GKlasse 
+Mercedes AMG GTS; Mercedes AMG GTS | AMG GTS 
+Lexus RC F; Lexus RC F | RCF | RC-F 
+Lexus LC 500; Lexus LC 500 | LC 500 | LC500 
+Lamborghini Urus; Lamborghini Urus | Urus 
+
