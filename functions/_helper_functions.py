@@ -172,4 +172,30 @@ def get_carmodel_counts(models, cs_lst):
             count_dct[model] = len(kennung_cs)
     return count_dct
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def add_breaks_before_space(string):
+    updated_string = ''
+    cnt = 0
+    for letter in string:
+        cnt += 1
+        if (letter == ' ' ) & (cnt > 120):
+            updated_string = updated_string+'<br>'
+            cnt = 0
+        else:
+            updated_string = updated_string + letter
 
+    return updated_string
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def cut_sentence(string):
+    updated_string = ''
+    cnt = 0
+    for letter in string:
+        cnt += 1
+        if (letter == ' ' ) & (cnt > 60):
+            updated_string = updated_string+'...'
+            break
+        else:
+            updated_string = updated_string + letter
+    return updated_string

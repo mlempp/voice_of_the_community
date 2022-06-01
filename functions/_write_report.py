@@ -7,6 +7,8 @@ write report for results
 import os
 import numpy as np
 import codecs
+from _helper_functions import *
+
 
 def generate_report(result_dct):
 
@@ -21,7 +23,8 @@ def generate_report(result_dct):
     for analysis in result_dct.keys():
         tmp = result_dct[analysis]
         tmp_block = block_mid
-        tmp_block = tmp_block.replace('analysisname', str(analysis))
+        video_name = analysis.replace('JP Performance - ','')
+        tmp_block = tmp_block.replace('analysisname', str(cut_sentence(video_name)))
         tmp_block = tmp_block.replace('positive_partial_deg', str(180*tmp['part_pos_coms']))
         tmp_block = tmp_block.replace('neutral_partial_deg', str(180*tmp['part_neu_coms']))
         tmp_block = tmp_block.replace('negative_partial_deg', str(180*tmp['part_neg_coms']))
@@ -37,14 +40,15 @@ def generate_report(result_dct):
         tmp_block = tmp_block.replace('haufigstesbauteil', str(tmp['most_freq_part']))
         tmp_block = tmp_block.replace('seltenstesbauteil', str(tmp['least_freq_part']))
         rand_nice_comment = tmp['rand_pos_comment']
-        num_com_lines = np.ceil(len(rand_nice_comment) /140)
-        if num_com_lines == 1:
+        rand_nice_comment_br = add_breaks_before_space(rand_nice_comment)
+        num_com_lines = rand_nice_comment_br.count('<br>')
+        if num_com_lines == 0:
             tmp_block = tmp_block.replace('comment_margin', str(-40))
-        elif num_com_lines == 2:
+        elif num_com_lines == 1:
             tmp_block = tmp_block.replace('comment_margin', str(-70))
-        elif num_com_lines == 3:
+        elif num_com_lines == 2:
             tmp_block = tmp_block.replace('comment_margin', str(-100))
-        tmp_block = tmp_block.replace('rand_nice_comment', str(rand_nice_comment))
+        tmp_block = tmp_block.replace('rand_nice_comment', str(rand_nice_comment_br))
 
         final_report = final_report+tmp_block
 
