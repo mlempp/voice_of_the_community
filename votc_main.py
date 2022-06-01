@@ -41,31 +41,37 @@ def main():
         df_videos.video_date = pd.to_datetime(df_videos.video_date)
         df_comments = load_newest_comment_file(path)
 
+        results = {}
         single_analysis = input('Analyse single video? (yes/no): ').upper()
         if single_analysis == 'YES':
             analysis_date = pd.to_datetime(input('which date (DD.MM.YYYY): '), format='%d.%m.%Y')
             vsoi = df_videos[df_videos.video_date.isin([analysis_date])]
-            csoi = df_comments[df_comments.VideoID.isin(vsoi.index)]
-            #analyse individual video
+            csoi = df_comments[df_comments.VideoID.isin([vsoi.index[0]])]
+
             analysis_result = analyse_comments(csoi,path)
-            #report analysis
+            results[vsoi.index[0]] = analysis_result
+
         else:
             multi_analysis = input('Analyse multiple videos? (yes/no): ').upper()
             if multi_analysis == 'YES':
-                analysis_start_date = pd.to_datetime(input('which starting date (DD.MM.YYYY): '), format='%d.%m.%Y')
-                analysis_end_date = pd.to_datetime(input('which end date (DD.MM.YYYY): '), format='%d.%m.%Y')
+                start_date = input('which starting date (DD.MM.YYYY): ')
+                analysis_start_date = pd.to_datetime(start_date, format='%d.%m.%Y')
+                end_date = input('which end date (DD.MM.YYYY): ')
+                analysis_end_date = pd.to_datetime(end_date, format='%d.%m.%Y')
                 analysis_range = pd.date_range(analysis_start_date,analysis_end_date-timedelta(days=1)).to_list()
                 vsoi = df_videos[df_videos.video_date.isin(analysis_range)]
-                csoi = df_comments[df_comments.VideoID.isin(vsoi.index)]
                 time_line_analysis = input('Analyse as one series? (yes/no) (alternative: all videos by themself): ').upper()
                 if time_line_analysis == 'YES':
-                    pass
-                    # analyse as one
+                    csoi = df_comments[df_comments.VideoID.isin(vsoi.index)]
+                    analysis_result = analyse_comments(csoi,path)
+                    results[f'{start_date}-{end_date}'] = analysis_result
                 else:
-                    pass
-                    # analyse individual videos
-                # report analysis
+                    for i,row in vsoi.iterrows():
+                        csoi = df_comments[df_comments.VideoID.isin([i])]
+                        analysis_result = analyse_comments(csoi,path)
+                        results[i] = analysis_result
 
+        #report analysis
 
 if __name__ == "__main__":
     main()
