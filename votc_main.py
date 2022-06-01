@@ -17,6 +17,7 @@ from _generate_update_video_database import *
 from _helper_functions import *
 from _update_thumbnail_database import *
 from _comment_analyser import *
+from _write_report import *
 # from _video_class import *
 # from _defined_past_analysis import *
 # from _global_analysis import *
@@ -49,7 +50,7 @@ def main():
             csoi = df_comments[df_comments.VideoID.isin([vsoi.index[0]])]
 
             analysis_result = analyse_comments(csoi,path)
-            results[vsoi.index[0]] = analysis_result
+            results[vsoi.video_title.iloc[0]] = analysis_result
 
         else:
             multi_analysis = input('Analyse multiple videos? (yes/no): ').upper()
@@ -58,7 +59,7 @@ def main():
                 analysis_start_date = pd.to_datetime(start_date, format='%d.%m.%Y')
                 end_date = input('which end date (DD.MM.YYYY): ')
                 analysis_end_date = pd.to_datetime(end_date, format='%d.%m.%Y')
-                analysis_range = pd.date_range(analysis_start_date,analysis_end_date-timedelta(days=1)).to_list()
+                analysis_range = pd.date_range(analysis_start_date,analysis_end_date).to_list()
                 vsoi = df_videos[df_videos.video_date.isin(analysis_range)]
                 time_line_analysis = input('Analyse as one series? (yes/no) (alternative: all videos by themself): ').upper()
                 if time_line_analysis == 'YES':
@@ -69,9 +70,11 @@ def main():
                     for i,row in vsoi.iterrows():
                         csoi = df_comments[df_comments.VideoID.isin([i])]
                         analysis_result = analyse_comments(csoi,path)
-                        results[i] = analysis_result
+                        results[row.video_title] = analysis_result
 
-        #report analysis
+        report = generate_report(results)
+        with open(path + f"output/analysis_{d}.html", "w", encoding='utf-8') as f:
+            f.write(report)
 
 if __name__ == "__main__":
     main()
