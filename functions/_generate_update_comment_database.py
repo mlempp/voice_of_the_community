@@ -100,6 +100,12 @@ def comment_database_update(path):
                         comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                         comment_series['Sentiment_score_4'] = calc_sentiment_score_from_dict_mean(comment_series.comment_preped,senti_4_polarity)
                         comment_series['Sentiment_score_5'] = calc_sentiment_score_from_dict_mean(comment_series.comment_preped,senti_5_polarity)
+                        comment_series['Sentiment_score_6'] = calc_sentiment_score_from_dict_sum(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_7'] = calc_sentiment_score_from_dict_sum(comment_series.comment_preped,senti_4_polarity)
+                        comment_series['Sentiment_score_8'] = calc_sentiment_score_from_dict_sum(comment_series.comment_preped,senti_5_polarity)
+                        comment_series['Sentiment_score_9'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_10'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_4_polarity)
+                        comment_series['Sentiment_score_11'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_5_polarity)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
                 else:
                     for i,c in tqdm(enumerate(comments)):   #add all comments if we dont have the video
@@ -109,6 +115,12 @@ def comment_database_update(path):
                         comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                         comment_series['Sentiment_score_4'] = calc_sentiment_score_from_dict_mean(comment_series.comment_preped,senti_4_polarity)
                         comment_series['Sentiment_score_5'] = calc_sentiment_score_from_dict_mean(comment_series.comment_preped,senti_5_polarity)
+                        comment_series['Sentiment_score_6'] = calc_sentiment_score_from_dict_sum(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_7'] = calc_sentiment_score_from_dict_sum(comment_series.comment_preped,senti_4_polarity)
+                        comment_series['Sentiment_score_8'] = calc_sentiment_score_from_dict_sum(comment_series.comment_preped,senti_5_polarity)
+                        comment_series['Sentiment_score_9'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_10'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_4_polarity)
+                        comment_series['Sentiment_score_11'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_5_polarity)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
 
         else:
@@ -125,6 +137,12 @@ def comment_database_update(path):
                     comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                     comment_series['Sentiment_score_4'] = calc_sentiment_score_from_dict_mean(comment_series.comment_preped,senti_4_polarity)
                     comment_series['Sentiment_score_5'] = calc_sentiment_score_from_dict_mean(comment_series.comment_preped,senti_5_polarity)
+                    comment_series['Sentiment_score_6'] = calc_sentiment_score_from_dict_sum(comment_series.comment_preped,senti_1_ws)
+                    comment_series['Sentiment_score_7'] = calc_sentiment_score_from_dict_sum(comment_series.comment_preped,senti_4_polarity)
+                    comment_series['Sentiment_score_8'] = calc_sentiment_score_from_dict_sum(comment_series.comment_preped,senti_5_polarity)
+                    comment_series['Sentiment_score_9'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_1_ws)
+                    comment_series['Sentiment_score_10'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_4_polarity)
+                    comment_series['Sentiment_score_11'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_5_polarity)
                     df_comments = df_comments.append(comment_series, ignore_index=True)
 
         df_comments.to_csv(path+d2+'_comment_DataBase.csv', sep = ';')

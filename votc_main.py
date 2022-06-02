@@ -81,9 +81,15 @@ if __name__ == "__main__":
 
 
 
-# #
-# for i, row in tqdm(df_comments.iterrows(), total = df_comments.shape[0]):
-#     txt = row.comment_preped
-#     df_comments.loc[i, 'Sentiment_score_5'] = calc_sentiment_score_from_dict_mean(txt, senti_5_polarity)
+#
+for i, row in tqdm(df_comments.iterrows(), total = df_comments.shape[0]):
+    txt = row.comment_preped
+    df_comments.loc[i, 'Sentiment_score_6'] = calc_sentiment_score_from_dict_sum(txt, senti_1_ws)
+    # df_comments.loc[i, 'Sentiment_score_7'] = calc_sentiment_score_from_dict_sum(txt, senti_4_polarity)
+    # df_comments.loc[i, 'Sentiment_score_8'] = calc_sentiment_score_from_dict_sum(txt, senti_5_polarity)
+    # df_comments.loc[i, 'Sentiment_score_9'] = calc_sentiment_score_from_dict_median(txt, senti_1_ws)
+    # df_comments.loc[i, 'Sentiment_score_10'] = calc_sentiment_score_from_dict_median(txt, senti_4_polarity)
+    # df_comments.loc[i, 'Sentiment_score_11'] = calc_sentiment_score_from_dict_median(txt, senti_5_polarity)
 
+df_comments.to_csv(path + d2 + '_comment_DataBase.csv', sep=';')
 

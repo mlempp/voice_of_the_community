@@ -56,6 +56,7 @@ def clean_text(txt):
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def calc_sentiment_score_from_dict_per_word(word,dct):
+    error#update all sentoscores based on this function read how to do it properly or steem dict keys
     return dct[list(dct.keys())[np.argmin([levenshtein_distance(x, word) for x in dct.keys()])]]
 
 
@@ -70,11 +71,21 @@ def calc_sentiment_score_from_dict_mean(txt,dct):
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def calc_sentiment_score1_sum_txt(txt,dct):
+def calc_sentiment_score_from_dict_sum(txt,dct):
     if not pd.isna(txt):
         words = txt.split()
         score = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
         return np.sum(score)
+    else:
+        return np.nan
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def calc_sentiment_score_from_dict_median(txt,dct):
+    if not pd.isna(txt):
+        words = txt.split()
+        score = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
+        return np.median(score)
     else:
         return np.nan
 
@@ -186,7 +197,6 @@ def add_breaks_before_space(string):
 
     return updated_string
 
-
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def cut_sentence(string):
     updated_string = ''
@@ -199,3 +209,5 @@ def cut_sentence(string):
         else:
             updated_string = updated_string + letter
     return updated_string
+
+
