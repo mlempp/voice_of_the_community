@@ -69,45 +69,58 @@ def calc_sentiment_score_from_dict_per_word(word,dct):
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def calc_sentiment_score_from_dict_ratio(txt,dct):
+def calc_sentiment_scores_from_dict(txt,dct):
     if not pd.isna(txt):
         words = txt.split()
         senti_list = np.array([calc_sentiment_score_from_dict_per_word(word,dct) for word in words])
-        score = (sum(senti_list > 0) - sum(senti_list < 0)) / senti_list.size
-        return score
+        s_mean = np.mean(senti_list)
+        s_median = np.median(senti_list)
+        s_sum = np.sum(senti_list)
+        s_ratio = (sum(senti_list > 0) - sum(senti_list < 0)) / (senti_list.size+1)
+        return s_mean, s_sum,s_median, s_ratio
     else:
-        return np.nan
+        return np.nan, np.nan, np.nan, np.nan
 
-
-#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def calc_sentiment_score_from_dict_mean(txt,dct):
-    if not pd.isna(txt):
-        words = txt.split()
-        score = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
-        return np.mean(score)
-    else:
-        return np.nan
-
-
-#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def calc_sentiment_score_from_dict_sum(txt,dct):
-    if not pd.isna(txt):
-        words = txt.split()
-        score = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
-        return np.sum(score)
-    else:
-        return np.nan
-
-
-#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def calc_sentiment_score_from_dict_median(txt,dct):
-    if not pd.isna(txt):
-        words = txt.split()
-        score = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
-        return np.median(score)
-    else:
-        return np.nan
-
+#
+# #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# def calc_sentiment_score_from_dict_ratio(txt,dct):
+#     if not pd.isna(txt):
+#         words = txt.split()
+#         senti_list = np.array([calc_sentiment_score_from_dict_per_word(word,dct) for word in words])
+#         return (sum(senti_list > 0) - sum(senti_list < 0)) / (senti_list.size+1)
+#     else:
+#         return np.nan
+#
+#
+# #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# def calc_sentiment_score_from_dict_mean(txt,dct):
+#     if not pd.isna(txt):
+#         words = txt.split()
+#         senti_list = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
+#         return np.mean(senti_list)
+#     else:
+#         return np.nan
+#
+#
+# #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# def calc_sentiment_score_from_dict_sum(txt,dct):
+#     if not pd.isna(txt):
+#         words = txt.split()
+#         senti_list = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
+#         return np.sum(senti_list)
+#     else:
+#         return np.nan
+#
+#
+# #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# def calc_sentiment_score_from_dict_median(txt,dct):
+#     if not pd.isna(txt):
+#         words = txt.split()
+#         senti_list = [calc_sentiment_score_from_dict_per_word(word,dct) for word in words]
+#         return np.median(senti_list)
+#     else:
+#         return np.nan
+#
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def calc_sentiment_score2(txt):
