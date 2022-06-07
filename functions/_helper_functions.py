@@ -56,8 +56,27 @@ def clean_text(txt):
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def calc_sentiment_score_from_dict_per_word(word,dct):
-    error#update all sentoscores based on this function read how to do it properly or steem dict keys
-    return dct[list(dct.keys())[np.argmin([levenshtein_distance(x, word) for x in dct.keys()])]]
+    dict_words = np.array(list(dct.keys()))
+    dict_values = np.array(list(dct.values()))
+    dist = np.array([levenshtein_distance(x, word) for x in dict_words])
+    if dist.min() < 2:
+        close = np.argwhere(dist<2).reshape(-1)
+        all_sentis = dict_values[close]
+        senti = all_sentis.mean()
+    else:
+        senti = 0
+    return senti
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def calc_sentiment_score_from_dict_ratio(txt,dct):
+    if not pd.isna(txt):
+        words = txt.split()
+        senti_list = np.array([calc_sentiment_score_from_dict_per_word(word,dct) for word in words])
+        score = (sum(senti_list > 0) - sum(senti_list < 0)) / senti_list.size
+        return score
+    else:
+        return np.nan
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

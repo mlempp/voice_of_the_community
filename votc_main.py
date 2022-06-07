@@ -82,14 +82,30 @@ if __name__ == "__main__":
 
 
 #
-for i, row in tqdm(df_comments.iterrows(), total = df_comments.shape[0]):
-    txt = row.comment_preped
-    df_comments.loc[i, 'Sentiment_score_6'] = calc_sentiment_score_from_dict_sum(txt, senti_1_ws)
-    # df_comments.loc[i, 'Sentiment_score_7'] = calc_sentiment_score_from_dict_sum(txt, senti_4_polarity)
-    # df_comments.loc[i, 'Sentiment_score_8'] = calc_sentiment_score_from_dict_sum(txt, senti_5_polarity)
-    # df_comments.loc[i, 'Sentiment_score_9'] = calc_sentiment_score_from_dict_median(txt, senti_1_ws)
-    # df_comments.loc[i, 'Sentiment_score_10'] = calc_sentiment_score_from_dict_median(txt, senti_4_polarity)
-    # df_comments.loc[i, 'Sentiment_score_11'] = calc_sentiment_score_from_dict_median(txt, senti_5_polarity)
+# import time
+#
+# t0 = time.time()
+#
+# code
+#
+# t1 = time.time()
+# total = t1-t0
+# print(total)
+
+
+# df_comments['Sentiment_score_1'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_mean(x, senti_1_ws))
+df_comments['Sentiment_score_4'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_mean(x, senti_4_polarity))
+df_comments['Sentiment_score_5'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_mean(x, senti_5_polarity))
+df_comments['Sentiment_score_6'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_sum(x, senti_1_ws))
+df_comments['Sentiment_score_7'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_sum(x, senti_4_polarity))
+df_comments['Sentiment_score_8'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_sum(x, senti_5_polarity))
+df_comments['Sentiment_score_9'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_median(x, senti_1_ws))
+df_comments['Sentiment_score_10'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_median(x, senti_4_polarity))
+df_comments['Sentiment_score_11'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_median(x, senti_5_polarity))
+df_comments['Sentiment_score_12'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_ratio(x, senti_1_ws))
+df_comments['Sentiment_score_13'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_ratio(x, senti_4_polarity))
+df_comments['Sentiment_score_14'] = df_comments.comment_preped.apply(lambda x: calc_sentiment_score_from_dict_ratio(x, senti_5_polarity))
+
 
 df_comments.to_csv(path + d2 + '_comment_DataBase.csv', sep=';')
 

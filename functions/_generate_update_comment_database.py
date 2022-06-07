@@ -22,16 +22,21 @@ senti_1_ws_positive = pd.read_csv(path + 'functions/SentiWS_v1.8c_Positive.txt',
 senti_1_ws_negative = pd.read_csv(path + 'functions/SentiWS_v1.8c_Negative.txt', sep='\t', header=None)
 senti_1_ws = pd.concat([senti_1_ws_positive, senti_1_ws_negative], axis=0, ignore_index=True)
 senti_1_ws[0] = senti_1_ws[0].apply(lambda x: x.split('|')[0])
-senti_1_ws = senti_1_ws.set_index(0)
+senti_1_ws['prepped'] = senti_1_ws[0].apply(clean_text)
+senti_1_ws = senti_1_ws.set_index('prepped')
 senti_1_ws = senti_1_ws[1].to_dict()
 
 senti_4_polarity = pd.read_csv(path + 'functions/train_test_lemma_polarity.txt', sep='\t', header=None)
 senti_4_polarity[0] = senti_4_polarity[0].apply(lambda x: x.split('_')[0])
-senti_4_polarity = senti_4_polarity.set_index(0).replace({'NEG':-1,'POS':1, 'NEU': 0, 'INT': 0, 'SHI': 0 })
+senti_4_polarity['prepped']  =senti_4_polarity[0].apply(clean_text)
+senti_4_polarity = senti_4_polarity.set_index('prepped').replace({'NEG':-1,'POS':1, 'NEU': 0, 'INT': 0, 'SHI': 0 })
 senti_4_polarity = senti_4_polarity[1].to_dict()
 
 senti_5_polarity = pd.read_csv(path + 'functions/polarity_info.csv', sep=';', header=0)
 senti_5_polarity = senti_5_polarity.set_index('wort')
+senti_5_polarity['prepped'] =senti_5_polarity.index.to_list()
+senti_5_polarity['prepped']  =senti_5_polarity['prepped'].apply(clean_text)
+senti_5_polarity = senti_5_polarity.set_index('prepped')
 senti_5_polarity = senti_5_polarity['combined'].astype(float).to_dict()
 
 
@@ -106,6 +111,9 @@ def comment_database_update(path):
                         comment_series['Sentiment_score_9'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_1_ws)
                         comment_series['Sentiment_score_10'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_4_polarity)
                         comment_series['Sentiment_score_11'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_5_polarity)
+                        comment_series['Sentiment_score_12'] = calc_sentiment_score_from_dict_ratio(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_13'] = calc_sentiment_score_from_dict_ratio(comment_series.comment_preped,senti_4_polarity)
+                        comment_series['Sentiment_score_14'] = calc_sentiment_score_from_dict_ratio(comment_series.comment_preped,senti_5_polarity)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
                 else:
                     for i,c in tqdm(enumerate(comments)):   #add all comments if we dont have the video
@@ -121,6 +129,9 @@ def comment_database_update(path):
                         comment_series['Sentiment_score_9'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_1_ws)
                         comment_series['Sentiment_score_10'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_4_polarity)
                         comment_series['Sentiment_score_11'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_5_polarity)
+                        comment_series['Sentiment_score_12'] = calc_sentiment_score_from_dict_ratio(comment_series.comment_preped,senti_1_ws)
+                        comment_series['Sentiment_score_13'] = calc_sentiment_score_from_dict_ratio(comment_series.comment_preped,senti_4_polarity)
+                        comment_series['Sentiment_score_14'] = calc_sentiment_score_from_dict_ratio(comment_series.comment_preped,senti_5_polarity)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
 
         else:
@@ -143,6 +154,9 @@ def comment_database_update(path):
                     comment_series['Sentiment_score_9'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_1_ws)
                     comment_series['Sentiment_score_10'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_4_polarity)
                     comment_series['Sentiment_score_11'] = calc_sentiment_score_from_dict_median(comment_series.comment_preped,senti_5_polarity)
+                    comment_series['Sentiment_score_12'] = calc_sentiment_score_from_dict_ratio(comment_series.comment_preped,senti_1_ws)
+                    comment_series['Sentiment_score_13'] = calc_sentiment_score_from_dict_ratio(comment_series.comment_preped,senti_4_polarity)
+                    comment_series['Sentiment_score_14'] = calc_sentiment_score_from_dict_ratio(comment_series.comment_preped,senti_5_polarity)
                     df_comments = df_comments.append(comment_series, ignore_index=True)
 
         df_comments.to_csv(path+d2+'_comment_DataBase.csv', sep = ';')

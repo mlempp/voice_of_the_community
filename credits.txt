@@ -5,13 +5,25 @@ https://data-dive.com/german-nlp-binary-text-classification-of-reviews-part1
 
 
 
-Sentiscore 1:
+
+Sentiment score 1 + Sentiment score 6 + Sentiment score 9 + Sentiment score 12:
+senti_1_ws
 R. Remus, U. Quasthoff & G. Heyer: SentiWS - a Publicly Available German-language Resource for Sentiment Analysis. In: Proceedings of the 7th International Language Ressources and Evaluation (LREC'10), 2010
 
-Sentiscore 2:
+Sentiment score 2:
 Guhr, Oliver  and  Schumann, Anne-Kathrin  and  Bahrmann, Frank  and  Böhme: Hans Joachim, Training a Broad-Coverage German Sentiment Classification Model for Dialog Systems
 In: Proceedings of The 12th Language Resources and Evaluation Conference, 2020
 
-Sentiscore 4:
+Sentiment score 3:
+https://textblob-de.readthedocs.io/en/latest/authors.html
+
+
+Sentiment score 4 + Sentiment score 8 + Sentiment score 11 + Sentiment score 14:
+senti_4_polarity
 "Evaluating the morphological compositionality of polarity"
 by Josef Ruppenhofer, Petra Steiner and Michael Wiegand.
+
+Sentiment score 5 + Sentiment score 7 + Sentiment score 10 + Sentiment score 13:
+senti_5_polarity
+Polarity lexicon: Nouns, Adjectives, Verbs, Adverbs
+Authors: Manfred Klenner, Simon Clematide, Michael Wiegand, Ronny Peters
