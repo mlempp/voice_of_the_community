@@ -98,6 +98,7 @@ def comment_database_update(path):
                     existing_comments = tmp_comment_df.comment_ID.tolist()
                     new_comment_ids = [x[0] for x in comments if x[0] not in existing_comments]
                     new_comments = [x for x in comments if x[0] in new_comment_ids]
+                    print(f'        {len(new_comments)} new comments')
                     for i,c in tqdm(enumerate(new_comments)):
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1]),
                                                            'Sentiment_score_1' : 0, 'Sentiment_score_2' : 0,'Sentiment_score_3' : 0,'Sentiment_score_4' : 0,'Sentiment_score_5' : 0,
@@ -112,6 +113,7 @@ def comment_database_update(path):
                         df_comments = df_comments.append(comment_series, ignore_index=True)
                 else:
                     for i,c in tqdm(enumerate(comments)):   #add all comments if we dont have the video
+                        print(f'        all comments new')
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1]),
                                                            'Sentiment_score_1' : 0, 'Sentiment_score_2' : 0,'Sentiment_score_3' : 0,'Sentiment_score_4' : 0,'Sentiment_score_5' : 0,
                                                            'Sentiment_score_6' : 0,'Sentiment_score_7' : 0,'Sentiment_score_8' : 0,'Sentiment_score_9' : 0,'Sentiment_score_10' : 0,
@@ -131,6 +133,7 @@ def comment_database_update(path):
                 comments = load_all_video_comments(video_ID, yt)
                 print(f'        {len(comments)} comments loaded')
                 for i,c in tqdm(enumerate(comments)):
+                    print(f'        all comments new')
                     comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1]),
                                                        'Sentiment_score_1' : 0, 'Sentiment_score_2' : 0,'Sentiment_score_3' : 0,'Sentiment_score_4' : 0,'Sentiment_score_5' : 0,
                                                        'Sentiment_score_6' : 0,'Sentiment_score_7' : 0,'Sentiment_score_8' : 0,'Sentiment_score_9' : 0,'Sentiment_score_10' : 0,
