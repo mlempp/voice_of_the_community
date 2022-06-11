@@ -91,13 +91,13 @@ if __name__ == "__main__":
 # t1 = time.time()
 # total = t1-t0
 # print(total)
-
-
-df_comments[['Sentiment_score_1','Sentiment_score_6','Sentiment_score_9','Sentiment_score_12']] = df_comments.apply(lambda x: calc_sentiment_scores_from_dict(x.comment_preped, dct = senti_1_ws),axis = 1, result_type="expand")
-df_comments[['Sentiment_score_4','Sentiment_score_7','Sentiment_score_10','Sentiment_score_13']] = df_comments.apply(lambda x: calc_sentiment_scores_from_dict(x.comment_preped, dct = senti_4_polarity),axis = 1, result_type="expand")
-df_comments[['Sentiment_score_5','Sentiment_score_8','Sentiment_score_11','Sentiment_score_14']] = df_comments.apply(lambda x: calc_sentiment_scores_from_dict(x.comment_preped, dct = senti_5_polarity),axis = 1, result_type="expand")
-
-
-
-df_comments.to_csv(path + d2 + '_comment_DataBase.csv', sep=';')
+#
+#
+# df_comments[['Sentiment_score_1','Sentiment_score_6','Sentiment_score_9','Sentiment_score_12']] = df_comments.apply(lambda x: calc_sentiment_scores_from_dict(x.comment_preped, dct = senti_1_ws),axis = 1, result_type="expand")
+# df_comments[['Sentiment_score_4','Sentiment_score_7','Sentiment_score_10','Sentiment_score_13']] = df_comments.apply(lambda x: calc_sentiment_scores_from_dict(x.comment_preped, dct = senti_4_polarity),axis = 1, result_type="expand")
+# df_comments[['Sentiment_score_5','Sentiment_score_8','Sentiment_score_11','Sentiment_score_14']] = df_comments.apply(lambda x: calc_sentiment_scores_from_dict(x.comment_preped, dct = senti_5_polarity),axis = 1, result_type="expand")
+#
+#
+#
+# df_comments.to_csv(path + d2 + '_comment_DataBase.csv', sep=';')
 
