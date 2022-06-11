@@ -22,7 +22,9 @@ def analyse_comments(csoi, path):
     colors = pd.read_csv(path+'functions/'+'farbliste.csv', encoding = 'utf-8', header = None)[0].to_list()
     brands = pd.read_csv(path+'functions/'+'markenliste.csv', encoding = 'utf-8', header = None)[0].to_list()
     carmodels = pd.read_csv(path+'functions/'+'modelliste_2.csv', encoding = 'iso8859_2', sep =';')
-
+    columns_OI = ['Sentiment_score_1', 'Sentiment_score_2_update', 'Sentiment_score_3', 'Sentiment_score_4', 'Sentiment_score_5', 'Sentiment_score_6',
+                  'Sentiment_score_10', 'Sentiment_score_11', 'Sentiment_score_7', 'Sentiment_score_8', 'Sentiment_score_9', 'Sentiment_score_12',
+                  'Sentiment_score_13', 'Sentiment_score_14']
     #annotate comments
     csoi_red = csoi[ (~ csoi.Sentiment_score_1.isin([np.nan, np.inf, ''])) &
                      (~ csoi.Sentiment_score_3.isin([np.nan, np.inf, ''])) &
@@ -30,7 +32,7 @@ def analyse_comments(csoi, path):
                      (~ csoi.Sentiment_score_5.isin([np.nan, np.inf, ''])) &
                      (csoi.Sentiment_score_2.isin(["['negative']", "['neutral']", "['positive']"]))].copy()
     csoi_red['Sentiment_score_2_update'] = csoi_red.Sentiment_score_2.replace({"['negative']": -1, "['neutral']": 0, "['positive']": 1})
-    predictors = csoi_red[['Sentiment_score_1', 'Sentiment_score_2_update', 'Sentiment_score_3','Sentiment_score_4', 'Sentiment_score_5',]].copy()
+    predictors = csoi_red[columns_OI].copy()
     csoi_red['annotations'] = model.predict(predictors)
 
     #prep comments and make word count
