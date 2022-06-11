@@ -93,8 +93,8 @@ pickle.dump(search_gbt_reg.best_estimator_, open(filename, 'wb'))
 
 
 #gbt classifier
-X_train_clf, Y_train_clf =train[['Sentiment_score_1', 'Sentiment_score_2_update', 'Sentiment_score_3','Sentiment_score_4', 'Sentiment_score_5',]],train['annotation_classified']
-X_test_clf, Y_test_clf =test[['Sentiment_score_1', 'Sentiment_score_2_update', 'Sentiment_score_3','Sentiment_score_4', 'Sentiment_score_5',]],test['annotation_classified']
+X_train_clf, Y_train_clf =train[columns_OI],train['annotation_classified']
+X_test_clf, Y_test_clf =test[columns_OI],test['annotation_classified']
 
 gbt_clf = GradientBoostingClassifier(random_state=0)
 distributions = {'n_estimators' : randint(1,200), 'learning_rate': uniform(0,1), 'min_samples_split':  randint(2,15)}
