@@ -111,8 +111,8 @@ pickle.dump(search_gbt_clf.best_estimator_, open(filename, 'wb'))
 
 #save best
 model_names=['ridge_reg', 'gbt_reg', 'gbt_clf']
-filename = f'analyse/{d}_best_model_{model_names[np.argmax(metrics)]}.sav'
-pickle.dump(models[np.argmax(metrics)], open(filename, 'wb'))
+filename = f'analyse/{d}_best_model_{model_names[np.argmax(list(metrics.values()))]}.sav'
+pickle.dump(models[np.argmax(list(metrics.values()))], open(filename, 'wb'))
 
 with open(f'analyse/{d}_metrics.json', 'w') as fp:
     json.dump(metrics, fp,  indent=4)
