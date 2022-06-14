@@ -9,13 +9,15 @@ import os
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import Ridge
-from sklearn.metrics import r2_score, mean_squared_error, f1_score, roc_auc_score
+from sklearn.metrics import r2_score, mean_squared_error, f1_score, roc_auc_score, precision_score, recall_score,balanced_accuracy_score
 from sklearn.ensemble import GradientBoostingRegressor, GradientBoostingClassifier
 from scipy.stats import uniform, randint
 from sklearn.model_selection import RandomizedSearchCV
 import pickle
 from datetime import datetime as timer
 from datetime import date
+from imblearn.over_sampling import SMOTE
+
 import json
 d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
 
@@ -40,7 +42,6 @@ for i,row in annotations.iterrows():
     annotations.loc[i,columns_OI] = tmp[columns_OI].values
 
 
-
 annotations['annotation (-2 bis 2)'] = annotations['annotation (-2 bis 2)'].astype(int)
 annotations['Sentiment_score_2_update'] = annotations.Sentiment_score_2.replace({'negative': -1, 'neutral': 0, 'positive': 1})
 annotations['annotation_classified'] = annotations['annotation (-2 bis 2)'].apply(translate_to_class)
@@ -49,11 +50,22 @@ columns_OI =['Sentiment_score_1', 'Sentiment_score_2_update', 'Sentiment_score_3
              'Sentiment_score_10', 'Sentiment_score_11', 'Sentiment_score_7', 'Sentiment_score_8', 'Sentiment_score_9', 'Sentiment_score_12',
              'Sentiment_score_13', 'Sentiment_score_14']
 
+
+feature importance
+
 train_test_split = int(0.9*annotations.shape[0])
 ids = np.arange(annotations.shape[0])
 np.random.shuffle(ids)
 train = annotations.iloc[:train_test_split]
 test = annotations.iloc[train_test_split:]
+
+class_imbalance = train.annotation_classified.value_counts()
+missing_samples_neg = class_imbalance.max() - class_imbalance[class_imbalance.index== -1].values[0]
+missing_samples_neu = class_imbalance.max() - class_imbalance[class_imbalance.index== 0].values[0]
+missing_samples_pos = class_imbalance.max() - class_imbalance[class_imbalance.index== 1].values[0]
+train_resampled = pd.concat([train, train[train.annotation_classified== -1].sample(missing_samples_neg, replace = True), train[train.annotation_classified== 0].sample(missing_samples_neu, replace = True), train[train.annotation_classified== 1].sample(missing_samples_pos, replace = True)] )
+
+
 X_train, Y_train =train[columns_OI],train['annotation (-2 bis 2)']
 X_test, Y_test =test[columns_OI],test['annotation (-2 bis 2)']
 
@@ -61,17 +73,18 @@ models = []
 metrics = {}
 
 #ridge
+
 ridge_reg = Ridge()
 distributions = {'alpha' : uniform(0,100)}
 rscv_ridge_reg = RandomizedSearchCV(ridge_reg, distributions, random_state=0, scoring= 'r2',n_iter = 100 )
 search_ridge_reg = rscv_ridge_reg.fit(X_train, Y_train)
 Y_predict = search_ridge_reg.best_estimator_.predict(X_test)
-r2_ridge = r2_score(Y_test, Y_predict)
-mse_ridge = mean_squared_error(Y_test, Y_predict)
-f1_ridge = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
 rand_pos_ridge = annotations.loc[X_test.iloc[np.argsort(Y_predict)[-10:]].index.values].comment
+
 models.append(search_ridge_reg.best_estimator_)
-metrics['ridge'] = f1_ridge
+metrics['f1_ridge'] = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+metrics['precision_ridge'] = precision_ridge = precision_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+metrics['recall_score'] = recall_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
 filename = f'analyse/{d}_ridge_reg.sav'
 pickle.dump(search_ridge_reg.best_estimator_, open(filename, 'wb'))
 
@@ -87,7 +100,10 @@ mse_gbt_reg = mean_squared_error(Y_test, Y_predict)
 f1_gbt_reg = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
 rand_pos_gbt_reg = annotations.loc[X_test.iloc[np.argsort(Y_predict)[-10:]].index.values].comment
 models.append(search_gbt_reg.best_estimator_)
-metrics['gbt_reg'] = f1_gbt_reg
+metrics['f1_gbt_reg'] = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+metrics['precision_gbt_reg'] = precision_ridge = precision_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+metrics['recall_gbt_reg'] = recall_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+
 filename = f'analyse/{d}_gbt_reg.sav'
 pickle.dump(search_gbt_reg.best_estimator_, open(filename, 'wb'))
 
@@ -104,7 +120,12 @@ Y_predict_clf = search_gbt_clf.best_estimator_.predict(X_test_clf)
 f1_gbt_clf = f1_score(Y_test_clf,Y_predict_clf, average='weighted')
 rand_pos_gbt_clf = annotations.loc[X_test_clf.iloc[np.argsort(Y_predict_clf)[-10:]].index.values].comment
 models.append(search_gbt_clf.best_estimator_)
-metrics['gbt_clf'] = f1_gbt_clf
+metrics['f1_gbt_clf'] = f1_score(Y_test_clf,Y_predict_clf, average='weighted')
+metrics['precision_gbt_clf'] = precision_score(Y_test_clf,Y_predict_clf, average='weighted')
+metrics['recall_gbt_clf'] = recall_score(Y_test_clf,Y_predict_clf, average='weighted')
+metrics['auc_pos_gbt_clf'] = balanced_accuracy_score(Y_test_clf.apply(translate_pos), list(map(translate_pos, Y_predict_clf)))
+metrics['auc_neu_gbt_clf'] = balanced_accuracy_score(Y_test_clf.apply(translate_neu), list(map(translate_neu, Y_predict_clf)))
+metrics['auc_neg_gbt_clf'] = balanced_accuracy_score(Y_test_clf.apply(translate_neg), list(map(translate_neg, Y_predict_clf)))
 filename = f'analyse/{d}_gbt_clf.sav'
 pickle.dump(search_gbt_clf.best_estimator_, open(filename, 'wb'))
 
