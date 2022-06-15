@@ -9,13 +9,15 @@ import pickle
 import pandas as pd
 from _helper_functions import *
 import numpy as np
+from scipy import stats
 from collections import Counter
 
 
 def analyse_comments(csoi, path):
     csoi = csoi.copy()
     #load newst model
-    model = load_newest_model(path+'analyse/')
+    model,_ = load_best_clf_model(path+'analyse/')
+    models = load_newest_clf_models(path+'analyse/')
 
     #load all lists
     parts = pd.read_csv(path+'functions/'+'bauteile.csv', encoding = 'utf-8', header = None)[0].to_list()
@@ -33,7 +35,14 @@ def analyse_comments(csoi, path):
                      (csoi.Sentiment_score_2.isin(["['negative']", "['neutral']", "['positive']"]))].copy()
     csoi_red['Sentiment_score_2_update'] = csoi_red.Sentiment_score_2.replace({"['negative']": -1, "['neutral']": 0, "['positive']": 1})
     predictors = csoi_red[columns_OI].copy()
-    csoi_red['annotations'] = model.predict(predictors)
+    csoi_red['annotations_best'] = model.predict(predictors)
+
+    for i,m in enumerate(models):
+        if i == 0:
+            pred_ensemle = np.array([m.predict(predictors)])
+        else:
+            pred_ensemle = np.append(pred_ensemle, [m.predict(predictors)], axis = 0)
+    csoi_red['annotations_ensemble'] = stats.mode(pred_ensemle).mode[0]
 
     #prep comments and make word count
     comment_string = ' '.join(csoi_red.comment.to_list()).lower()
@@ -43,15 +52,15 @@ def analyse_comments(csoi, path):
     # unique_preped_words_count = Counter(preped_comment_string.split())
 
     #count annotations
-    pos_coms = csoi_red[csoi_red['annotations'] == 1].copy()
+    pos_coms = csoi_red[csoi_red['annotations_ensemble'] == 1].copy()
     num_pos_coms = pos_coms.shape[0]
     part_pos_coms = num_pos_coms / csoi_red.shape[0]
 
-    neu_coms = csoi_red[csoi_red['annotations'] == 0].copy()
+    neu_coms = csoi_red[csoi_red['annotations_ensemble'] == 0].copy()
     num_neu_coms = neu_coms.shape[0]
     part_neu_coms = num_neu_coms / csoi_red.shape[0]
 
-    neg_coms = csoi_red[csoi_red['annotations'] == -1].copy()
+    neg_coms = csoi_red[csoi_red['annotations_ensemble'] == -1].copy()
     num_neg_coms = neg_coms.shape[0]
     part_neg_coms = num_neg_coms / csoi_red.shape[0]
 
