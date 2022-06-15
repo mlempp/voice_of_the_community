@@ -51,7 +51,6 @@ columns_OI =['Sentiment_score_1', 'Sentiment_score_2_update', 'Sentiment_score_3
              'Sentiment_score_13', 'Sentiment_score_14']
 
 
-feature importance
 
 train_test_split = int(0.9*annotations.shape[0])
 ids = np.arange(annotations.shape[0])
@@ -69,11 +68,12 @@ train_resampled = pd.concat([train, train[train.annotation_classified== -1].samp
 X_train, Y_train =train[columns_OI],train['annotation (-2 bis 2)']
 X_test, Y_test =test[columns_OI],test['annotation (-2 bis 2)']
 
-models = []
-metrics = {}
+models = {}
+models_and_metrics = {}
+
+
 
 #ridge
-
 ridge_reg = Ridge()
 distributions = {'alpha' : uniform(0,100)}
 rscv_ridge_reg = RandomizedSearchCV(ridge_reg, distributions, random_state=0, scoring= 'r2',n_iter = 100 )
@@ -81,12 +81,16 @@ search_ridge_reg = rscv_ridge_reg.fit(X_train, Y_train)
 Y_predict = search_ridge_reg.best_estimator_.predict(X_test)
 rand_pos_ridge = annotations.loc[X_test.iloc[np.argsort(Y_predict)[-10:]].index.values].comment
 
-models.append(search_ridge_reg.best_estimator_)
-metrics['f1_ridge'] = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
-metrics['precision_ridge'] = precision_ridge = precision_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
-metrics['recall_score'] = recall_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+models['ridge_reg'] = {}
+models_and_metrics['ridge_reg'] = {}
+models['ridge_reg']['model'] = search_ridge_reg.best_estimator_
+models_and_metrics['ridge_reg']['f1'] = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+models_and_metrics['ridge_reg']['precision'] = precision_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+models_and_metrics['ridge_reg']['recall'] = recall_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
 filename = f'analyse/{d}_ridge_reg.sav'
 pickle.dump(search_ridge_reg.best_estimator_, open(filename, 'wb'))
+
+
 
 
 #gbt regressor
@@ -95,17 +99,19 @@ distributions = {'n_estimators' : randint(1,100), 'learning_rate': uniform(0,1)}
 rscv_gbt_reg = RandomizedSearchCV(gbt_reg, distributions, random_state=0, scoring= 'r2',n_iter = 100 )
 search_gbt_reg = rscv_gbt_reg.fit(X_train, Y_train)
 Y_predict = search_gbt_reg.best_estimator_.predict(X_test)
-r2_gbt_reg = r2_score(Y_test, Y_predict)
-mse_gbt_reg = mean_squared_error(Y_test, Y_predict)
 f1_gbt_reg = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
 rand_pos_gbt_reg = annotations.loc[X_test.iloc[np.argsort(Y_predict)[-10:]].index.values].comment
-models.append(search_gbt_reg.best_estimator_)
-metrics['f1_gbt_reg'] = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
-metrics['precision_gbt_reg'] = precision_ridge = precision_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
-metrics['recall_gbt_reg'] = recall_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
 
+models['gbt_reg'] = {}
+models_and_metrics['gbt_reg'] = {}
+models['gbt_reg']['model'] = search_gbt_reg.best_estimator_
+models_and_metrics['gbt_reg']['f1'] = f1_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+models_and_metrics['gbt_reg']['precision'] = precision_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
+models_and_metrics['gbt_reg']['recall'] = recall_score(Y_test.apply(translate_pos),list(map(translate_pos, Y_predict)), average='weighted')
 filename = f'analyse/{d}_gbt_reg.sav'
 pickle.dump(search_gbt_reg.best_estimator_, open(filename, 'wb'))
+
+
 
 
 #gbt classifier
@@ -119,22 +125,28 @@ search_gbt_clf = rscv_gbt_clf.fit(X_train_clf, Y_train_clf)
 Y_predict_clf = search_gbt_clf.best_estimator_.predict(X_test_clf)
 f1_gbt_clf = f1_score(Y_test_clf,Y_predict_clf, average='weighted')
 rand_pos_gbt_clf = annotations.loc[X_test_clf.iloc[np.argsort(Y_predict_clf)[-10:]].index.values].comment
-models.append(search_gbt_clf.best_estimator_)
-metrics['f1_gbt_clf'] = f1_score(Y_test_clf,Y_predict_clf, average='weighted')
-metrics['precision_gbt_clf'] = precision_score(Y_test_clf,Y_predict_clf, average='weighted')
-metrics['recall_gbt_clf'] = recall_score(Y_test_clf,Y_predict_clf, average='weighted')
-metrics['auc_pos_gbt_clf'] = balanced_accuracy_score(Y_test_clf.apply(translate_pos), list(map(translate_pos, Y_predict_clf)))
-metrics['auc_neu_gbt_clf'] = balanced_accuracy_score(Y_test_clf.apply(translate_neu), list(map(translate_neu, Y_predict_clf)))
-metrics['auc_neg_gbt_clf'] = balanced_accuracy_score(Y_test_clf.apply(translate_neg), list(map(translate_neg, Y_predict_clf)))
+
+models['gbt_clf'] = {}
+models_and_metrics['gbt_clf'] = {}
+models['gbt_clf']['model'] = search_gbt_clf.best_estimator_
+models_and_metrics['gbt_clf']['f1'] = f1_score(Y_test_clf,Y_predict_clf, average='weighted')
+models_and_metrics['gbt_clf']['precision'] = precision_score(Y_test_clf,Y_predict_clf, average='weighted')
+models_and_metrics['gbt_clf']['recall'] = recall_score(Y_test_clf,Y_predict_clf, average='weighted')
+models_and_metrics['gbt_clf']['auc_pos_gbt_clf'] = balanced_accuracy_score(Y_test_clf.apply(translate_pos), list(map(translate_pos, Y_predict_clf)))
+models_and_metrics['gbt_clf']['auc_neu_gbt_clf'] = balanced_accuracy_score(Y_test_clf.apply(translate_neu), list(map(translate_neu, Y_predict_clf)))
+models_and_metrics['gbt_clf']['auc_neg_gbt_clf'] = balanced_accuracy_score(Y_test_clf.apply(translate_neg), list(map(translate_neg, Y_predict_clf)))
 filename = f'analyse/{d}_gbt_clf.sav'
 pickle.dump(search_gbt_clf.best_estimator_, open(filename, 'wb'))
 
 
 #save best
-model_names=['ridge_reg', 'gbt_reg', 'gbt_clf']
-filename = f'analyse/{d}_best_model_{model_names[np.argmax(list(metrics.values()))]}.sav'
-pickle.dump(models[np.argmax(list(metrics.values()))], open(filename, 'wb'))
+model_names = list(models_and_metrics.keys())
+models = [models[x]['model'] for x in model_names]
+model_f1s = [models_and_metrics[x]['f1'] for x in model_names]
+
+filename = f'analyse/{d}_best_model_{list(model_names)[np.argmax(model_f1s)]}.sav'
+pickle.dump(models[np.argmax(model_f1s)], open(filename, 'wb'))
 
 with open(f'analyse/{d}_metrics.json', 'w') as fp:
-    json.dump(metrics, fp,  indent=4)
+    json.dump(models_and_metrics, fp,  indent=4)
 

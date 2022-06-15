@@ -84,7 +84,7 @@ def comment_database_update(path):
             ids_comments = list(df_comments.VideoID.unique())
             ids_videos = list(df_videos.index)
             missing_videos = [x for x in ids_videos if x not in ids_comments]
-            last_30_videos = ids_videos[-50:]
+            last_30_videos = ids_videos[-30:]
             last_30_videos_not_missing = [x for x in last_30_videos if x not in missing_videos]
             videos_for_update = missing_videos+last_30_videos_not_missing
 
@@ -113,7 +113,6 @@ def comment_database_update(path):
                         df_comments = df_comments.append(comment_series, ignore_index=True)
                 else:
                     for i,c in tqdm(enumerate(comments)):   #add all comments if we dont have the video
-                        print(f'        all comments new')
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1]),
                                                            'Sentiment_score_1' : 0, 'Sentiment_score_2' : 0,'Sentiment_score_3' : 0,'Sentiment_score_4' : 0,'Sentiment_score_5' : 0,
                                                            'Sentiment_score_6' : 0,'Sentiment_score_7' : 0,'Sentiment_score_8' : 0,'Sentiment_score_9' : 0,'Sentiment_score_10' : 0,
