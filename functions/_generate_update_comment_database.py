@@ -84,7 +84,7 @@ def comment_database_update(path):
             ids_comments = list(df_comments.VideoID.unique())
             ids_videos = list(df_videos.index)
             missing_videos = [x for x in ids_videos if x not in ids_comments]
-            last_30_videos = ids_videos[-30:]
+            last_30_videos = ids_videos[-50:]
             last_30_videos_not_missing = [x for x in last_30_videos if x not in missing_videos]
             videos_for_update = missing_videos+last_30_videos_not_missing
 
