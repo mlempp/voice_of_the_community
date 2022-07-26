@@ -29,21 +29,21 @@ from _write_report import *
 def main():
     path = os.getcwd() + '/'
 
-    q_update = input('Update data? (yes/no): ').upper()
+    q_update = input_yes_no('Update data? (yes/no): ')
     if q_update == 'YES':
         video_database_update(path)
         comment_database_update(path)
         thumbnail_database_update(path)
 
 
-    q_analysis = input('Analyse? (yes/no): ').upper()
+    q_analysis = input_yes_no('Analyse? (yes/no): ')
     if q_analysis == 'YES':
         df_videos = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
         df_videos.video_date = pd.to_datetime(df_videos.video_date)
         df_comments = load_newest_comment_file(path)
 
         results = {}
-        single_analysis = input('Analyse single video? (yes/no): ').upper()
+        single_analysis = input_yes_no('Analyse single video? (yes/no): ')
         if single_analysis == 'YES':
             analysis_date = pd.to_datetime(input('which date (DD.MM.YYYY): '), format='%d.%m.%Y')
             vsoi = df_videos[df_videos.video_date.isin([analysis_date])]
@@ -53,15 +53,14 @@ def main():
             results[vsoi.video_title.iloc[0]] = analysis_result
 
         else:
-            multi_analysis = input('Analyse multiple videos? (yes/no): ').upper()
+            multi_analysis = input_yes_no('Analyse multiple videos? (yes/no): ')
             if multi_analysis == 'YES':
-                start_date = input('which starting date (DD.MM.YYYY): ')
-                analysis_start_date = pd.to_datetime(start_date, format='%d.%m.%Y')
-                end_date = input('which end date (DD.MM.YYYY): ')
-                analysis_end_date = pd.to_datetime(end_date, format='%d.%m.%Y')
+                analysis_start_date = input_date('which starting date (DD.MM.YYYY): ')
+                analysis_end_date = input_date('which end date (DD.MM.YYYY): ')
                 analysis_range = pd.date_range(analysis_start_date,analysis_end_date).to_list()
                 vsoi = df_videos[df_videos.video_date.isin(analysis_range)]
-                time_line_analysis = input('Analyse as one series? (yes/no) (alternative: all videos by themself): ').upper()
+                time_line_analysis = input_yes_no('Analyse as one series? (yes/no) (alternative: all videos by themself): ')
+
                 if time_line_analysis == 'YES':
                     csoi = df_comments[df_comments.VideoID.isin(vsoi.index)]
                     analysis_result = analyse_comments(csoi,path)

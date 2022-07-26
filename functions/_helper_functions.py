@@ -273,4 +273,23 @@ def cut_sentence(string):
             updated_string = updated_string + letter
     return updated_string
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def input_yes_no(string):
+    answer = input(string).upper()
+    while answer not in ['YES', 'NO']:
+        answer = input(string).upper()
+    return answer
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def input_date(string):
+    answer = input(string)
+    date = None
+    while date is None:
+        try:
+            date = pd.to_datetime(answer, format='%d.%m.%Y')
+        except:
+            pass
+    return date
+
+
 
