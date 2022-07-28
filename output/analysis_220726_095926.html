@@ -1,0 +1,544 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>VOTC</title>
+    <link href="votc_template.css" rel="stylesheet" type = "text/css"> 
+    <link href="http://fonts.cdnfonts.com/css/bignoodletitling" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/trebuchet-ms-2" rel="stylesheet">
+
+
+    <style type = "text/css">
+
+
+
+      body {
+            background:White;
+            }
+            
+            .topblock{
+                position: relative;
+                display: block;
+                width: 2000px;
+                height: 400px;
+                margin-left: -20px;
+                background: linear-gradient(-8deg, white 50%, #EB1580 50%); 
+            }
+                .topblock h1  {
+                    position: absolute;
+                    font-size: 140px;
+                    font-weight: bold;
+                    transform: rotate(-8deg) ; 
+                    top: 20px;
+                    left: 60px;
+                    font-family: Trebuchet MS;
+                    color: White;
+                    z-index: 2;
+                }                  
+                .topblock h2  {
+                    position: absolute;
+                    font-size: 140px;
+                    font-weight: bold;
+                    transform: rotate(-8deg) ; 
+                    font-family: Trebuchet MS;
+                    top: 15px;
+                    left: 55px;
+                    color: Black;
+                    z-index: 1;
+                }  
+                .topblock h3 {
+                    position: absolute;
+                    font-size: 60px;
+                    font-weight: bold;
+                    font-family:  'BigNoodleTitling', sans-serif;
+                    transform: rotate(-8deg) ; 
+                    top: 260px;
+                    left: 90px;
+                    color: #00dfd7ff;
+                    z-index: 1;
+                }  
+
+
+            .midblock{
+                position: relative;
+                display: block;
+                width: 2000px;
+                height: 600px;
+                margin-top: -150px;
+                margin-left: -20px;
+                margin-bottom: 150px;
+                background: linear-gradient(-8deg, rgba(235, 21, 128, 0) 0% 45%, rgba(235, 21, 128, 1) 45% 65%,rgba(235, 21, 128, 0) 65% 100%); 
+            }
+            .midblock h1  {
+                    position: absolute;
+                    transform-origin: bottom left;
+                    font-size: 50px;
+                    font-weight: bold;
+                    top: 220px;
+                    left: 130px;
+                    font-family: Trebuchet MS;
+                    transform: rotate(-8deg) ; 
+                    color: Black;
+                    z-index: 2;
+                }                  
+                .midblock h2  {
+                    position: absolute;
+                    transform-origin: bottom left;
+                    font-size: 50px;
+                    font-weight: bold;
+                    font-family: Trebuchet MS;
+                    transform: rotate(-8deg) ; 
+                    top: 216px;
+                    left: 125px;
+                    color: White;
+                    z-index: 1;
+                }       
+                .midblock p  {
+                    position: relative;
+                    font-size: 40px;
+                    font-family: 'BigNoodleTitling', sans-serif;
+                    color: Black;
+                    z-index: 1;
+                }  
+
+
+            #score-meter-2{
+                position: absolute;
+                width: 40px;
+                height: 20px;
+                top: 500px;
+                border-top-left-radius: 300px;
+                border-top-right-radius: 300px;
+                border: 120px solid #00dfd7ff;
+                border-bottom: 0;
+                left:300px;
+                position: relative;
+                --c: 120deg
+                }
+                .scorer-2-tick {
+                position: absolute;
+                bottom: 2px;
+                left: -100px;
+                width: 120px;
+                height: 3px;
+                background-color: #ffffff;
+                transform: rotate(-0deg);
+                animation-name: ticker-mover-2;
+                animation-duration: 20s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+                border-top-left-radius: 50%;
+                border-bottom-left-radius: 50%;
+                }
+                @keyframes ticker-mover-2 {
+                0% {
+                    transform-origin: right center;
+                    transform: rotate(0deg);
+                }
+                10% {
+                    transform-origin: right center;
+                    transform: rotate(180deg);
+                }
+                20% {
+                    transform-origin: right center;
+                    transform: rotate(var(--c));
+                }
+                100% {
+                    transform-origin:right center;
+                    transform: rotate(var(--c));
+                }
+                }
+
+            
+
+
+            
+      
+
+    </style>
+
+
+</head>
+
+<body>
+
+<div id = "main">
+
+
+    <div class="topblock">
+            <h1>voices of the community</h1>
+            <h2>voices of the community</h2>
+            <h3>Analyse der "JP Performance" Community</h3>
+        </div>
+    
+
+
+
+
+
+    <div class="midblock">
+        <h1>ES GEHT WEITER! Mit den Videos & dem aktuellen Stand bei uns!</h1>
+        <h2>ES GEHT WEITER! Mit den Videos & dem aktuellen Stand bei uns!</h2>       
+        <p style="margin-bottom: -40px; top: 200px; left: 70px; transform: rotate(-8deg);color: White;font-size: 30px;">Zufälliger Netter Kommentar: "Schön zu sehen, dass liebe zum Job erfolgreich macht! Ich wünsche euch alles Gute für die Zukunft und weiterhin so viel Freude!"</p>
+        <! -- per line of the comment add -30 px to the margin-bottom, 140 letters per line  --> 
+        <div class="scorer-align">
+            <div  style="top:610px;left:50px;--c:57.76744186046511deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Positive</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">32%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:420px;left:400px;--c:118.16611295681064deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Neutrale</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">66%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:230px;left:750px;--c:4.0664451827242525deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Negative</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">2%</p>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 35px; left: 1100px; top:-115px">Häufigste Farbe:&emsp;weiß</p>
+        <p style="font-size: 35px; left: 1200px; top:-160px">Seltenste Farbe:&emsp;türkis</p>
+        <p style="font-size: 35px; left: 1100px; top:-180px">Häufigste Marke:&emsp;Hyundai</p>
+        <p style="font-size: 35px; left: 1200px; top:-225px">Seltenste Marke:&emsp;Opel</p>
+        <p style="font-size: 35px; left: 1100px; top:-245px">Häufigstes Modell:&emsp;VW Beetle</p>
+        <p style="font-size: 35px; left: 1200px; top:-290px">Seltenstes Modell:&emsp;Audi A4</p>
+        <p style="font-size: 35px; left: 1100px; top:-310px">Häufigstes Bauteil:&emsp;ESP</p>
+        <p style="font-size: 35px; left: 1200px; top:-355px">Seltenstes Bauteil:&emsp;Scheinwerfer</p>
+
+    </div>
+
+
+
+
+
+    <div class="midblock">
+        <h1>Ich sage doch etwas dazu!</h1>
+        <h2>Ich sage doch etwas dazu!</h2>       
+        <p style="margin-bottom: -40px; top: 200px; left: 70px; transform: rotate(-8deg);color: White;font-size: 30px;">Zufälliger Netter Kommentar: "Liebe an euch alle😍"</p>
+        <! -- per line of the comment add -30 px to the margin-bottom, 140 letters per line  --> 
+        <div class="scorer-align">
+            <div  style="top:610px;left:50px;--c:73.43742001535705deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Positive</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">41%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:420px;left:400px;--c:96.61121064755567deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Neutrale</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">54%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:230px;left:750px;--c:9.951369337087279deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Negative</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">6%</p>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 35px; left: 1100px; top:-115px">Häufigste Farbe:&emsp;weiß</p>
+        <p style="font-size: 35px; left: 1200px; top:-160px">Seltenste Farbe:&emsp;gelb</p>
+        <p style="font-size: 35px; left: 1100px; top:-180px">Häufigste Marke:&emsp;Audi</p>
+        <p style="font-size: 35px; left: 1200px; top:-225px">Seltenste Marke:&emsp;Bugatti</p>
+        <p style="font-size: 35px; left: 1100px; top:-245px">Häufigstes Modell:&emsp;VW UP</p>
+        <p style="font-size: 35px; left: 1200px; top:-290px">Seltenstes Modell:&emsp;VW Golf 7</p>
+        <p style="font-size: 35px; left: 1100px; top:-310px">Häufigstes Bauteil:&emsp;ESP</p>
+        <p style="font-size: 35px; left: 1200px; top:-355px">Seltenstes Bauteil:&emsp;Kolben</p>
+
+    </div>
+
+
+
+
+
+    <div class="midblock">
+        <h1>Wer etwas für Jean Pierre übrig hat, sollte dieses Video sehen!</h1>
+        <h2>Wer etwas für Jean Pierre übrig hat, sollte dieses Video sehen!</h2>       
+        <p style="margin-bottom: -40px; top: 200px; left: 70px; transform: rotate(-8deg);color: White;font-size: 30px;">Zufälliger Netter Kommentar: "🖒🖒🖒Super Team"</p>
+        <! -- per line of the comment add -30 px to the margin-bottom, 140 letters per line  --> 
+        <div class="scorer-align">
+            <div  style="top:610px;left:50px;--c:77.81423290203327deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Positive</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">43%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:420px;left:400px;--c:91.45563770794824deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Neutrale</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">51%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:230px;left:750px;--c:10.730129390018483deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Negative</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">6%</p>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 35px; left: 1100px; top:-115px">Häufigste Farbe:&emsp;weiß</p>
+        <p style="font-size: 35px; left: 1200px; top:-160px">Seltenste Farbe:&emsp;pink</p>
+        <p style="font-size: 35px; left: 1100px; top:-180px">Häufigste Marke:&emsp;Brabus</p>
+        <p style="font-size: 35px; left: 1200px; top:-225px">Seltenste Marke:&emsp;BMW</p>
+        <p style="font-size: 35px; left: 1100px; top:-245px">Häufigstes Modell:&emsp;VW UP</p>
+        <p style="font-size: 35px; left: 1200px; top:-290px">Seltenstes Modell:&emsp;BMW M4</p>
+        <p style="font-size: 35px; left: 1100px; top:-310px">Häufigstes Bauteil:&emsp;ESP</p>
+        <p style="font-size: 35px; left: 1200px; top:-355px">Seltenstes Bauteil:&emsp;Steuergerät</p>
+
+    </div>
+
+
+
+
+
+    <div class="midblock">
+        <h1>Wie tief können wir gehen? | Gepfeffert zu Besuch!</h1>
+        <h2>Wie tief können wir gehen? | Gepfeffert zu Besuch!</h2>       
+        <p style="margin-bottom: -70px; top: 200px; left: 70px; transform: rotate(-8deg);color: White;font-size: 30px;">Zufälliger Netter Kommentar: "Wi ist denn die OZ Felge für hinten, war die auch 18 Zoll? Dann würde ich eben vorn und hinten 18 Zoll machen, aber eben<br>mit dieser geilen OZ Felge. Das ist stimmiger als irgendein moderner Kram. Gruß Tom Berlin"</p>
+        <! -- per line of the comment add -30 px to the margin-bottom, 140 letters per line  --> 
+        <div class="scorer-align">
+            <div  style="top:610px;left:50px;--c:50.55144968732235deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Positive</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">28%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:420px;left:400px;--c:127.60659465605458deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Neutrale</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">71%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:230px;left:750px;--c:1.8419556566230812deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Negative</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">1%</p>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 35px; left: 1100px; top:-115px">Häufigste Farbe:&emsp;weiß</p>
+        <p style="font-size: 35px; left: 1200px; top:-160px">Seltenste Farbe:&emsp;mint</p>
+        <p style="font-size: 35px; left: 1100px; top:-180px">Häufigste Marke:&emsp;BMW</p>
+        <p style="font-size: 35px; left: 1200px; top:-225px">Seltenste Marke:&emsp;Cupra</p>
+        <p style="font-size: 35px; left: 1100px; top:-245px">Häufigstes Modell:&emsp;BMW E36</p>
+        <p style="font-size: 35px; left: 1200px; top:-290px">Seltenstes Modell:&emsp;Mercedes 500 E</p>
+        <p style="font-size: 35px; left: 1100px; top:-310px">Häufigstes Bauteil:&emsp;Felgen</p>
+        <p style="font-size: 35px; left: 1200px; top:-355px">Seltenstes Bauteil:&emsp;Ölwanne</p>
+
+    </div>
+
+
+
+
+
+    <div class="midblock">
+        <h1>Das ist der Aktuelle stand bei JP Performance</h1>
+        <h2>Das ist der Aktuelle stand bei JP Performance</h2>       
+        <p style="margin-bottom: -40px; top: 200px; left: 70px; transform: rotate(-8deg);color: White;font-size: 30px;">Zufälliger Netter Kommentar: "Danke fürs Video 🙏🎉❤️"</p>
+        <! -- per line of the comment add -30 px to the margin-bottom, 140 letters per line  --> 
+        <div class="scorer-align">
+            <div  style="top:610px;left:50px;--c:37.9020979020979deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Positive</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">21%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:420px;left:400px;--c:137.76223776223776deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Neutrale</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">77%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:230px;left:750px;--c:4.335664335664336deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Negative</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">2%</p>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 35px; left: 1100px; top:-115px">Häufigste Farbe:&emsp;weiß</p>
+        <p style="font-size: 35px; left: 1200px; top:-160px">Seltenste Farbe:&emsp;orange</p>
+        <p style="font-size: 35px; left: 1100px; top:-180px">Häufigste Marke:&emsp;Brabus</p>
+        <p style="font-size: 35px; left: 1200px; top:-225px">Seltenste Marke:&emsp;Alfa Romeo</p>
+        <p style="font-size: 35px; left: 1100px; top:-245px">Häufigstes Modell:&emsp;Audi RS6</p>
+        <p style="font-size: 35px; left: 1200px; top:-290px">Seltenstes Modell:&emsp;Audi RS4</p>
+        <p style="font-size: 35px; left: 1100px; top:-310px">Häufigstes Bauteil:&emsp;ESP</p>
+        <p style="font-size: 35px; left: 1200px; top:-355px">Seltenstes Bauteil:&emsp;Kurbelwelle</p>
+
+    </div>
+
+
+
+
+
+    <div class="midblock">
+        <h1>Oldtimerzerstörung die Nächste! | BMW E36 Restrampe Lenkung &...</h1>
+        <h2>Oldtimerzerstörung die Nächste! | BMW E36 Restrampe Lenkung &...</h2>       
+        <p style="margin-bottom: -40px; top: 200px; left: 70px; transform: rotate(-8deg);color: White;font-size: 30px;">Zufälliger Netter Kommentar: "Richtig coool"</p>
+        <! -- per line of the comment add -30 px to the margin-bottom, 140 letters per line  --> 
+        <div class="scorer-align">
+            <div  style="top:610px;left:50px;--c:38.366533864541836deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Positive</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">21%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:420px;left:400px;--c:137.68924302788844deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Neutrale</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">76%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:230px;left:750px;--c:3.944223107569721deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Negative</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">2%</p>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 35px; left: 1100px; top:-115px">Häufigste Farbe:&emsp;weiß</p>
+        <p style="font-size: 35px; left: 1200px; top:-160px">Seltenste Farbe:&emsp;pink</p>
+        <p style="font-size: 35px; left: 1100px; top:-180px">Häufigste Marke:&emsp;BMW</p>
+        <p style="font-size: 35px; left: 1200px; top:-225px">Seltenste Marke:&emsp;Porsche</p>
+        <p style="font-size: 35px; left: 1100px; top:-245px">Häufigstes Modell:&emsp;BMW E36</p>
+        <p style="font-size: 35px; left: 1200px; top:-290px">Seltenstes Modell:&emsp;Audi R8</p>
+        <p style="font-size: 35px; left: 1100px; top:-310px">Häufigstes Bauteil:&emsp;Rad</p>
+        <p style="font-size: 35px; left: 1200px; top:-355px">Seltenstes Bauteil:&emsp;Stoßdämpfer</p>
+
+    </div>
+
+
+
+
+
+    <div class="midblock">
+        <h1>Unser neues GELDGRAB!</h1>
+        <h2>Unser neues GELDGRAB!</h2>       
+        <p style="margin-bottom: -70px; top: 200px; left: 70px; transform: rotate(-8deg);color: White;font-size: 30px;">Zufälliger Netter Kommentar: "Freue mich wirklich, dass der R8 zurückkehrt! Ist einfach ein Hammer Auto mit nem mega Sound😍
+Bin sehr gespannt was da noch<br>für Überraschungen auf uns zu kommen, positiv wie negativ 😅"</p>
+        <! -- per line of the comment add -30 px to the margin-bottom, 140 letters per line  --> 
+        <div class="scorer-align">
+            <div  style="top:610px;left:50px;--c:45.23461939520334deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Positive</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">25%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:420px;left:400px;--c:131.94994786235662deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Neutrale</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">73%</p>
+            </div>
+          </div>
+        </div>
+
+                 
+        <div class="scorer-align">
+            <div  style="top:230px;left:750px;--c:2.815432742440042deg" id="score-meter-2" class="scorer-align">
+                <p style="font-weight: bold;left:-95px; text-align: center;top:-250px">Negative</p>
+                <p style="font-weight: bold;left:-65px; text-align: center;top:-300px">Kommentare</p>
+            <div class="scorer-2-tick">
+                 <p style="font-size: 30px;left: -10px;top:-85px; transform: rotate(-90deg);">2%</p>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 35px; left: 1100px; top:-115px">Häufigste Farbe:&emsp;weiß</p>
+        <p style="font-size: 35px; left: 1200px; top:-160px">Seltenste Farbe:&emsp;grün</p>
+        <p style="font-size: 35px; left: 1100px; top:-180px">Häufigste Marke:&emsp;Audi</p>
+        <p style="font-size: 35px; left: 1200px; top:-225px">Seltenste Marke:&emsp;Mazda</p>
+        <p style="font-size: 35px; left: 1100px; top:-245px">Häufigstes Modell:&emsp;Audi R8</p>
+        <p style="font-size: 35px; left: 1200px; top:-290px">Seltenstes Modell:&emsp;Porsche 911 Carrera</p>
+        <p style="font-size: 35px; left: 1100px; top:-310px">Häufigstes Bauteil:&emsp;Rad</p>
+        <p style="font-size: 35px; left: 1200px; top:-355px">Seltenstes Bauteil:&emsp;Karosserie</p>
+
+    </div>
+
+
+
+
+
+</body>
+</html>
