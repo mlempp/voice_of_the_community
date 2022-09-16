@@ -52,6 +52,10 @@ columns_OI =['Sentiment_score_1', 'Sentiment_score_2_update', 'Sentiment_score_3
              'Sentiment_score_13', 'Sentiment_score_14']
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# modelling: regressors
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 train_test_split = int(0.9*annotations.shape[0])
 ids = np.arange(annotations.shape[0])
@@ -93,7 +97,6 @@ pickle.dump(search_ridge_reg.best_estimator_, open(filename, 'wb'))
 
 
 
-
 #gbt regressor
 gbt_reg = GradientBoostingRegressor(max_depth=1, random_state=0)
 distributions = {'n_estimators' : randint(1,100), 'learning_rate': uniform(0,1)}
@@ -113,13 +116,17 @@ filename = f'analyse/{d}_gbt_reg.sav'
 pickle.dump(search_gbt_reg.best_estimator_, open(filename, 'wb'))
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# modelling: classifiers
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 #gbt classifier
 X_train_clf, Y_train_clf =train[columns_OI],train['annotation_classified']
 X_test_clf, Y_test_clf =test[columns_OI],test['annotation_classified']
 
 gbt_clf = GradientBoostingClassifier(random_state=0)
-distributions = {'n_estimators' : randint(1,200), 'learning_rate': uniform(0,1), 'min_samples_split':  randint(2,15)}
+distributions = {'n_estimators' : randint(1,200), 'learning_rate': uniform(0,1), 'min_samples_split':  randint(2,60)}
 rscv_gbt_clf = RandomizedSearchCV(gbt_clf, distributions, random_state=0, scoring= 'f1_weighted',n_iter = 20, verbose=1 )
 search_gbt_clf = rscv_gbt_clf.fit(X_train_clf, Y_train_clf)
 Y_predict_gbt_clf = search_gbt_clf.best_estimator_.predict(X_test_clf)
@@ -143,7 +150,7 @@ pickle.dump(search_gbt_clf.best_estimator_, open(filename, 'wb'))
 X_train_clf, Y_train_clf =train[columns_OI],train['annotation_classified']
 X_test_clf, Y_test_clf =test[columns_OI],test['annotation_classified']
 rf_clf = RandomForestClassifier(random_state=0)
-distributions = {'n_estimators' : randint(1,200), 'min_samples_split':  randint(2,15)}
+distributions = {'n_estimators' : randint(1,200), 'min_samples_split':  randint(2,150), 'max_depth':  randint(2,10)}
 rscv_rf_clf = RandomizedSearchCV(rf_clf, distributions, random_state=0, scoring= 'f1_weighted',n_iter = 20, verbose=1 )
 search_rf_clf = rscv_rf_clf.fit(X_train_clf, Y_train_clf)
 Y_predict_rf_clf = search_rf_clf.best_estimator_.predict(X_test_clf)
@@ -185,6 +192,11 @@ models_and_metrics['neigh_clf']['acc_neuf'] = balanced_accuracy_score(Y_test_clf
 models_and_metrics['neigh_clf']['acc_neg'] = balanced_accuracy_score(Y_test_clf.apply(translate_neg), list(map(translate_neg, Y_predict_neigh_clf)))
 filename = f'analyse/{d}_neigh_clf.sav'
 pickle.dump(search_neigh_clf.best_estimator_, open(filename, 'wb'))
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# modelling: classifier ensemble and save
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
