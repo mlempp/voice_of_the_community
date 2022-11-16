@@ -143,13 +143,12 @@ def load_newest_comment_file(path):
     comment_files = [x for x in os.listdir(path) if 'comment_DataBase' in x]
     comment_files.sort()
     comment_file = comment_files[-1]
-    if (pd.__version__ == '1.0.4') & (platform.system() == 'Windows'):
+    if  (platform.system() == 'Windows'):
         df = pd.read_csv(path + comment_file, sep=';', index_col=0)
     else:
         df = pd.read_csv(path + comment_file, sep=';', index_col=0, lineterminator='\n')
 
     return df
-
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def load_best_clf_model(path):
@@ -157,7 +156,6 @@ def load_best_clf_model(path):
     model_files.sort()
     model_file = model_files[-1]
     return pickle.load(open(path + model_file, 'rb')), model_file
-
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def load_newest_clf_models(path):
@@ -172,7 +170,6 @@ def load_newest_clf_models(path):
     for m in model_files:
         models.append(pickle.load(open(path + m, 'rb')))
     return models
-
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def translate_pos(value):
@@ -194,7 +191,6 @@ def translate_neu(value):
         return 1
     else:
         return 0
-
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def translate_to_class(value):
