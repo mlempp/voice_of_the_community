@@ -64,7 +64,7 @@ def main():
                 if time_line_analysis == 'YES':
                     csoi = df_comments[df_comments.VideoID.isin(vsoi.index)]
                     analysis_result = analyse_comments(csoi,path)
-                    results[f'{start_date}-{end_date}'] = analysis_result
+                    results[f'{analysis_start_date}-{analysis_end_date}'] = analysis_result
                 else:
                     for i,row in vsoi.iterrows():
                         csoi = df_comments[df_comments.VideoID.isin([i])]

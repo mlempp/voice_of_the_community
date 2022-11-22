@@ -146,7 +146,8 @@ def load_newest_comment_file(path):
     if  (platform.system() == 'Windows'):
         df = pd.read_csv(path + comment_file, sep=';', index_col=0)
     else:
-        df = pd.read_csv(path + comment_file, sep=';', index_col=0, lineterminator='\n')
+        # df = pd.read_csv(path + comment_file, sep=';', index_col=0, lineterminator='\r')
+        df = pd.read_csv(path + comment_file, sep=';', index_col=0)
 
     return df
 
