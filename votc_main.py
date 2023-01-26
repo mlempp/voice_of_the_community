@@ -9,19 +9,17 @@ import os
 from datetime import datetime as timer
 from datetime import date,timedelta
 import sys
-d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
-path = os.getcwd() + '/'
-sys.path.insert(0, path + 'functions/')
-from _generate_update_comment_database import *
-from _generate_update_video_database import *
-from _helper_functions import *
-from _update_thumbnail_database import *
-from _comment_analyser import *
-from _write_report import *
+from functions._generate_update_comment_database import *
+from functions._generate_update_video_database import *
+from functions._helper_functions import *
+from functions._update_thumbnail_database import *
+from functions._comment_analyser import *
+from functions._write_report import *
 # from _video_class import *
 # from _defined_past_analysis import *
 # from _global_analysis import *
 # from _yearly_analysis import *
+d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
 
 
 

@@ -7,7 +7,7 @@ Analyse einer Kommentarserie
 import os
 import pickle
 import pandas as pd
-from _helper_functions import *
+from functions._helper_functions import *
 import numpy as np
 from scipy import stats
 from collections import Counter

@@ -7,7 +7,7 @@ write report for results
 import os
 import numpy as np
 import codecs
-from _helper_functions import *
+from functions._helper_functions import *
 
 
 def generate_report(result_dct):
