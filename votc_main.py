@@ -3,6 +3,8 @@ Autor: Martin Lempp
 
 Kurzbeschreibung:
 Hauptprogramm zur Sentimentanalyse und Report-Erstellung
+
+V 1.0
 '''
 import pandas as pd
 import os
