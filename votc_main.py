@@ -25,7 +25,6 @@ d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
 
 
 
-
 def main():
     path = os.getcwd() + '/'
 
