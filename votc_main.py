@@ -26,6 +26,7 @@ d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
 
 
 def main():
+    #sys.exit('STOP-DEV-BRANCH')
     path = os.getcwd() + '/'
 
     q_update = input_yes_no('Update data? (yes/no): ')
@@ -33,7 +34,6 @@ def main():
         video_database_update(path)
         comment_database_update(path)
         thumbnail_database_update(path)
-
 
     q_analysis = input_yes_no('Analyse? (yes/no): ')
     if q_analysis == 'YES':
