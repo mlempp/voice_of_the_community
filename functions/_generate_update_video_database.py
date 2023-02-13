@@ -151,7 +151,7 @@ class YTstats:
 
 
 def videos_to_frame(video_dct):
-
+    # transform main information from YTstats class to frame based on the provided video_dct
     df = pd.DataFrame(index = video_dct.keys())
     df['video_title'] = [video_dct[x]['title'] for x in video_dct]
     df['video_date'] = [video_dct[x]['publishedAt'] for x in video_dct]
@@ -160,17 +160,20 @@ def videos_to_frame(video_dct):
     return df
 
 def video_database_update(path):
-
+    # open api-key
     with open(path+'api_key.txt') as f:
         lines = f.readlines()
     api_key = lines[0]
 
+    #open the channel ID
     with open(path+'channel_id.txt') as f:
         lines = f.readlines()
     channel_id = lines[0]
 
+    #generate YTstats class
     yt = YTstats(api_key, channel_id)
     if os.path.isfile(path + 'video_DataBase.csv'):
+        # if the database already exists, update the lastest 30 videos
         print ("video database exist...update")
         df_old = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
         video_data_new = yt.get_channel_video_data(limit = 3)
@@ -180,9 +183,11 @@ def video_database_update(path):
 
     else:
         print ("no video database existent...create")
+        # if the database does not exist, get all possible video data
         video_data_new = yt.get_channel_video_data(limit = 500)
         df = videos_to_frame(video_data_new)
 
+    #save
     df.to_csv(path+'video_DataBase.csv', sep = ';')
 
 
