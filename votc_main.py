@@ -6,21 +6,12 @@ Hauptprogramm zur Sentimentanalyse und Report-Erstellung
 
 V 1.0
 '''
-import pandas as pd
-import os
-from datetime import datetime as timer
-from datetime import date,timedelta
 import sys
 from functions._generate_update_comment_database import *
 from functions._generate_update_video_database import *
-from functions._helper_functions import *
 from functions._update_thumbnail_database import *
 from functions._comment_analyser import *
 from functions._write_report import *
-# from _video_class import *
-# from _defined_past_analysis import *
-# from _global_analysis import *
-# from _yearly_analysis import *
 d = date.today().strftime("%y%m%d") + '_' + timer.now().strftime("%H%M%S")
 
 
@@ -30,20 +21,26 @@ def main():
     path = os.getcwd() + '/'
 
     q_update = input_yes_no('Update data? (yes/no): ')
+    ### 1 - update the commetn database
     if q_update == 'YES':
         video_database_update(path)
         comment_database_update(path)
         thumbnail_database_update(path)
 
     q_analysis = input_yes_no('Analyse? (yes/no): ')
+    ### 2 - perform analysis
     if q_analysis == 'YES':
+        # load video database
         df_videos = pd.read_csv(path+'video_DataBase.csv', sep = ';', index_col = 0)
         df_videos.video_date = pd.to_datetime(df_videos.video_date)
+
+        # load comments
         df_comments = load_newest_comment_file(path)
 
         results = {}
         single_analysis = input_yes_no('Analyse single video? (yes/no): ')
         if single_analysis == 'YES':
+            # analyse a single video
             analysis_date = pd.to_datetime(input('which date (DD.MM.YYYY): '), format='%d.%m.%Y')
             vsoi = df_videos[df_videos.video_date.isin([analysis_date])]
             csoi = df_comments[df_comments.VideoID.isin([vsoi.index[0]])]
@@ -54,6 +51,7 @@ def main():
         else:
             multi_analysis = input_yes_no('Analyse multiple videos? (yes/no): ')
             if multi_analysis == 'YES':
+                # analyse multiple videos
                 analysis_start_date = input_date('which starting date (DD.MM.YYYY): ')
                 analysis_end_date = input_date('which end date (DD.MM.YYYY): ')
                 analysis_range = pd.date_range(analysis_start_date,analysis_end_date).to_list()
@@ -61,10 +59,12 @@ def main():
                 time_line_analysis = input_yes_no('Analyse as one series? (yes/no) (alternative: all videos by themself): ')
 
                 if time_line_analysis == 'YES':
+                    # analyse multiple videos as a single series
                     csoi = df_comments[df_comments.VideoID.isin(vsoi.index)]
                     analysis_result = analyse_comments(csoi,path)
                     results[f'{analysis_start_date}-{analysis_end_date}'] = analysis_result
                 else:
+                    # analyse multiple videos all individual
                     for i,row in vsoi.iterrows():
                         csoi = df_comments[df_comments.VideoID.isin([i])]
                         analysis_result = analyse_comments(csoi,path)

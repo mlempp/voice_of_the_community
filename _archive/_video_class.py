@@ -52,8 +52,8 @@ class video:
         :return:
         '''
         path = self.path
-        senti_ws_positive = pd.read_csv(path + 'functions/SentiWS_v1.8c_Positive.txt', sep = '\t', header = None)
-        senti_ws_negative = pd.read_csv(path + 'functions/SentiWS_v1.8c_Negative.txt', sep = '\t', header = None)
+        senti_ws_positive = pd.read_csv(path + 'functions/sentiws_positives.txt', sep = '\t', header = None)
+        senti_ws_negative = pd.read_csv(path + 'functions/sentiws_negatives.txt', sep = '\t', header = None)
         senti_ws = pd.concat([senti_ws_positive, senti_ws_negative], axis=0, ignore_index=True)
         senti_ws[0] = senti_ws[0].apply(lambda x: x.split('|')[0])
         senti_ws = senti_ws.set_index(0)

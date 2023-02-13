@@ -16,14 +16,14 @@ from collections import Counter
 def analyse_comments(csoi, path):
     csoi = csoi.copy()
     #load newst model
-    model,_ = load_best_clf_model(path+'analyse/')
-    models = load_newest_clf_models(path+'analyse/')
+    model,_ = load_best_clf_model(path+'models/')
+    models = load_newest_clf_models(path+'models/')
 
     #load all lists
-    parts = pd.read_csv(path+'functions/'+'bauteile.csv', encoding = 'utf-8', header = None)[0].to_list()
-    colors = pd.read_csv(path+'functions/'+'farbliste.csv', encoding = 'utf-8', header = None)[0].to_list()
-    brands = pd.read_csv(path+'functions/'+'markenliste.csv', encoding = 'utf-8', header = None)[0].to_list()
-    carmodels = pd.read_csv(path+'functions/'+'modelliste_2.csv', encoding = 'iso8859_2', sep =';')
+    parts = pd.read_csv(path+'functions/'+'parts.csv', encoding = 'utf-8', header = None)[0].to_list()
+    colors = pd.read_csv(path+'functions/'+'colors.csv', encoding = 'utf-8', header = None)[0].to_list()
+    brands = pd.read_csv(path+'functions/'+'brands.csv', encoding = 'utf-8', header = None)[0].to_list()
+    carmodels = pd.read_csv(path+'functions/'+'carmodels.csv', encoding = 'iso8859_2', sep =';')
     columns_OI = ['Sentiment_score_1', 'Sentiment_score_2_update', 'Sentiment_score_3', 'Sentiment_score_4', 'Sentiment_score_5', 'Sentiment_score_6',
                   'Sentiment_score_10', 'Sentiment_score_11', 'Sentiment_score_7', 'Sentiment_score_8', 'Sentiment_score_9', 'Sentiment_score_12',
                   'Sentiment_score_13', 'Sentiment_score_14']

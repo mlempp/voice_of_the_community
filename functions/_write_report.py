@@ -13,7 +13,7 @@ from functions._helper_functions import *
 def generate_report(result_dct):
 
     path = os.getcwd() + '/'
-    with open(path+"report_template/votc_template_filled.html", "r", encoding='utf-8') as f:
+    with open(path+"functions/report_template/votc_template_filled.html", "r", encoding='utf-8') as f:
         template = f.read()
 
     block_start, block_mid_end = template.split('<!--midblock_start-->')
