@@ -288,5 +288,32 @@ def input_date(string):
             pass
     return date
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def get_polarity_info_1(path):
+    senti_1_ws_positive = pd.read_csv(path + 'functions/sentiws_positives.txt', sep='\t', header=None)
+    senti_1_ws_negative = pd.read_csv(path + 'functions/sentiws_negatives.txt', sep='\t', header=None)
+    senti_1_ws = pd.concat([senti_1_ws_positive, senti_1_ws_negative], axis=0, ignore_index=True)
+    senti_1_ws[0] = senti_1_ws[0].apply(lambda x: x.split('|')[0])
+    senti_1_ws['prepped'] = senti_1_ws[0].apply(clean_text)
+    senti_1_ws = senti_1_ws.set_index('prepped')
+    senti_1_ws = senti_1_ws[1].to_dict()
+    return senti_1_ws
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def get_polarity_info_2(path):
+    senti_4_polarity = pd.read_csv(path + 'functions/word_polarity2.txt', sep='\t', header=None)
+    senti_4_polarity[0] = senti_4_polarity[0].apply(lambda x: x.split('_')[0])
+    senti_4_polarity['prepped']  =senti_4_polarity[0].apply(clean_text)
+    senti_4_polarity = senti_4_polarity.set_index('prepped').replace({'NEG':-1,'POS':1, 'NEU': 0, 'INT': 0, 'SHI': 0 })
+    senti_4_polarity = senti_4_polarity[1].to_dict()
+    return senti_4_polarity
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def get_polarity_info_3(path):
+    senti_5_polarity = pd.read_csv(path + 'functions/word_polarity.csv', sep=';', header=0)
+    senti_5_polarity = senti_5_polarity.set_index('wort')
+    senti_5_polarity['prepped'] =senti_5_polarity.index.to_list()
+    senti_5_polarity['prepped']  =senti_5_polarity['prepped'].apply(clean_text)
+    senti_5_polarity = senti_5_polarity.set_index('prepped')
+    senti_5_polarity = senti_5_polarity['combined'].astype(float).to_dict()
+    return senti_5_polarity

@@ -18,26 +18,11 @@ import googleapiclient.discovery
 path = os.getcwd() + '/'
 
 
-senti_1_ws_positive = pd.read_csv(path + 'functions/sentiws_positives.txt', sep='\t', header=None)
-senti_1_ws_negative = pd.read_csv(path + 'functions/sentiws_negatives.txt', sep='\t', header=None)
-senti_1_ws = pd.concat([senti_1_ws_positive, senti_1_ws_negative], axis=0, ignore_index=True)
-senti_1_ws[0] = senti_1_ws[0].apply(lambda x: x.split('|')[0])
-senti_1_ws['prepped'] = senti_1_ws[0].apply(clean_text)
-senti_1_ws = senti_1_ws.set_index('prepped')
-senti_1_ws = senti_1_ws[1].to_dict()
+polarity_info_1 = get_polarity_info_1(path)
+polarity_info_2 = get_polarity_info_2(path)
+polarity_info_3 = get_polarity_info_3(path)
 
-senti_4_polarity = pd.read_csv(path + 'functions/word_polarity2.txt', sep='\t', header=None)
-senti_4_polarity[0] = senti_4_polarity[0].apply(lambda x: x.split('_')[0])
-senti_4_polarity['prepped']  =senti_4_polarity[0].apply(clean_text)
-senti_4_polarity = senti_4_polarity.set_index('prepped').replace({'NEG':-1,'POS':1, 'NEU': 0, 'INT': 0, 'SHI': 0 })
-senti_4_polarity = senti_4_polarity[1].to_dict()
 
-senti_5_polarity = pd.read_csv(path + 'functions/word_polarity.csv', sep=';', header=0)
-senti_5_polarity = senti_5_polarity.set_index('wort')
-senti_5_polarity['prepped'] =senti_5_polarity.index.to_list()
-senti_5_polarity['prepped']  =senti_5_polarity['prepped'].apply(clean_text)
-senti_5_polarity = senti_5_polarity.set_index('prepped')
-senti_5_polarity = senti_5_polarity['combined'].astype(float).to_dict()
 
 
 def load_all_video_comments(video_id, yt):
@@ -101,12 +86,32 @@ def comment_database_update(path):
                     print(f'        {len(new_comments)} new comments')
                     for i,c in tqdm(enumerate(new_comments)):
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1]),
-                                                           'Sentiment_score_1' : 0, 'Sentiment_score_2' : 0,'Sentiment_score_3' : 0,'Sentiment_score_4' : 0,'Sentiment_score_5' : 0,
-                                                           'Sentiment_score_6' : 0,'Sentiment_score_7' : 0,'Sentiment_score_8' : 0,'Sentiment_score_9' : 0,'Sentiment_score_10' : 0,
-                                                           'Sentiment_score_11' : 0,'Sentiment_score_12' : 0,'Sentiment_score_13' : 0,'Sentiment_score_14' : 0,})
-                        comment_series[['Sentiment_score_1', 'Sentiment_score_6', 'Sentiment_score_9', 'Sentiment_score_12']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=senti_1_ws)
-                        comment_series[['Sentiment_score_4', 'Sentiment_score_7', 'Sentiment_score_10', 'Sentiment_score_13']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=senti_4_polarity)
-                        comment_series[['Sentiment_score_5', 'Sentiment_score_8', 'Sentiment_score_11', 'Sentiment_score_14']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=senti_5_polarity)
+                                                           'Sentiment_score_1' : 0,
+                                                           'Sentiment_score_2' : 0,
+                                                           'Sentiment_score_3' : 0,
+                                                           'Sentiment_score_4' : 0,
+                                                           'Sentiment_score_5' : 0,
+                                                           'Sentiment_score_6' : 0,
+                                                           'Sentiment_score_7' : 0,
+                                                           'Sentiment_score_8' : 0,
+                                                           'Sentiment_score_9' : 0,
+                                                           'Sentiment_score_10' : 0,
+                                                           'Sentiment_score_11' : 0,
+                                                           'Sentiment_score_12' : 0,
+                                                           'Sentiment_score_13' : 0,
+                                                           'Sentiment_score_14' : 0,})
+                        comment_series[['Sentiment_score_1',
+                                        'Sentiment_score_6',
+                                        'Sentiment_score_9',
+                                        'Sentiment_score_12']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=polarity_info_1)
+                        comment_series[['Sentiment_score_4',
+                                        'Sentiment_score_7',
+                                        'Sentiment_score_10',
+                                        'Sentiment_score_13']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=polarity_info_2)
+                        comment_series[['Sentiment_score_5',
+                                        'Sentiment_score_8',
+                                        'Sentiment_score_11',
+                                        'Sentiment_score_14']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=polarity_info_3)
                         comment_series['Sentiment_score_2'] = calc_sentiment_score2(comment_series.comment)
                         comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
 
@@ -114,12 +119,32 @@ def comment_database_update(path):
                 else:
                     for i,c in tqdm(enumerate(comments)):   #add all comments if we dont have the video
                         comment_series = pd.Series(data = {'VideoID':  video_ID, 'comment_ID': c[0], 'comment': c[1], 'comment_preped': clean_text(c[1]),
-                                                           'Sentiment_score_1' : 0, 'Sentiment_score_2' : 0,'Sentiment_score_3' : 0,'Sentiment_score_4' : 0,'Sentiment_score_5' : 0,
-                                                           'Sentiment_score_6' : 0,'Sentiment_score_7' : 0,'Sentiment_score_8' : 0,'Sentiment_score_9' : 0,'Sentiment_score_10' : 0,
-                                                           'Sentiment_score_11' : 0,'Sentiment_score_12' : 0,'Sentiment_score_13' : 0,'Sentiment_score_14' : 0,})
-                        comment_series[['Sentiment_score_1', 'Sentiment_score_6', 'Sentiment_score_9', 'Sentiment_score_12']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=senti_1_ws)
-                        comment_series[['Sentiment_score_4', 'Sentiment_score_7', 'Sentiment_score_10', 'Sentiment_score_13']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=senti_4_polarity)
-                        comment_series[['Sentiment_score_5', 'Sentiment_score_8', 'Sentiment_score_11', 'Sentiment_score_14']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=senti_5_polarity)
+                                                           'Sentiment_score_1' : 0,
+                                                           'Sentiment_score_2' : 0,
+                                                           'Sentiment_score_3' : 0,
+                                                           'Sentiment_score_4' : 0,
+                                                           'Sentiment_score_5' : 0,
+                                                           'Sentiment_score_6' : 0,
+                                                           'Sentiment_score_7' : 0,
+                                                           'Sentiment_score_8' : 0,
+                                                           'Sentiment_score_9' : 0,
+                                                           'Sentiment_score_10' : 0,
+                                                           'Sentiment_score_11' : 0,
+                                                           'Sentiment_score_12' : 0,
+                                                           'Sentiment_score_13' : 0,
+                                                           'Sentiment_score_14' : 0,})
+                        comment_series[['Sentiment_score_1',
+                                        'Sentiment_score_6',
+                                        'Sentiment_score_9',
+                                        'Sentiment_score_12']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=polarity_info_1)
+                        comment_series[['Sentiment_score_4',
+                                        'Sentiment_score_7',
+                                        'Sentiment_score_10',
+                                        'Sentiment_score_13']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=polarity_info_2)
+                        comment_series[['Sentiment_score_5',
+                                        'Sentiment_score_8',
+                                        'Sentiment_score_11',
+                                        'Sentiment_score_14']] = calc_sentiment_scores_from_dict(comment_series.comment_preped, dct=polarity_info_3)
                         comment_series['Sentiment_score_2'] = calc_sentiment_score2(comment_series.comment)
                         comment_series['Sentiment_score_3'] = calc_sentiment_score3(comment_series.comment_preped)
                         df_comments = df_comments.append(comment_series, ignore_index=True)
